@@ -1,0 +1,29 @@
+@import './vars.scss';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 16px;
+    font-family: $font-family-base;
+}
+
+.pt-shape-corner {
+    $corner: map-get($component-shape, "corner");
+    border-radius: map-get($corner, "border-radius") !important;
+}
+
+.pt-shape-round {
+    $round: map-get($component-shape, "round");
+    border-radius: map-get($round, "border-radius") !important;
+}
+
+.pt-shape-circle {
+    $circle: map-get($component-shape, "circle");
+    border-radius: map-get($circle, "border-radius") !important;
+}
+
+.pt-shape-triangle-x,
+.pt-shape-triangle-y {}

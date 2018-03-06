@@ -1,0 +1,89 @@
+@import './vars.scss';
+@import './mixins/common.scss';
+.pt-radio {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    user-select: none;
+    &.disabled {
+        cursor: no-drop;
+    }
+    &:not(.disabled):not(.checked) {
+        cursor: pointer;
+    }
+    &.focus:not(.disabled) {
+        >.pt-radio-control {
+            box-shadow: 0 0 1px 1px rgba($choose-br-hover, .3);
+        }
+    }
+    &:hover:not(.disabled):not(.checked),
+    &.focus:not(.disabled):not(.checked) {
+        >.pt-radio-control {
+            border-color: $choose-br-hover;
+            &:before {
+                opacity: .5;
+            }
+        }
+    }
+    &.checked,
+    &.checked.focus {
+        >.pt-radio-control {
+            border-color: $choose-br-hover;
+            &:before {
+                opacity: 1;
+            }
+        }
+    }
+    &.checked.disabled{
+        >.pt-radio-control {
+            border-color: $gray-500;
+            &:before {
+                background: $gray-500;
+            }
+        }
+    }
+    .pt-radio-real {
+        display: inline-block;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+        line-height: 0;
+        font-size: 0;
+        &:hover,
+        &:active,
+        &:focus {
+            outline: none;
+        }
+    }
+    .pt-radio-control,
+    .pt-radio-content {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .pt-radio-control {
+        position: relative;
+        width: $choose-control-size;
+        height: $choose-control-size;
+        border-radius: 50%;
+        border: 1px solid $choose-br;
+        &:before {
+            content: '';
+            opacity: 0;
+            display: inline-block;
+            border-radius: 50%;
+            background: $choose-br-hover;
+            position: absolute;
+            top: $choose-interval / 2;
+            left: $choose-interval / 2;
+            width: $choose-control-size - $choose-interval;
+            height: $choose-control-size - $choose-interval;
+            margin-top: -1px;
+            margin-left: -1px;
+            transition: $choose-show-transition;
+        }
+    }
+}
+
+.pt-radio+.pt-radio {
+    margin-left: 0.5rem;
+}

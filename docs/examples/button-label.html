@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PtButtonLabel</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/css/base.css">
+    <link rel="stylesheet" href="../lib/css/button.css">
+    <link rel="stylesheet" href="../lib/css/button-group.css">
+    <link rel="stylesheet" href="../lib/css/button-label.css">
+    <link rel="stylesheet" href="./base.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>PtButtonLabel</h1>
+        <div class="card">
+            <h4 class="t">基础</h4>
+            <div class="btn-container">
+                <pt-button-label position="left">left</pt-button-label>
+                <pt-button type="success">
+                    按钮
+                    <pt-button-label slot="labelTop" position="top">top</pt-button-label>
+                    <pt-button-label slot="labelRight" position="right">right</pt-button-label>
+                    <pt-button-label slot="labelBottom" position="bottom">bottom</pt-button-label>
+                    <pt-button-label slot="labelLeft" position="left">left</pt-button-label>
+                </pt-button>
+            </div>
+            <pt-button-group>
+                <pt-button type="danger">
+                    Like
+                    <pt-button-label slot="labelLeft" position="left">40</pt-button-label>
+                </pt-button>
+                <pt-button type="danger">
+                    Like
+                    <pt-button-label slot="labelLeft" position="left">40</pt-button-label>
+                </pt-button>
+                <pt-button type="danger">
+                    Star
+                    <pt-button-label slot="labelRight" position="right">50</pt-button-label>
+                </pt-button>
+            </pt-button-group>
+        </div>
+        <div class="card">
+            <h4 class="t">基础</h4>
+            <div v-for="btnType in types">
+                <div v-for="labelType in labelTypes" class="btn-container">
+                    <pt-button v-for="positionVal in position" :type="btnType" :key="btnType+'-'+positionVal">
+                        {{btnType}}
+                        <pt-button-label :slot="'label'+toUpperCase(positionVal)" :type="labelType" :position="positionVal">{{positionVal}}-{{labelType}}</pt-button-label>
+                    </pt-button>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="card">
+            <h4 class="t">尺寸</h4>
+            <div class="btn-container" v-for="(value,prop) in sizes">
+                <h5 class="t">{{value}}</h5>
+                <pt-button v-for="(value2,prop2) in position" type="primary" :size="value" :key="value+'-sz'+value2">
+                    {{value}}
+                    <pt-button-label :slot="'label'+toUpperCase(value2)" :position="value2">{{value2}}</pt-button-label>
+                </pt-button>
+            </div>
+        </div>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../lib/components/button.js"></script>
+    <script src="../lib/components/button-group.js"></script>
+    <script src="../lib/components/button-label.js"></script>
+    <script>
+        Vue.config.errorHandler = function (err, vm, info) {
+            console.error(err);
+        }
+        Vue.use(PtButtonLabel, {
+            arrow: true
+        });
+        Vue.use(PtButtonGroup, {
+            arrow: true
+        });
+        Vue.use(PtButton, {
+            iconPrefix: function (icon) {
+                if (icon) {
+                    return 'fa fa-' + icon;
+                } else {
+                    return '';
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                sizes: PtButton.size,
+                types: PtButton.type,
+                labelTypes: PtButtonLabel.type,
+                position: PtButtonLabel.position
+            },
+            methods: {
+                toUpperCase: function (str) {
+                    return str[0].toUpperCase() + str.substr(1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

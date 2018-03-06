@@ -1,0 +1,68 @@
+@mixin button-bg($bg, $gradient: 'true') {
+    background-color: $bg;
+    @if($gradient!='') {
+        background-image: linear-gradient(180deg, $bg, darken($bg, 5%));
+    }
+    @else {
+        background-image: none;
+    }
+}
+
+@mixin button-hover($bg, $br:$bg, $color:color-yiq($bg), $gradient: 'true', $shadowColor:$bg) {
+    &:not(:disabled):not(.disabled):hover,
+    &:not(:disabled):not(.disabled):focus {
+        color: $color;
+        @include button-bg($bg, $gradient);
+        border-color: $br;
+        @if($shadowColor!='') {
+            box-shadow: 0 8px 12px rgba($shadowColor, .4), 0 1px 3px rgba(0, 0, 0, .08);
+        }
+    }
+}
+
+@mixin button-active($bg, $br:$bg, $color:color-yiq($bg), $gradient: 'true', $shadowColor:$bg) {
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+        color: $color;
+        @include button-bg($bg, $gradient);
+        border-color: $br;
+        @if($shadowColor!='') {
+            box-shadow: 0 4px 6px rgba($shadowColor, .11), 0 1px 3px rgba(0, 0, 0, .08);
+        }
+        &:focus {
+            color: $color;
+            @include button-bg($bg, $gradient);
+            border-color: $br;
+        }
+    }
+}
+
+@mixin button($bg, $br:$bg, $gradient: 'true', $color:color-yiq($bg), $hoverBg:darken($bg, 7.5%), $hoverBr:darken($br, 10%), $hoverColor:color-yiq($hoverBg), $activeBg:darken($bg, 13%), $activeBr:darken($br, 16%), $activeColor:color-yiq($activeBg), $shadowColor:$bg) {
+    color: $color;
+    @include button-bg($bg, $gradient);
+    border-color: $br;
+    box-shadow: 0 4px 6px rgba($shadowColor, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    @include button-hover($hoverBg, $hoverBr, $hoverColor, $gradient, $shadowColor);
+    @include button-active($activeBg, $activeBr, $activeColor, $gradient, $shadowColor);
+}
+
+@mixin button-size($size) {
+    $val: map-get($btn-size, $size);
+    @if $val {
+        padding: map-get($val, 'padding-y') map-get($val, 'padding-x');
+        font-size: map-get($val, 'font-size');
+        line-height: map-get($val, 'line-height');
+        border-radius: map-get($val, 'border-radius');
+    }
+}
+
+@mixin button-outline($color, $value) {
+    @if($color=="light") {
+        @include button-hover($value, $br: $gray-300, $shadowColor:$value);
+        @include button-active(darken($value, 13%), $br: $gray-800, $shadowColor:darken($value, 13%));
+    }
+    @else {
+        @include button-hover($value, $shadowColor: $value);
+        @include button-active(darken($value, 13%), $shadowColor: darken($value, 13%));
+    }
+}

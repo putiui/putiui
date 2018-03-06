@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PtCheckbox</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/css/base.css">
+    <link rel="stylesheet" href="../lib/css/checkbox.css">
+    <link rel="stylesheet" href="../lib/css/checkbox-group.css">
+    <link rel="stylesheet" href="./base.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>PtCheckbox</h1>
+        <div class="card">
+            <h4 class="t">基本</h4>
+            <pt-checkbox v-model="more">{{more}}</pt-checkbox>
+            <pt-checkbox-group v-model="value">
+                <pt-checkbox :value='1'>北京</pt-checkbox>
+                <pt-checkbox :value='2'>上海</pt-checkbox>
+            </pt-checkbox-group>
+        </div>
+        <div class="card">
+            <h4 class="t">options</h4>
+            <pt-checkbox-group v-model="opsVal" :options="ops" :before-check="asyncBefore1">
+            </pt-checkbox-group>
+            {{opsVal}}
+        </div>
+
+        <div class="card">
+            <h4 class="t">异步</h4>
+            <pt-checkbox v-model="asyncCheck" :before-check="asyncBefore1">{{asyncCheck}}</pt-checkbox>
+        </div>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../lib/components/checkbox.js"></script>
+    <script src="../lib/components/checkbox-group.js"></script>
+    <script>
+        Vue.use(PtCheckbox);
+        Vue.use(PtCheckboxGroup);
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                more: false,
+                value: [],
+                opsVal: [],
+                ops: ['无锡', '苏州', '杭州'],
+                asyncCheck: false
+            },
+            methods: {
+                asyncBefore1(val) {
+                    return new Promise((resolve, reject) => {
+                        console.log(111)
+                        if (confirm('你确定此操作?即将设置val=' + val + '【2秒后执行勾选或不勾选】')) {
+                            setTimeout(resolve, 2 * 1000)
+                        } else {
+                            setTimeout(reject, 2 * 1000)
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

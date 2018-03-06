@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid</title>
+    <link rel="stylesheet" href="../lib/css/base.css">
+    <link rel="stylesheet" href="../lib/css/grid.css">
+    <link rel="stylesheet" href="./base.css">
+    <style>
+        .pt-row {
+            margin-bottom: 15px;
+        }
+
+        .pt-row .pt-col:before {
+            content: '';
+            display: block;
+            background: #8593bb;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        .pt-row .pt-col:nth-child(2n):before {
+            background: #5a52fd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>PtGrid</h1>
+        <div class="card">
+            <h4 class="t">基础</h4>
+            <pt-row>
+                <pt-col :span="24"></pt-col>
+            </pt-row>
+            <pt-row>
+                <pt-col :span="12"></pt-col>
+                <pt-col :span="8"></pt-col>
+                <pt-col :span="4"></pt-col>
+            </pt-row>
+            <pt-row>
+                <pt-col :span="1"></pt-col>
+                <pt-col :span="2"></pt-col>
+                <pt-col :span="3"></pt-col>
+                <pt-col :span="4"></pt-col>
+                <pt-col :span="5"></pt-col>
+                <pt-col :span="6"></pt-col>
+            </pt-row>
+        </div>
+
+        <div class="card">
+            <h4 class="t">偏移</h4>
+            <pt-row>
+                <pt-col :span="12" :offset="6"></pt-col>
+            </pt-row>
+            <pt-row>
+                <pt-col :span="6" :offset="6"></pt-col>
+                <pt-col :span="6" :offset="6"></pt-col>
+            </pt-row>
+        </div>
+
+        <div class="card">
+            <h4 class="t">间隔</h4>
+            <pt-row :gutter="20">
+                <pt-col :span="12" :offset="6"></pt-col>
+            </pt-row>
+            <pt-row :gutter="30">
+                <pt-col :span="6" :offset="6"></pt-col>
+                <pt-col :span="6" :offset="6"></pt-col>
+            </pt-row>
+        </div>
+
+        <div class="card">
+            <h4 class="t">Flex</h4>
+            <pt-row flex justify="center">
+                <pt-col :span="2"></pt-col>
+                <pt-col :span="4"></pt-col>
+            </pt-row>
+            <pt-row flex justify="space-between">
+                <pt-col :span="2"></pt-col>
+                <pt-col :span="4"></pt-col>
+            </pt-row>
+        </div>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../lib/components/grid.js"></script>
+    <script>
+        Vue.use(PtGrid, {});
+        var vm = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods: {
+            }
+        })
+    </script>
+</body>
+
+</html>

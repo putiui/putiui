@@ -1,0 +1,31 @@
+@import './vars.scss';
+@import './mixins/common.scss';
+@import './flex.scss';
+.pt-row {
+    &:not(.pt-flex) {
+        @include clearfix;
+    }
+    &.pt-flex {
+        >.pt-col {
+            float: none;
+        }
+    }
+}
+
+.pt-col {
+    float: left;
+    min-height: 1px;
+}
+
+$columns:24;
+@for $value from 1 through $columns {
+    .pt-col-#{$value} {
+        width: ($value/$columns) * 100%;
+    }
+}
+
+@for $value from 1 through $columns {
+    .pt-col-offset-#{$value} {
+        margin-left: ($value/$columns) * 100%;
+    }
+}

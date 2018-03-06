@@ -1,0 +1,254 @@
+// Color system
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$primary:       #5a52fd !default;
+$secondary:     #8593bb !default;
+$success:       #28a745 !default;
+$info:          #1fc4ac !default;
+$warning:       #ea7004 !default;
+$danger:        #df284f !default;
+$light:         $white !default;
+$dark:          $gray-800 !default;
+$link-color:$primary !default;
+
+$light-hover:darken($light, 7.5%);
+$light-br:$gray-300;
+$light-hover-br:darken($light-br, 10%);
+
+$theme-colors: (
+"primary":    $primary,
+"secondary":  $secondary,
+"success":    $success,
+"info":       $info,
+"warning":    $warning,
+"danger":     $danger,
+"light":      $light,
+"dark":       $dark) !default;
+
+// stylelint-disable
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge((
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3)
+), $spacers);
+
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 150 !default;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark: $gray-900 !default;
+$yiq-text-light: $white !default;
+
+
+// Components
+$disabled-opacity:0.65 !default;
+$border-width:                1px !default;
+$border-color:                $gray-300 !default;
+$border-radius:               .25rem !default;
+
+$component-active-color:      $white !default;
+$component-active-bg:         $primary !default;
+
+$caret-width:                 .3em !default;
+
+$transition-base:             all .2s ease-in-out !default;
+$transition-fade:             opacity .15s linear !default;
+$transition-collapse:         height .35s ease !default;
+
+// Shape
+$component-shape: (
+    "corner": (
+        "border-radius": .7rem
+    ),//存在较大程度的拐角
+    "round": (
+        "border-radius": 3rem
+    ),//使左右两侧呈现半圆状
+    "circle": (
+        "border-radius": 50%
+    ),//使整个形状呈现为绝对圆形
+    'triangle-x': 'triangle-x',//使形状左右两侧呈现为三角形，拐角微量圆润
+    'triangle-y': 'triangle-y'//使形状上下两侧呈现为三角形，拐角微量圆润
+) !default;
+
+
+// Fonts
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:            $font-family-sans-serif !default;
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-bold:            700 !default;
+
+$font-weight-base:            $font-weight-normal !default;
+$line-height-base:            1.5 !default;
+
+$h1-font-size:                $font-size-base * 2.5 !default;
+$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size:                $font-size-base * 1.75 !default;
+$h4-font-size:                $font-size-base * 1.5 !default;
+$h5-font-size:                $font-size-base * 1.25 !default;
+$h6-font-size:                $font-size-base !default;
+
+$headings-margin-bottom:      ($spacer / 2) !default;
+$headings-font-family:        inherit !default;
+$headings-font-weight:        500 !default;
+$headings-line-height:        1.2 !default;
+$headings-color:              inherit !default;
+
+$display1-size:               6rem !default;
+$display2-size:               5.5rem !default;
+$display3-size:               4.5rem !default;
+$display4-size:               3.5rem !default;
+
+$display1-weight:             300 !default;
+$display2-weight:             300 !default;
+$display3-weight:             300 !default;
+$display4-weight:             300 !default;
+$display-line-height:         $headings-line-height !default;
+
+$lead-font-size:              ($font-size-base * 1.25) !default;
+$lead-font-weight:            300 !default;
+
+$small-font-size:             80% !default;
+
+$text-muted:                  $gray-600 !default;
+
+$blockquote-small-color:      $gray-600 !default;
+$blockquote-font-size:        ($font-size-base * 1.25) !default;
+
+$hr-border-color:             rgba($black, .1) !default;
+$hr-border-width:             $border-width !default;
+
+$mark-padding:                .2em !default;
+
+$dt-font-weight:              $font-weight-bold !default;
+
+$kbd-box-shadow:              inset 0 -.1rem 0 rgba($black, .25) !default;
+$nested-kbd-font-weight:      $font-weight-bold !default;
+
+$list-inline-padding:         .5rem !default;
+
+$mark-bg:                     #fcf8e3 !default;
+
+$hr-margin-y:                 $spacer !default;
+
+
+
+// Buttons + Forms
+$input-btn-size: (
+    "mini": (
+        "padding-x": .625rem,//10px
+        "padding-y": .125rem,//2px
+        "font-size": .625rem,//10px
+        "line-height": 1.3,
+        "border-radius": .2rem
+    ),
+    "tiny": (
+        "padding-x": 1rem,//16px
+        "padding-y": .25rem,//4px
+        "font-size": .75rem,//12px
+        "line-height": 1.3,
+        "border-radius": .2rem
+    ),
+    "small": (
+        "padding-x": 1.375rem,//22px
+        "padding-y": .375rem,//6px
+        "font-size": .8rem,//13px
+        "line-height": 1.5,
+        "border-radius": .3rem
+    ),
+    "medium": (
+        "padding-x": 1.875rem,//30px
+        "padding-y": .5rem,//8px
+        "font-size": .875rem,//14px
+        "line-height": 1.5,
+        "border-radius": .3rem
+    ),
+    "large": (
+        "padding-x": 4.5rem,
+        "padding-y": .625rem,//10px
+        "font-size": 1rem,//16px
+        "line-height": 1.7,
+        "border-radius": .4rem
+    ),
+    "big": (
+        "padding-x": 6rem,
+        "padding-y": .75rem,//12px
+        "font-size": 1.2rem,
+        "line-height": 1.7,
+        "border-radius": .4rem
+    ),
+    "huge": (
+        "padding-x": 7.5rem,
+        "padding-y": .875rem,//14px
+        "font-size": 1.3rem,
+        "line-height": 1.9,
+        "border-radius": .5rem
+    ),
+    "massive": (
+        "padding-x": 6.2rem,
+        "padding-y": 1rem,//16px
+        "font-size": 1.4rem,
+        "line-height": 1.9,
+        "border-radius": .5rem
+    ),
+) !default;
+$input-btn-number-size: (
+    "mini": -3,
+    "tiny": -2,
+    "small": -1,
+    "medium": 0,
+    "large": 1,
+    "big": 2,
+    "huge": 3,
+    "massive": 4
+) !default;
+$input-btn-size-normal: 'medium' !default;
+
+$input-btn-shape: map-merge($component-shape, () ) !default;
+
+$input-btn-focus-width:       .2rem !default;
+$input-btn-focus-color:       rgba($component-active-bg, .25) !default;
+$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
+
+$input-btn-border-width:      $border-width !default;
+
+
+// Buttons
+$btn-size: $input-btn-size !default;
+$btn-number-size: $input-btn-number-size !default;
+$btn-size-normal: $input-btn-size-normal !default;
+$btn-shape: $input-btn-shape !default;
+$btn-border-width:            $input-btn-border-width !default;
+$btn-font-weight:             $font-weight-normal !default;
+$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+$btn-disabled-opacity:        .65 !default;
+$btn-transition:              all .15s ease !default;
+$btn-label-arrow-width:0.36rem;
+
+// Radios + Checkboxs
+$choose-control-size:1rem;
+$choose-interval: $choose-control-size * 0.4;
+$choose-br:$gray-400;
+$choose-br-hover:$primary;
+$choose-show-transition:$transition-fade;
+
+$radio-disabled-opacity:.4;

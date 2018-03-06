@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PtButtonGroup</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/css/base.css">
+    <link rel="stylesheet" href="../lib/css/button.css">
+    <link rel="stylesheet" href="../lib/css/button-group.css">
+    <link rel="stylesheet" href="./base.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>PtButtonGroup</h1>
+        <div class="card">
+            <h4 class="t">基础</h4>
+            <div>
+                <pt-button-group>
+                    <pt-button>Left</pt-button>
+                    <pt-button active>Center</pt-button>
+                    <pt-button>Right</pt-button>
+                </pt-button-group>
+                <pt-button-group>
+                    <pt-button>Left</pt-button>
+                    <pt-button type="success">Center</pt-button>
+                    <pt-button type="danger" hollow outline="warning">Right</pt-button>
+                </pt-button-group>
+            </div>
+        </div>
+        <div class="card">
+            <h4 class="t">尺寸</h4>
+            <div>
+                <pt-button-group :size="4">
+                    <pt-button>Left</pt-button>
+                    <pt-button active>Center</pt-button>
+                    <pt-button>Right</pt-button>
+                </pt-button-group>
+            </div>
+        </div>
+        <div class="card">
+            <h4 class="t">宽度相等</h4>
+            <div>
+                <pt-button-group>
+                    <pt-button>Left</pt-button>
+                    <pt-button>Center Center Center</pt-button>
+                    <pt-button>Right</pt-button>
+                </pt-button-group>
+            </div>
+        </div>
+        <div class="card">
+            <h4 class="t">方向</h4>
+            <div>
+                <pt-button-group direction="horizontal">
+                    <pt-button>horizontal</pt-button>
+                    <pt-button>horizontal</pt-button>
+                    <pt-button>horizontal</pt-button>
+                </pt-button-group>
+            </div>
+            <div>
+                <pt-button-group direction="vertical">
+                    <pt-button>vertical</pt-button>
+                    <pt-button icon="user">vertical</pt-button>
+                    <pt-button>vertical vertical vertical vertical</pt-button>
+                </pt-button-group>
+            </div>
+        </div>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../lib/components/button.js"></script>
+    <script src="../lib/components/button-group.js"></script>
+    <script>
+        Vue.use(PtButtonGroup, {
+            equalWidth: false
+        });
+        Vue.use(PtButton, {
+            iconPrefix: function (icon) {
+                if (icon) {
+                    return 'fa fa-' + icon;
+                } else {
+                    return '';
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+            }
+        })
+    </script>
+</body>
+
+</html>

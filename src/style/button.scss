@@ -1,0 +1,148 @@
+@import './vars.scss';
+@import './mixins/common.scss';
+@import './mixins/button.scss';
+.pt-btn {
+    display: inline-block;
+    position: relative;
+    font-weight: $btn-font-weight;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: $btn-border-width solid transparent;
+    transition: $btn-transition;
+    @include button-size($btn-size-normal);
+    &.disabled,
+    &:disabled {
+        opacity: $btn-disabled-opacity;
+        cursor: no-drop;
+    }
+    &:not(:disabled):not(.disabled):hover,
+    &:not(:disabled):not(.disabled):focus {
+        cursor: pointer;
+        text-decoration: none;
+        outline: none;
+        transform: translateY(-1px);
+    }
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+        text-decoration: none;
+        outline: none;
+        transform: translateY(1px);
+        &:focus {
+            outline: none;
+            text-decoration: none;
+        }
+    } // 消除ie浏览器下按钮文字偏移的效果
+    &.browser-ie:not(:disabled):not(.disabled):active span,
+    &.browser-ie:not(:disabled):not(.disabled).active> span,
+    &.browser-ie:not(:disabled):not(.disabled):active> label,
+    &.browser-ie:not(:disabled):not(.disabled).active> label {
+        // -ms-transform: translate(0px, -0.5px);
+        // -ms-transition: none;
+        position: relative;
+    }
+}
+
+a.pt-btn.disabled,
+fieldset:disabled a.pt-btn {
+    pointer-events: none;
+    cursor: no-drop;
+}
+
+@each $color,
+$value in map-merge($theme-colors, ('text':$link-color)) {
+    .pt-btn-#{$color} {
+        @if($color=="light") {
+            @include button($value, $gray-300, $shadowColor: $gray-500);
+        }
+        @else if($color=="text") {
+            background: none;
+            color: $value;
+            &:not(:disabled):not(.disabled):hover,
+            &:not(:disabled):not(.disabled):focus {
+                text-decoration: underline;
+            }
+            @include button-hover($gray-300, transparent, $value, '', '');
+            @include button-active($gray-400, transparent, $value, '', '');
+        }
+        @else {
+            @include button($value);
+        }
+    }
+}
+
+.pt-btn-hollow {
+    background-color: $white;
+    &:not(:disabled):not(.disabled):hover,
+    &:not(:disabled):not(.disabled):focus {
+        background-color: $white;
+        background-image: none;
+    }
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+        @include button-bg($white, '');
+        &:focus {
+            @include button-bg($white, '');
+        }
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .pt-btn-#{$color}.pt-btn-hollow {
+        background-image: none;
+        @if($color!="light") {
+            color: $value;
+        }
+        &:not(:disabled):not(.disabled):hover,
+        &:not(:disabled):not(.disabled):focus {
+            @if($color!="light") {
+                color: $value;
+            }
+        }
+        &:not(:disabled):not(.disabled):active,
+        &:not(:disabled):not(.disabled).active {
+            @if($color!="light") {
+                color: $value;
+            }
+            &:focus {
+                @if($color!="light") {
+                    color: $value;
+                }
+            }
+        }
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .pt-btn.pt-btn-outline-#{$color} {
+        @include button-outline($color, $value);
+    }
+}
+
+@each $size,
+$val in $btn-size {
+    .pt-btn-#{$size},
+    .pt-btn-#{map-get($btn-number-size,$size)} {
+        @include button-size($size);
+    }
+}
+
+.pt-btn-block {
+    display: block;
+    width: 100%;
+    +.pt-btn-block {
+        margin-top: 0.8rem;
+    }
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    &.pt-btn-block {
+        width: 100%;
+    }
+}

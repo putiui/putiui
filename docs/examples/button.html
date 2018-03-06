@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PtButton</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/css/base.css">
+    <link rel="stylesheet" href="../lib/css/button.css">
+    <link rel="stylesheet" href="./base.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>PtButton</h1>
+        <div class="card">
+            <h4 class="t">类型</h4>
+            <div class="btn-container">
+                <pt-button @click="change">none</pt-button>
+                <pt-button v-for="(value,prop) in types" :type="value" :key="'t-'+prop">{{value}}</pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">修改标签</h4>
+            <div class="btn-container">
+                <pt-button tag="a" href="https://www.baidu.com" target="_blank">baidu</pt-button>
+                <pt-button tag="a" href="https://www.baidu.com" target="_blank" :disabled="aDisabled">{{aDisabled?'禁用' : '打开'}}</pt-button>
+                <pt-button tag="a" @click.native="aDisabled=!aDisabled">change disabled</pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">变形</h4>
+            <div class="btn-container">
+                <pt-button>正常</pt-button>
+                <pt-button v-for="(shape,prop) in shapes" v-if="shape!='circle'" :shape="shape" :key="'shape-'+prop">{{shape}}</pt-button>
+                <pt-button :shape="'circle'" :height="'90px'">circle</pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">状态</h4>
+            <div v-for="(value,prop) in types" class="btn-container">
+                <pt-button :type="value">normal</pt-button>
+                <pt-button :type="value" :active="true">active</pt-button>
+                <pt-button :type="value" :disabled="true">disabled</pt-button>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h4 class="t">尺寸</h4>
+            <div class="btn-container">
+                <pt-button>none</pt-button>
+                <pt-button v-for="(value,prop) in sizes" type="primary" :size="value" :key="'s-'+prop">{{value}}</pt-button>
+            </div>
+            <div class="btn-container">
+                <pt-button v-for="item in numberSize" type="primary" :size="item[0]" :key="'ns-'+item[0]">{{item[0]}}</pt-button>
+            </div>
+
+            <div>
+                <pt-button v-for="(value,prop) in sizes" type="primary" :size="value" :key="'s-'+prop" block>{{value}} block</pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">宽度</h4>
+            <div class="btn-container">
+                <pt-button>none</pt-button>
+                <pt-button width="100px">100px</pt-button>
+                <pt-button width="action">action</pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">高度</h4>
+            <div class="btn-container">
+                <pt-button>none</pt-button>
+                <pt-button height="100px">100px</pt-button>
+                <pt-button shape="circle" height="60px">60px</pt-button>
+            </div>
+            <p>shape="circle"时，按钮的width将与height值一致</p>
+        </div>
+
+        <div class="card">
+            <h4 class="t">图标</h4>
+            <div class="btn-container">
+                <pt-button v-for="item in icons" :icon="item"></pt-button>
+                <pt-button icon="cog" shape="circle" height="40px"></pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">镂空</h4>
+            <div class="btn-container">
+                <pt-button v-for="(value,prop) in types" :type="value" :hollow="true">{{value}}</pt-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">outline</h4>
+            <div class="btn-container">
+                <pt-button v-for="(value,prop) in types" :outline="value">{{value}}</pt-button>
+            </div>
+            <div class="btn-container">
+                <pt-button v-for="(value,prop) in types" :hollow="true" :outline="value">{{value}}</pt-button>
+            </div>
+        </div>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../lib/components/button.js"></script>
+    <script>
+        Vue.use(PtButton, {
+            iconPrefix: function (icon) {
+                if (icon) {
+                    return 'fa fa-' + icon;
+                } else {
+                    return '';
+                }
+            },
+            width: {
+                action: 'btn-action'
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                aDisabled: true,
+                icons: ['plus', 'user-o', 'calendar', 'cog'],
+                types: PtButton.type,
+                shapes: PtButton.shape,
+                status: ['normal', 'active'],
+                sizes: PtButton.size,
+                numberSize: Object.keys(PtButton.numberSize).sort(function (a, b) {
+                    return a - b;
+                }).map(function (key) {
+                    return [key, PtButton.numberSize[key]]
+                })
+            },
+            methods: {
+                change: function () {
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+{
+    "name": "putiui",
+    "version": "1.0.0",
+    "description": "putiui",
+    "main": "lib/putiui.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "build": "node build/build.js",
+        "dev": "node build/dev.js",
+        "test": "karma start karma.conf.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/imingyu/putiui.git"
+    },
+    "keywords": [
+        "putiui",
+        "vue-ui",
+        "vue-framework"
+    ],
+    "author": "imingyu <mingyuhisoft@163.com>",
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/imingyu/putiui/issues"
+    },
+    "homepage": "https://github.com/imingyu/putiui#readme",
+    "dependencies": {
+        "normalize.css": "^7.0.0",
+        "rollup": "^0.54.0"
+    },
+    "devDependencies": {
+        "autoprefixer": "^7.2.5",
+        "babel-core": "^6.26.0",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-preset-es2015": "^6.24.1",
+        "chai": "^4.1.2",
+        "colors": "^1.1.2",
+        "cssbeautify": "^0.3.1",
+        "csso": "^3.5.0",
+        "jquery": "^3.3.1",
+        "karma": "^2.0.0",
+        "karma-chai": "^0.1.0",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-firefox-launcher": "^1.1.0",
+        "karma-ie-launcher": "^1.0.0",
+        "karma-mocha": "^1.3.0",
+        "karma-mocha-reporter": "^2.2.5",
+        "karma-opera-launcher": "^1.0.0",
+        "karma-rollup-preprocessor": "^5.1.1",
+        "karma-spec-reporter": "0.0.32",
+        "mocha": "^5.0.1",
+        "node-sass": "^4.7.2",
+        "postcss": "^6.0.16",
+        "precss": "^3.0.0",
+        "rollup-plugin-babel": "^3.0.3",
+        "rollup-plugin-json": "^2.3.0",
+        "rollup-plugin-vue": "^3.0.0",
+        "vue": "^2.5.13",
+        "vue-loader": "^13.7.0",
+        "vue-template-compiler": "^2.5.13",
+        "watch": "^1.0.2"
+    }
+}

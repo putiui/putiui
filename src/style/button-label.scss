@@ -1,0 +1,260 @@
+@import './vars.scss';
+@import './mixins/common.scss';
+@import './mixins/button.scss';
+.pt-btn.has-label {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0;
+    .pt-btn-inner-center {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .pt-btn-content {
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+}
+
+.pt-btn-label {
+    display: inline-block;
+    position: relative;
+    cursor: inherit;
+}
+
+.pt-btn-label-none {
+    background: $white;
+    color: $primary;
+}
+
+.pt-btn-label-arrow {
+    position: absolute;
+    line-height: 0;
+    display: block;
+    font-size: 0;
+    &:before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 1px;
+        box-shadow: none;
+    }
+}
+
+.pt-btn-label-top,
+.pt-btn-label-bottom {
+    width: 100%;
+    .pt-btn-label-arrow {
+        height: 1px;
+        left: 0;
+        right: 0;
+        &:before {
+            left: 50%;
+        }
+    }
+}
+
+.pt-btn-label-top {
+    .pt-btn-label-arrow {
+        bottom: 0;
+        &:before {
+            top: 1px;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            border-left-width: 0;
+            border-top-width: 0;
+        }
+    }
+}
+
+.pt-btn-label-bottom {
+    .pt-btn-label-arrow {
+        top: 0;
+        &:before {
+            top: 0;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            border-right-width: 0;
+            border-bottom-width: 0;
+        }
+    }
+}
+
+.pt-btn-label-left,
+.pt-btn-label-right {
+    height: 100%;
+    .pt-btn-label-arrow {
+        width: 1px;
+        top: 0;
+        bottom: 0;
+        &:before {
+            top: 50%;
+        }
+    }
+}
+
+.pt-btn-label-left {
+    .pt-btn-label-arrow {
+        right: 0;
+        &:before {
+            right: 0;
+            transform: translateX(50%) translateY(-50%) rotate(45deg);
+            border-left-width: 0;
+            border-bottom-width: 0;
+        }
+    }
+}
+
+.pt-btn-label-right {
+    .pt-btn-label-arrow {
+        left: 0;
+        &:before {
+            right: 1px;
+            transform: translateX(50%) translateY(-50%) rotate(45deg);
+            border-top-width: 0;
+            border-right-width: 0;
+        }
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .pt-btn-label-#{$color} {
+        color: color-yiq($value);
+        background: $value;
+        .pt-btn-label-arrow:before {
+            background: $value;
+        }
+        .pt-btn-label-arrow {
+            background: $value;
+        }
+        &.pt-btn-label-top {
+            .pt-btn-label-arrow:before {
+                border-color: $value;
+            }
+        }
+        &.pt-btn-label-bottom {
+            .pt-btn-label-arrow:before {
+                border-color: $value;
+            }
+        }
+        &.pt-btn-label-left {
+            .pt-btn-label-arrow:before {
+                border-color: $value;
+            }
+        }
+        &.pt-btn-label-right {
+            .pt-btn-label-arrow:before {
+                border-color: $value;
+            }
+        }
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .pt-btn-#{$color} {
+        .pt-btn-label-none {
+            background: $white;
+            .pt-btn-label-arrow:before {
+                background: $white;
+            }
+            @if($color=="light") {
+                color: color-yiq($value);
+                .pt-btn-label-arrow {
+                    background: $light-br;
+                }
+                .pt-btn-label-arrow:before {
+                    border-color: $light-br;
+                }
+            }
+            @else {
+                color: $value;
+                .pt-btn-label-arrow {
+                    background: $value;
+                }
+                .pt-btn-label-arrow:before {
+                    border-color: $value;
+                }
+            }
+        }
+    }
+}
+
+@each $size,
+$val in $btn-size {
+    &.pt-btn-#{$size},
+    &.pt-btn-#{map-get($btn-number-size,$size)} {
+        $val: map-get($btn-size, $size);
+        @if $val {
+            $paddingX: map-get($val, 'padding-x');
+            $paddingY: map-get($val, 'padding-y');
+            $radius: map-get($val, 'border-radius');
+            .pt-btn-content {
+                padding: $paddingY $paddingX;
+            }
+            .pt-btn-label {
+                padding: $paddingY $paddingX;
+            }
+            .pt-btn-label-top {
+                border-top-left-radius: $radius;
+                border-top-right-radius: $radius;
+            }
+            .pt-btn-label-bottom {
+                border-bottom-left-radius: $radius;
+                border-bottom-right-radius: $radius;
+            }
+            .pt-btn-label-left {
+                border-top-left-radius: $radius;
+                border-bottom-left-radius: $radius;
+            }
+            .pt-btn-label-right {
+                border-top-right-radius: $radius;
+                border-bottom-right-radius: $radius;
+            }
+            .pt-btn-label-arrow:before {
+                $arrow-width: $paddingY/2 + 0.22rem;
+                width: $arrow-width;
+                height: $arrow-width;
+            }
+        }
+    }
+}
+
+//适配group下的btn
+.pt-btn-group {
+    .pt-btn:not(:first-child):not(:last-child) {
+        .pt-btn-label-top,
+        .pt-btn-label-bottom,
+        .pt-btn-label-left,
+        .pt-btn-label-right {
+            border-radius: 0;
+        }
+    }
+}
+.pt-btn-group-horizontal {
+    .pt-btn:first-child:not(:last-child) {
+        .pt-btn-label-top {
+            border-top-right-radius: 0;
+        }
+        .pt-btn-label-bottom {
+            border-bottom-right-radius: 0;
+        }
+        .pt-btn-label-right {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+    .pt-btn:last-child:not(:first-child) {
+        .pt-btn-label-top {
+            border-top-left-radius: 0;
+        }
+        .pt-btn-label-bottom {
+            border-bottom-left-radius: 0;
+        }
+        .pt-btn-label-left {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PtDivider</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/css/base.css">
+    <link rel="stylesheet" href="../lib/css/grid.css">
+    <link rel="stylesheet" href="../lib/css/button.css">
+    <link rel="stylesheet" href="../lib/css/divider.css">
+    <link rel="stylesheet" href="./base.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>PtDivider</h1>
+        <div class="card">
+            <h4 class="t">基本</h4>
+            <pt-divider v-for="item in align" :align="item">{{item}}</pt-divider>
+            <pt-divider v-for="item in justify" :justify="item">{{item}}</pt-divider>
+        </div>
+
+        <div class="card">
+            <h4 class="t">方向</h4>
+            <div style="height:200px; background:gray;">
+                <pt-divider v-for="item in align" :align="item" direction="vertical">{{item}}</pt-divider>
+                <pt-divider v-for="item in justify" :justify="item" direction="vertical">{{item}}</pt-divider>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 class="t">实例效果1</h4>
+            <pt-row flex justify="center" align="middle">
+                <pt-col :span="6">
+                    <pt-button block>登录</pt-button>
+                </pt-col>
+                <pt-col :span="4" style="height:100px; text-align:center;">
+                    <pt-divider direction="vertical">or</pt-divider>
+                </pt-col>
+                <pt-col :span="6">
+                    <pt-button type="success" block>注册</pt-button>
+                </pt-col>
+            </pt-row>
+        </div>
+
+        <div class="card">
+            <h4 class="t">实例效果2</h4>
+
+            <pt-row flex justify="center" align="middle">
+                <pt-col :span="6">
+                    <pt-button block>登录</pt-button>
+                </pt-col>
+            </pt-row>
+            <pt-divider>or</pt-divider>
+            <pt-row flex justify="center" align="middle">
+                <pt-col :span="6">
+                    <pt-button type="success" block>注册</pt-button>
+                </pt-col>
+            </pt-row>
+        </div>
+
+        <div class="card">
+            <h4 class="t">实例效果3</h4>
+            <pt-divider justify="start">
+                <i class="fa fa-user"></i>消息
+            </pt-divider>
+            <p>你好你好你好你好你好你好</p>
+        </div>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../lib/components/button.js"></script>
+    <script src="../lib/components/grid.js"></script>
+    <script src="../lib/components/divider.js"></script>
+    <script>
+        Vue.use(PtGrid)
+        Vue.use(PtButton)
+        Vue.use(PtDivider, {
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                align: PtDivider.align,
+                justify: PtDivider.justify
+            }
+        })
+    </script>
+</body>
+
+</html>
