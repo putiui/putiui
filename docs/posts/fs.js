@@ -14,6 +14,21 @@ exports.getFileList = (dir, dep) => {
     return list;
 }
 
+exports.getFolderList = (dir, dep) => {
+    var list = [];
+    fs.readdirSync(dir).forEach(item => {
+        var subPath = path.join(dir, `/${item}`);
+        const state = fs.lstatSync(subPath);
+        if (state.isDirectory()) {
+            list.push(subPath);
+            if (dep) {
+                list = list.concat(exports.getFolderList(subPath, dep))
+            }
+        }
+    });
+    return list;
+}
+
 exports.readFile = file => {
     return fs.readFileSync(file, {
         encoding: 'UTF8'
