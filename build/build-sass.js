@@ -17,17 +17,17 @@ const resolve = file => {
 }
 
 const modules = {
-    [resolve('../src/sass/base.scss')]: resolve('../lib/css/base.css'),
-    [resolve('../src/sass/putiui.scss')]: resolve('../lib/css/putiui.css'),
-    [resolve('../src/sass/grid.scss')]: resolve('../lib/css/grid.css'),
-    [resolve('../src/sass/button.scss')]: resolve('../lib/css/button.css'),
-    [resolve('../src/sass/button-group.scss')]: resolve('../lib/css/button-group.css'),
-    [resolve('../src/sass/button-label.scss')]: resolve('../lib/css/button-label.css'),
-    [resolve('../src/sass/divider.scss')]: resolve('../lib/css/divider.css'),
-    [resolve('../src/sass/radio.scss')]: resolve('../lib/css/radio.css'),
-    [resolve('../src/sass/radio-group.scss')]: resolve('../lib/css/radio-group.css'),
-    [resolve('../src/sass/checkbox.scss')]: resolve('../lib/css/checkbox.css'),
-    [resolve('../src/sass/checkbox-group.scss')]: resolve('../lib/css/checkbox-group.css')
+    [resolve('../src/style/base.scss')]: resolve('../lib/css/base.css'),
+    [resolve('../src/style/putiui.scss')]: resolve('../lib/css/putiui.css'),
+    [resolve('../src/style/grid.scss')]: resolve('../lib/css/grid.css'),
+    [resolve('../src/style/button.scss')]: resolve('../lib/css/button.css'),
+    [resolve('../src/style/button-group.scss')]: resolve('../lib/css/button-group.css'),
+    [resolve('../src/style/button-label.scss')]: resolve('../lib/css/button-label.css'),
+    [resolve('../src/style/divider.scss')]: resolve('../lib/css/divider.css'),
+    [resolve('../src/style/radio.scss')]: resolve('../lib/css/radio.css'),
+    [resolve('../src/style/radio-group.scss')]: resolve('../lib/css/radio-group.css'),
+    [resolve('../src/style/checkbox.scss')]: resolve('../lib/css/checkbox.css'),
+    [resolve('../src/style/checkbox-group.scss')]: resolve('../lib/css/checkbox-group.css')
 }
 
 module.exports = () => {

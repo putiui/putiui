@@ -1,6 +1,7 @@
 | category   | order | type    | title  | subtitle |
 |------------|-------|---------|--------|----------|
 | Components | 1     | General | Button | 按钮     |
+[comment]: meta
 
 ## 配置
 `button` 组件的默认配置及可接受的配置选项如下：

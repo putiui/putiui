@@ -21,7 +21,7 @@
         "vue-framework"
     ],
     "author": "imingyu <mingyuhisoft@163.com>",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/imingyu/putiui/issues"
     },

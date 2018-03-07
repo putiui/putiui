@@ -1,0 +1,51 @@
+@import './mixin.scss';
+* {
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    min-height: 100%;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 12px;
+    line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: $clr-info;
+}
+hr{
+    padding: 0;
+    margin: 10px 0;
+    background: none;
+    border:none;
+    border-bottom: 1px solid $clr-border;
+}
+p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+button, input, optgroup, select, textarea{
+    font-family: inherit;
+}

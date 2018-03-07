@@ -1,0 +1,384 @@
+@import './mixin.scss';
+body {
+    font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: $clr-bg;
+    color: $clr-block;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-danger {
+    color: $clr-danger;
+}
+
+.text-success {
+    color: $clr-success;
+}
+
+.text-primary {
+    color: $clr-primary;
+}
+
+.text-info {
+    color: $clr-info;
+}
+
+.text-muted {
+    color: lighten($clr-block, 60%);
+}
+
+.is-hidden {
+    visibility: hidden;
+    cursor: default;
+}
+
+.is-visible {
+    visibility: visible;
+}
+
+.padding {
+    padding: 15px;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+.clearfix {
+    &:after,
+    &:before {
+        content: ' ';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-light {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+.lazy-error {
+    font-size: 14px;
+    font-weight: bold;
+    pre {
+        font-family: 'Microsoft YaHei Mono', Consolas, 'Courier New', monospace;
+        font-size: 12px;
+        font-weight: normal;
+    }
+}
+
+.shadow-container {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.04);
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.border-title {
+    font-size: 20px;
+    padding-left: 15px;
+    position: relative;
+    &:before {
+        width: 5px;
+        height: 100%;
+        display: inline-block;
+        background: $clr-primary;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.btn-action {
+    width: 160px;
+    &.el-button--small {
+        width: 120px;
+    }
+}
+
+.com-amount {
+    color: red;
+}
+
+.com-amount-invalid {
+    color: #ccc;
+    font-size: 80%;
+}
+
+.com-reduce {
+    color: #13ce66;
+}
+
+.com-amount,
+.com-portion,
+.com-reduce {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    >.com-amount-invalid {
+        margin-left: 5px;
+    }
+}
+
+.com-amount,
+.com-portion,
+.com-reduce,
+.com-amount-invalid {
+    >i {
+        font-style: normal;
+    }
+    >.unit {
+        font-size: 60%;
+        margin: 0 -5px;
+        font-weight: normal;
+    }
+}
+
+.discount-amount {
+    .com-amount,
+    .com-reduce {
+        margin-left: 10px;
+    }
+}
+
+.error-message-container {
+    text-align: left;
+    line-height: 1.4;
+    h4,
+    h5,
+    h6 {
+        font-weight: normal;
+        margin: 0;
+    }
+    li,
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    h4 {
+        @extend .border-title;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+    h5 {
+        font-weight: normal;
+        strong {
+            color: red;
+            text-transform: uppercase;
+        }
+        i {
+            font-style: normal;
+            color: $clr-info;
+            font-size: 14px;
+        }
+    }
+    code,
+    pre {
+        font-size: inherit;
+        font-family: inherit;
+        white-space: pre-wrap;
+        word-break: break-all;
+        word-wrap: break-word;
+        margin: 0;
+    }
+    p {
+        font-size: 12px;
+    }
+    .error-message {
+        padding: 10px 15px;
+        @extend .alert-danger;
+    }
+}
+
+.request-error {
+    .el-notification__content {
+        color: inherit;
+    }
+}
+
+.correct-time-picker {
+    .el-time-spinner__list:after,
+    .el-time-spinner__list:before {
+        height: 71px;
+    }
+}
+
+.message-unauth {
+    text-align: center;
+    .el-message-box__content {
+        padding-bottom: 10px;
+    }
+    .el-message-box__headerbtn {
+        display: none;
+    }
+    .el-message-box__btns {
+        text-align: center;
+    }
+    .el-message-box__status {
+        display: block;
+        margin: 0 auto 10px;
+        position: static;
+        top: auto;
+        transform: none;
+    }
+    .el-message-box__message {
+        margin: 0 !important;
+    }
+}
+
+.app-unauth {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: $clr-danger;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    color: #fff;
+    text-align: center;
+}
+
+.remember-check-container {
+    margin-top: 15px;
+}
+
+.form-item-static {
+    margin-bottom: 5px;
+}
+
+// 活动选择下拉框，每项样式
+.activity-select {
+    .el-select-dropdown__item {
+        height: 56px;
+    }
+    .activity-option {
+        line-height: 1;
+        h6 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: normal;
+        }
+        .activity-info {
+            font-size: 12px;
+            color: #c5c8d0;
+        }
+        .card-name {
+            float: left;
+        }
+        .card-type {
+            float: right;
+        }
+        p {
+            margin: 0;
+        }
+        .el-tag {
+            line-height: 1 !important;
+            height: auto;
+            padding: 3px 6px 4px;
+            margin-top: -2px;
+        }
+    }
+}
+
+.error-message-list {
+    text-align: center;
+    .message-content {
+        margin-bottom: 5px;
+        font-size: 15px;
+    }
+    .message-code,.message-url {
+        font-size: 12px;
+        color: #989898;
+    }
+}
+
+.table-message {
+    .error-message-list {
+        text-align: left;
+        .message-code {
+            color: inherit;
+        }
+    }
+}
+
+.goods-img {
+    padding: 5px;
+    border-radius: 3px;
+    img.size-small {
+        width: 60px;
+    }
+}
+
+.import-result{
+    .border-title{
+        margin-left: -20px;
+        font-weight: normal;
+    }
+    strong{
+        color: $clr-danger;
+    }
+}
