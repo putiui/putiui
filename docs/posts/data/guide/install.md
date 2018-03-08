@@ -1,9 +1,8 @@
 | category   | order | title   |
 |------------|-------|--------|
-| Guide | 1  | 安装 | 
+| Guide | 1  | 安装 |
 
 [comment]: meta
-
 
 ## Npm安装
 使用Npm方式安装，与打包工具（webpack等）配合使用
@@ -16,3 +15,5 @@ npm i putiui -S
 ```html
 <!--引入样式-->
 ```
+
+[comment]: header

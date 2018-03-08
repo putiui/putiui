@@ -3,8 +3,8 @@
         <h2>404</h2>
         <h5>你打开的页面不存在</h5>
         <div class="text-center">
-            <el-button type="success" @click="back">返回上一页</el-button>
-            <router-link class="el-button el-button--primary" :to="'/'">返回首页</router-link>
+            <pt-button type="success" @click="back">返回上一页</pt-button>
+            <router-link class="pt-btn pt-btn-primary" :to="'/'">返回首页</router-link>
         </div>
     </Page>
 </template>

@@ -46,6 +46,21 @@ exports.getFileName = file => {
 }
 
 exports.saveFile = (path, content) => {
+    var prefix = '';
+    var arr = path.split('\\');
+    arr.forEach((item, i) => {
+        if (i === arr.length - 1) {
+            return false
+        }
+        if (i !== 0) {
+            prefix += '\\' + item;
+            if (!fs.existsSync(prefix)) {
+                fs.mkdirSync(prefix);
+            }
+        } else {
+            prefix += item;
+        }
+    })
     fs.writeFileSync(path, content, {
         encoding: 'UTF8'
     })

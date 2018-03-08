@@ -1,6 +1,6 @@
 | category   | order | title   |
 |------------|-------|--------|
-| Guide | 1  | 快速上手 | 
+| Guide | 1  | 快速上手 |
 
 [comment]: meta
 
@@ -70,3 +70,6 @@ Vue.use(PtButton, {
 
 ### 配置读取优先级
 - 如果组件本身存在的配置项与PtUI全局的配置项名称一致时，优先获取组件本身的配置
+
+
+[comment]: header
