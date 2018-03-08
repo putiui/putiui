@@ -34,7 +34,27 @@ module.exports = (demo) => {
                     },
                     {
                         test: /\.js$/,
-                        loader: 'babel-loader'
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                [
+                                    'env',
+                                    {
+                                        modules: false,
+                                        targets: {
+                                            browsers: [
+                                                '> 1%',
+                                                'last 2 versions',
+                                                'not ie <= 8'
+                                            ]
+                                        }
+                                    }
+                                ],
+                                'stage-2'
+                            ],
+                            plugins: [
+                            ]
+                        }
                     }
                 ]
             },
@@ -60,17 +80,16 @@ module.exports = (demo) => {
                 //     sourceMap: true,
                 //     parallel: true
                 // }),
-                // new HtmlWebpackPlugin({
-                //     filename: demo.componentName + '.' + demo.lang + '.html',
-                //     template: path.resolve(__dirname, './demo.html'),
-                //     lang: demo.lang,
-                //     title: demo.meta && demo.meta.title ? demo.meta.title : 'demo',
-                //     inject: true
-                //     // inlineSource: '.(js|css)$'
-                // }),
+                new HtmlWebpackPlugin({
+                    filename: demo.componentName + '.' + demo.lang + '.html',
+                    template: path.resolve(__dirname, './demo.html'),
+                    lang: demo.lang,
+                    title: demo.meta && demo.meta.title ? demo.meta.title : 'demo',
+                    inject: true
+                    // inlineSource: '.(js|css)$'
+                })
                 // new InlineHtml(),
                 // keep module.id stable when vendor modules does not change
-                new webpack.HashedModuleIdsPlugin()
             ]
         })
 
