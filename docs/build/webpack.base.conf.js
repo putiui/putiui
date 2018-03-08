@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -20,6 +21,9 @@ const createLintingRule = () => ({
     }
 })
 
+const vueVersion = require('../node_modules/vue/package.json').version;
+const putiuiVersion = require('../../package.json').version;
+
 module.exports = {
     context: path.resolve(__dirname, '../'),
     entry: {
@@ -36,9 +40,12 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src'),
-            'putiui': path.resolve(__dirname, '../../')
+            '@': resolve('src')
         }
+    },
+    externals: {
+        'vue': 'Vue',
+        'putiui': 'PutiUI'
     },
     module: {
         rules: [
@@ -90,5 +97,25 @@ module.exports = {
         net: 'empty',
         tls: 'empty',
         child_process: 'empty'
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, '../node_modules/vue/dist/vue.js'),
+                to: config.build.assetsSubDirectory + `/js/vue-${vueVersion}.js`
+            },
+            {
+                from: path.resolve(__dirname, '../node_modules/vue/dist/vue.min.js'),
+                to: config.build.assetsSubDirectory + `/js/vue-${vueVersion}.min.js`
+            },
+            {
+                from: path.resolve(__dirname, '../../lib/putiui.js'),
+                to: config.build.assetsSubDirectory + `/js/putiui-${putiuiVersion}.js`
+            },
+            {
+                from: path.resolve(__dirname, '../../lib/css/putiui.css'),
+                to: config.build.assetsSubDirectory + `/css/putiui-${putiuiVersion}.css`
+            }
+        ])
+    ]
 }

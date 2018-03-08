@@ -32,9 +32,6 @@
 import Demo from '../../../components/Demo';
 import DemoRun from '../../../components/DemoRun';
 {@/if}
-{@each demo as item}
-import ${item.componentName} from '${item.importPath}';
-{@/each}
 export default {
     name: '${componentName}',
     data() {
@@ -47,11 +44,8 @@ export default {
     components:{
         {@if demo && demo.length>0}
         Demo,
-        DemoRun,
+        DemoRun
         {@/if}
-        {@each demo as item, index}
-        ${item.componentName}: ${item.componentName}{@if index!=demo.length-1},{@/if}
-        {@/each}
     }
 }
 </script>

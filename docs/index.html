@@ -13,6 +13,7 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Cache" content="no-cache">
     <title>菩提UI</title>
+    <link rel="stylesheet" href="/static/css/putiui-<%= htmlWebpackPlugin.options.putiuiVersion%>.css">
 </head>
 
 <body>
@@ -23,6 +24,8 @@
     <section id="appMain" class="app-main" style="display:none;">
         <div class="app-content"></div>
     </section>
+    <script src="/static/js/vue-<%= htmlWebpackPlugin.options.vueVersion%>.js"></script>
+    <script src="/static/js/putiui-<%= htmlWebpackPlugin.options.putiuiVersion%>.js"></script>
 </body>
 
 </html>

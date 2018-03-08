@@ -1,10 +1,10 @@
- <template>     <div class="demo-real">         
+  <template>      <div class="demo-real">          
 <PtButton>Button</PtButton>
-     </div> </template>    <style scoped> 
+      </div>  </template>        <style scoped>  
 .btn-action{
     color: red;
 }
- </style>    <script> /* eslint-disable */ 
+  </style>        <script>  /* eslint-disable */  
 import Vue from 'vue';
 import { PtButton } from 'putiui';
 
@@ -18,4 +18,4 @@ export default {
         }
     }
 }
- </script>  
+  </script>    

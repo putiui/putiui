@@ -5,19 +5,22 @@ const config = require('./config.js');
 const fsHelper = require('./fs.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-// const InlineHtml = require('html-webpack-inline-source-plugin')
+const vueLoaderConfig = require('../build/vue-loader.conf')
+const vueVersion = require('../node_modules/vue/package.json').version;
+const putiuiVersion = require('../../package.json').version;
 module.exports = (demo) => {
     return new Promise((resolve, reject) => {
         var entryScript = juicer(fsHelper.readFile(config.entryTemplatePath), demo);
-        fsHelper.saveFile(demo.entryPath, entryScript);
+        fsHelper.saveFile(demo.entrySavePath, entryScript);
         const compiler = webpack({
-            context: config.demoExportPath + '\\' + demo.lang,
+            context: config.demoExportPath,
             entry: {
-                [demo.componentName + '-' + demo.lang]: demo.entryPath
+                app: demo.entryPath
             },
             output: {
                 path: demo.outputPath,
-                filename: '[name]-[hash].js'
+                filename: '[name]-[hash].js',
+                publicPath: demo.publicPathAfter
             },
             resolve: {
                 extensions: ['.js', '.vue', '.json']
@@ -30,11 +33,13 @@ module.exports = (demo) => {
                 rules: [
                     {
                         test: /\.vue$/,
-                        loader: 'vue-loader'
+                        loader: 'vue-loader',
+                        options: vueLoaderConfig
                     },
                     {
                         test: /\.js$/,
                         loader: 'babel-loader',
+                        include: [config.demoExportPath],
                         options: {
                             presets: [
                                 [
@@ -58,43 +63,29 @@ module.exports = (demo) => {
                     }
                 ]
             },
-            node: {
-                // prevent webpack from injecting useless setImmediate polyfill because Vue
-                // source contains it (although only uses it if it's native).
-                setImmediate: false,
-                // prevent webpack from injecting mocks to Node native modules
-                // that does not make sense for the client
-                dgram: 'empty',
-                fs: 'empty',
-                net: 'empty',
-                tls: 'empty',
-                child_process: 'empty'
-            },
             plugins: [
-                // new UglifyJsPlugin({
-                //     uglifyOptions: {
-                //         compress: {
-                //             warnings: false
-                //         }
-                //     },
-                //     sourceMap: true,
-                //     parallel: true
-                // }),
+                new UglifyJsPlugin({
+                    uglifyOptions: {
+                        compress: {
+                            warnings: false
+                        }
+                    },
+                    sourceMap: true,
+                    parallel: true
+                }),
                 new HtmlWebpackPlugin({
-                    filename: demo.componentName + '.' + demo.lang + '.html',
+                    filename: demo.outputPath + '/index.html',
                     template: path.resolve(__dirname, './demo.html'),
                     lang: demo.lang,
                     title: demo.meta && demo.meta.title ? demo.meta.title : 'demo',
-                    inject: true
-                    // inlineSource: '.(js|css)$'
+                    inject: true,
+                    vueVersion,
+                    putiuiVersion
                 })
-                // new InlineHtml(),
-                // keep module.id stable when vendor modules does not change
             ]
         })
 
         compiler.run((err, stats) => {
-            console.log(stats)
             if (err) {
                 console.error(err)
                 reject(err)

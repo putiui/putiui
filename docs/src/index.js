@@ -1,4 +1,3 @@
-import 'putiui/lib/css/putiui.css';
 import './assets/style/base.scss'
 
 //安装功能（请按照顺序安装）

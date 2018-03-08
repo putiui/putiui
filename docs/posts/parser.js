@@ -51,17 +51,20 @@ const parser = filePath => {
     //截取template
     if (json.orgContent.indexOf(config.commentTemplateStart) > -1) {
         json.orgTemplate = json.orgContent.substring(json.orgContent.indexOf(config.commentTemplateStart) + config.commentTemplateStart.length, json.orgContent.indexOf(config.commentTemplateEnd));
-        json.template = json.orgTemplate.substring(json.orgTemplate.indexOf('```html') + 7, json.orgTemplate.indexOf('```\n'));
+        let i2 = json.orgTemplate.indexOf('```\n');
+        json.template = json.orgTemplate.substring(json.orgTemplate.indexOf('```html') + 7, i2 == -1 ? json.orgTemplate.indexOf('```\r\n') : i2);
     }
     //截取style
     if (json.orgContent.indexOf(config.commentStyleStart) > -1) {
         json.orgStyle = json.orgContent.substring(json.orgContent.indexOf(config.commentStyleStart) + config.commentStyleStart.length, json.orgContent.indexOf(config.commentStyleEnd));
-        json.style = json.orgStyle.substring(json.orgStyle.indexOf('```css') + 6, json.orgStyle.indexOf('```\n'));
+        let i2 = json.orgStyle.indexOf('```\n');
+        json.style = json.orgStyle.substring(json.orgStyle.indexOf('```css') + 6, i2 == -1 ? json.orgStyle.indexOf('```\r\n') : i2);
     }
     //截取script
     if (json.orgContent.indexOf(config.commentScriptStart) > -1) {
         json.orgScript = json.orgContent.substring(json.orgContent.indexOf(config.commentScriptStart) + config.commentScriptStart.length, json.orgContent.indexOf(config.commentScriptEnd));
-        json.script = json.orgScript.substring(json.orgScript.indexOf('```js') + 5, json.orgScript.indexOf('```\n'));
+        let i2 = json.orgScript.indexOf('```\n');
+        json.script = json.orgScript.substring(json.orgScript.indexOf('```js') + 5, i2 == -1 ? json.orgScript.indexOf('```\r\n') : i2);
     }
 
     return json;
@@ -131,18 +134,19 @@ exports.buildArticle = (json) => {
         json.demoPaste = JSON.stringify(json.demo);
         json.demo.forEach(item => {
             item.componentName = json.componentName + item.name;
-            item.importPath = '../demo/' + item.lang + '/' + item.componentName;
-            item.entryPath = config.demoExportPath + '\\' + item.lang + '\\' + item.componentName + 'Entry.js';
-            item.savePath = config.demoExportPath + '\\' + item.lang + '\\' + item.componentName + '.vue';
-            item.outputPath = config.demoHtmlPath;
-            item.link = '/static/demo/' + item.lang + item.componentName + '.html';
+            item.entrySavePath = config.demoExportPath + '\\src\\' + item.lang + '\\' + restoreCamel(item.componentName) + '\\entry.js';
+            item.entryPath = './src/' + item.lang + '/' + restoreCamel(item.componentName) + '/entry.js';
+            item.savePath = config.demoExportPath + '\\src\\' + item.lang + '\\' + restoreCamel(item.componentName) + '\\index.vue';
+            item.outputPath = config.demoExportPath + '/dist/' + item.lang + '/' + restoreCamel(item.componentName);
+            item.publicPathAfter = '/static/demo/dist/' + item.lang + '/' + restoreCamel(item.componentName) + '/';
+            item.link = item.publicPathAfter + 'index.html';
             item.content = juicer(demoTemplate, item);
         })
     }
     json.content = juicer(articleTemplate, json);
 }
 
-function restoreCamel(camelStr, linkChar) {
+function restoreCamel(camelStr, linkChar = '-') {
     if (!camelStr || typeof camelStr !== 'string' || !linkChar || typeof linkChar !== 'string') {
         return camelStr;
     }
@@ -160,6 +164,7 @@ exports.reportFile = parseResult => {
         exports.buildArticle(item);
         fsHelper.saveFile(item.savePath, item.content);
         if (item.demo && item.demo.length > 0) {
+            fsHelper.rmdir(config.demoExportPath);
             item.demo.forEach(demo => {
                 fsHelper.saveFile(demo.savePath, demo.content);
                 buildDemoHtml(demo);

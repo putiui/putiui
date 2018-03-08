@@ -7,7 +7,7 @@ import filters from '../../filters'
 import Enum from '../enum'
 import Page from '../../components/Page'
 
-import PutiUI from 'putiui/lib/putiui';
+import PutiUI from 'putiui';
 
 export default () => {
     Vue.use(PutiUI);

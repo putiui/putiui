@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import DemoReal from './${componentName}.vue';
+import DemoReal from './index.vue';
 window.$AppDemo=new Vue({
     el:'#app',
     template: '<DemoReal />',

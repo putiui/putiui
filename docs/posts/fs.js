@@ -1,5 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const fse = require('fs-extra');
+
+exports.rmdir = (path) => {
+    if (fs.existsSync(path)) {
+        fse.emptyDirSync(path);
+    }
+};
+
 exports.getFileList = (dir, dep) => {
     var list = [];
     fs.readdirSync(dir).forEach(item => {
