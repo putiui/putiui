@@ -7,6 +7,7 @@
 import options from './options';
 export default {
     name: 'PtBox',
+    ptTag: 'PtBox',
     props: {
         tag: {
             type: String,

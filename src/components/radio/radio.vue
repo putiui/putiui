@@ -16,6 +16,7 @@ import baseMixin from '../../mixins/base.js';
 import vqueryMixin from '../../mixins/vquery.js';
 export default {
     name: 'PtRadio',
+    ptTag: 'PtRadio',
     mixins: [baseMixin, vqueryMixin],
     model: {
         prop: 'checked',

@@ -15,6 +15,7 @@ import optionsMixin from '../../mixins/options.js';
 import Radio from '../radio/index.js';
 export default {
     name: 'PtRadioGroup',
+    ptTag: 'PtRadioGroup',
     mixins: [baseMixin, optionsMixin],
     props: {
         value: null,

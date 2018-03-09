@@ -17,6 +17,7 @@ import vqueryMixin from '../../mixins/vquery.js';
 import asyncCheckMixin from '../../mixins/async-check.js';
 export default {
     name: 'PtCheckbox',
+    ptTag: 'PtCheckbox',
     mixins: [
         baseMixin,
         vqueryMixin,

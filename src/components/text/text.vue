@@ -7,6 +7,7 @@
 import options from './options';
 export default {
     name: 'PtText',
+    ptTag: 'PtText',
     props: {
         tag: {
             type: String,

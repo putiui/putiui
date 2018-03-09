@@ -10,6 +10,7 @@ import baseMixin from '../../mixins/base';
 import flexMixin from '../../mixins/flex';
 export default {
     name: 'PtRow',
+    ptTag: 'PtRow',
     mixins: [
         baseMixin,
         flexMixin()

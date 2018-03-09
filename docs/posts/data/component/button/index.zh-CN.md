@@ -6,6 +6,7 @@
 
 
 按钮
+
 [comment]: header
 
 
@@ -13,7 +14,7 @@
 
 ## 配置
 `button` 组件的默认配置及可接受的配置选项如下：
-| 名称 | 类型 | 默认值 | 描述 |
+| 名称 | 类型 | 默认值 | 说明 |
 | - | - | - | - |
 | type | string | primary | 设置按钮默认类型，可选值：primary,secondary,info,success,warning,danger,light,dark |
 | size | string | medium | 设置按钮默认尺寸，可选值：mini,tiny,small,medium,large,big,huge,massive |
@@ -28,7 +29,7 @@
 > 下文中 `options` 代表 `button` 组件use 后的配置选项
 
 ## 属性
-| 名称 | 类型 | 默认值  | 描述 |
+| 名称 | 类型 | 默认值  | 说明 |
 | - | - | - | - |
 | type | string | `options.type` | 设置按钮类型，可选值：同`options.type` |
 | size | string | `options.size` | 设置按钮尺寸，可选值：同`options.size` |

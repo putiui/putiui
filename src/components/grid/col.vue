@@ -11,6 +11,7 @@ import vqueryMixin from '../../mixins/vquery';
 import { isValidColSpan } from '../../utils/is';
 export default {
     name: 'PtCol',
+    ptTag: 'PtCol',
     mixins: [baseMixin, vqueryMixin],
     props: {
         span: {

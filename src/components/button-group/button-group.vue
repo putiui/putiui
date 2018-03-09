@@ -16,6 +16,7 @@ import { has } from '../../utils/index.js';
 import { PtButtonGroupSize, PtButtonGroupNumberSize, options, PtButtonGroupDirection } from './options.js';
 export default {
     name: 'PtButtonGroup',
+    ptTag: 'PtButtonGroup',
     mixins: [
         baseMixin,
         sizeMixin(PtButtonGroupSize, PtButtonGroupNumberSize, () => {

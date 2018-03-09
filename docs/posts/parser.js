@@ -159,12 +159,12 @@ function restoreCamel(camelStr, linkChar = '-') {
 }
 
 const routeTemplate = fsHelper.readFile(config.routeTemplatePath);
-exports.reportFile = parseResult => {
+exports.reportFile = (parseResult, rmdir) => {
     parseResult.forEach(item => {
         exports.buildArticle(item);
         fsHelper.saveFile(item.savePath, item.content);
         if (item.demo && item.demo.length > 0) {
-            fsHelper.rmdir(config.demoExportPath);
+            rmdir && fsHelper.rmdir(config.demoExportPath);
             item.demo.forEach(demo => {
                 fsHelper.saveFile(demo.savePath, demo.content);
                 buildDemoHtml(demo);

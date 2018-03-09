@@ -16,6 +16,7 @@ import Checkbox from '../checkbox/index.js';
 import asyncCheckMixin from '../../mixins/async-check.js';
 export default {
     name: 'PtCheckboxGroup',
+    ptTag: 'PtCheckboxGroup',
     mixins: [
         baseMixin,
         optionsMixin,

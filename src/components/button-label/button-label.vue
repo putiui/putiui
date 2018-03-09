@@ -14,6 +14,7 @@ import baseMixin from '../../mixins/base.js';
 import { PtButtonLabelPosition, PtButtonLabelType, options } from './options.js';
 export default {
     name: 'PtButtonLabel',
+    ptTag: 'PtButtonLabel',
     mixins: [baseMixin],
     props: {
         position: {

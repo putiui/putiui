@@ -25,6 +25,7 @@ import baseMixin from '../../mixins/base.js';
 import { PtDividerDirection, PtDividerAlign, PtDividerJustify, options } from './options.js';
 export default {
     name: 'PtDivider',
+    ptTag: 'PtDivider',
     mixins: [baseMixin],
     props: {
         direction: {

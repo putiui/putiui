@@ -12,12 +12,12 @@
             'pt-btn-block': block,
             'browser-ie': browserIsIE,
             'has-label':$slots.labelLeft || $slots.labelRight || $slots.labelTop || $slots.labelBottom
-        }" 
-        :type="iNativeType" 
-        :href="iHref" 
-        :target="tag!=='a' || disabled ? undefined : target" 
-        :disabled="tag==='a' ? undefined : disabled" 
-        :style="style" 
+        }"
+        :type="iNativeType"
+        :href="iHref"
+        :target="tag!=='a' || disabled ? undefined : target"
+        :disabled="tag==='a' ? undefined : disabled"
+        :style="style"
         v-bind="$props">
 
         <slot name="labelTop"></slot>
@@ -44,6 +44,7 @@ import { PtButtonSize, PtButtonNumberSize, PtButtonType, PtButtonNativeType, PtB
 const allowTags = ['a', 'input', 'button'];
 export default {
     name: 'PtButton',
+    ptTag: 'PtButton',
     mixins: [
         baseMixin,
         sizeMixin(PtButtonSize, PtButtonNumberSize, PtButtonSize.medium),
