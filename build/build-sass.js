@@ -27,7 +27,8 @@ const modules = {
     [resolve('../src/style/radio.scss')]: resolve('../lib/css/radio.css'),
     [resolve('../src/style/radio-group.scss')]: resolve('../lib/css/radio-group.css'),
     [resolve('../src/style/checkbox.scss')]: resolve('../lib/css/checkbox.css'),
-    [resolve('../src/style/checkbox-group.scss')]: resolve('../lib/css/checkbox-group.css')
+    [resolve('../src/style/checkbox-group.scss')]: resolve('../lib/css/checkbox-group.css'),
+    [resolve('../src/style/menu.scss')]: resolve('../lib/css/menu.css')
 }
 
 module.exports = () => {

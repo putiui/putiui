@@ -1,12 +1,19 @@
 import { extend } from '../../utils/index.js';
 import { Direction } from '../../enum.js';
 export const PtMenuDirection = extend({}, Direction);
-export const PtMenuJustify = {
-    start: 'start',
+export const PtMenuAlign = {
+    left: 'left',
     center: 'center',
-    end: 'end'
+    right: 'right'
+}
+export const PtMenuPlacement = {
+    top: 'top',
+    auto: 'auto',
+    left: 'left',
+    right: 'right',
+    bottom: 'bottom'
 }
 export const options = {
-    justify: PtMenuJustify.center,
+    align: PtMenuAlign.left,
     direction: PtMenuDirection.horizontal
 }

@@ -83,7 +83,7 @@ $tdBorderColor: #ededed;
                 line-height: 1.2;
             }
         }
-        >tbody>tr>td::first-child {
+        >tbody>tr>td:first-child {
             white-space: nowrap;
         }
     }

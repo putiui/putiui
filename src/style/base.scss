@@ -10,6 +10,10 @@
     font-family: $font-family-base;
 }
 
+.pt-animate-init {
+    opacity: 0;
+}
+
 .pt-shape-corner {
     $corner: map-get($component-shape, "corner");
     border-radius: map-get($corner, "border-radius") !important;

@@ -4,6 +4,12 @@ export const isFunction = (obj) => {
 export const isObject = (obj) => {
     return typeof obj === 'object';
 }
+export const isBoolean = (obj) => {
+    return typeof obj === 'boolean';
+}
+export const isObjectBoolean = (obj) => {
+    return Object.prototype.toString.call(this.model) === '[object Boolean]';
+}
 export const isEmptyObject = obj => {
     for (var prop in obj) {
         return false;

@@ -1,3 +1,3 @@
 export default {
-    allowTags: ['span', 'i', 'em', 'strong', 'del', 'sup', 'sub', 'small']
+    allowTags: ['span', 'i', 'em', 'strong', 'del', 'sup', 'sub', 'b', 'small']
 }

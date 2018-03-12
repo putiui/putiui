@@ -58,6 +58,26 @@ const modules = {
         name: 'checkbox-group.js',
         input: resolve('../src/components/checkbox-group/index.js'),
         file: resolve('../lib/components/checkbox-group.js')
+    },
+    PtMenu: {
+        name: 'menu.js',
+        input: resolve('../src/components/menu/index.js'),
+        file: resolve('../lib/components/menu.js')
+    },
+    PtSubMenu: {
+        name: 'sub-menu.js',
+        input: resolve('../src/components/sub-menu/index.js'),
+        file: resolve('../lib/components/sub-menu.js')
+    },
+    PtMenuItem: {
+        name: 'menu-item.js',
+        input: resolve('../src/components/menu-item/index.js'),
+        file: resolve('../lib/components/menu-item.js')
+    },
+    PtMenuItemGroup: {
+        name: 'menu-item-group.js',
+        input: resolve('../src/components/menu-item-group/index.js'),
+        file: resolve('../lib/components/menu-item-group.js')
     }
 }
 module.exports = () => {
