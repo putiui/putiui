@@ -76,12 +76,13 @@ export default (parentTag) => {
                     this.userExec(event);
                 }
             },
-            userMouseoverCore(event) {
+            userMouseenterCore(event) {
+                console.log(this.iTrigger)
                 if (this.iTrigger === 'hover') {
                     this.userEnter(event);
                 }
             },
-            userMouseoutCore(event) {
+            userMouseleaveCore(event) {
                 if (this.iTrigger === 'hover') {
                     this.userLeave(event);
                 }

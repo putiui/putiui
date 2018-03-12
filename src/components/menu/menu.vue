@@ -70,6 +70,9 @@ export default {
         }
     },
     computed: {
+        iTrigger(){
+            return this.trigger || options.trigger || 'hover';
+        },
         iPlacement() {
             return this.placement || options.placement || PtMenuPlacement.auto
         },

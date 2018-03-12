@@ -6,7 +6,7 @@
         ['pt-menu-placement-'+iPlacement]:true,
         ['is-open']:isOpen
     }">
-        <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @mouseover="userMouseoverCore" @mouseout="userMouseoutCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
+        <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @mouseenter="userMouseenterCore" @mouseleave="userMouseleaveCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
             <PtText v-if="$slots.icon" class="pt-menu-icon">
                 <slot name="icon"></slot>
             </PtText>
@@ -43,10 +43,14 @@ export default {
     data() {
         return {
             privateIsOpen: false,
-            leaveTimer: null
+            leaveTimer: null,
+            remainEnter: false
         }
     },
     computed: {
+        parentSubMenu() {
+            return this.$vqClosest(`PtSubMenu`);
+        },
         iPlacement() {
             var placement = this.placement || (this.parentMenuBox && this.parentMenuBox.iPlacement);
             if (placement === 'auto') {
@@ -130,7 +134,6 @@ export default {
             }
         },
         userEnter(event) {
-            console.log(event)
             if (!event) return;
             if (this.disabled) {
                 event.preventDefault();
@@ -146,11 +149,18 @@ export default {
                 event.preventDefault();
                 return false;
             }
+            if (this.leaveTimer) {
+                clearTimeout(this.leaveTimer)
+            }
             this.leaveTimer = setTimeout(() => {
+                this.leaveTimer = null;
+                if (this.remainEnter) {
+                    return;
+                }
                 this.close();
                 this.$emit('close');
                 this.parentMenuBox && this.parentMenuBox.$emit('close', this.sign);
-            })
+            }, 0.5 * 1000)
         }
     }
 }
