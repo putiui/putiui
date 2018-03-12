@@ -1,4 +1,4 @@
-<template>      <Page name="GuideQuickstart">          <div class="art-header">              <h2>引入PtUI</h2>
+<template>     <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <section class="article-core art-GuideQuickstart">             <header class="art-header">                 <h1>{{meta.title}}</h1>                 <h2>引入PtUI</h2>
 <p>你可以完整引入，或是根据需要仅引入部分组件。</p>
 <h3>完整引入</h3>
 <pre><code class="language-js">import Vue from 'vue';
@@ -84,4 +84,4 @@ Vue.use(PtButton, {
 <ul>
 <li>如果组件本身存在的配置项与PtUI全局的配置项名称一致时，优先获取组件本身的配置</li>
 </ul>
-          </div>          <div class="art-demo">                    </div>          <div class="art-spec">                    </div>      </Page>  </template>    <script>  /* eslint-disable */    export default {      name: 'GuideQuickstart',      data() {          return {              name: 'GuideQuickstart',              meta: {"category":"Guide","order":"1","title":"快速上手"}          }      },      components:{                }  }  </script>  
+             </header>             <div class="art-demo">                          </div>             <div class="art-spec">                          </div>         </section>     </ComArticle> </template>  <script> /* eslint-disable */ import ComArticle from '../../../components/ComArticle';   export default {     name: 'GuideQuickstart',     data() {         return {             name: 'GuideQuickstart',             meta: {"category":"Guide","order":"1","title":"快速上手"},             demo:null         }     },     components:{         ComArticle,                       } } </script> 

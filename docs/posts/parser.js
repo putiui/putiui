@@ -6,7 +6,6 @@ const juicer = require('juicer');
 var Mdt = require('markdown-it')({
     html: true
 });
-const buildDemoHtml = require('./demo.js');
 
 const initialUppercase = str => {
     return str[0].toUpperCase() + str.substr(1);
@@ -119,9 +118,9 @@ exports.parse = () => {
     return result;
 }
 
-const articleTemplate = fsHelper.readFile(config.articleTemplatePath);
-const demoTemplate = fsHelper.readFile(config.demoTemplatePath);
 exports.buildArticle = (json) => {
+    const articleTemplate = fsHelper.readFile(config.articleTemplatePath);
+    const demoTemplate = fsHelper.readFile(config.demoTemplatePath);
     json.metaPaste = JSON.stringify(json.meta);
     var dirName = initialUppercase(json.dirName);
     if (json.meta.category === dirName) {
@@ -134,12 +133,8 @@ exports.buildArticle = (json) => {
         json.demoPaste = JSON.stringify(json.demo);
         json.demo.forEach(item => {
             item.componentName = json.componentName + item.name;
-            item.entrySavePath = config.demoExportPath + '\\src\\' + item.lang + '\\' + restoreCamel(item.componentName) + '\\entry.js';
-            item.entryPath = './src/' + item.lang + '/' + restoreCamel(item.componentName) + '/entry.js';
-            item.savePath = config.demoExportPath + '\\src\\' + item.lang + '\\' + restoreCamel(item.componentName) + '\\index.vue';
-            item.outputPath = config.demoExportPath + '/dist/' + item.lang + '/' + restoreCamel(item.componentName);
-            item.publicPathAfter = '/static/demo/dist/' + item.lang + '/' + restoreCamel(item.componentName) + '/';
-            item.link = item.publicPathAfter + 'index.html';
+            item.importPath = '../demo/' + item.lang + '/' + item.componentName + '.vue';
+            item.savePath = config.demoExportPath + '\\' + item.lang + '\\' + item.componentName + '.vue';
             item.content = juicer(demoTemplate, item);
         })
     }
@@ -158,8 +153,8 @@ function restoreCamel(camelStr, linkChar = '-') {
     }
 }
 
-const routeTemplate = fsHelper.readFile(config.routeTemplatePath);
 exports.reportFile = (parseResult, rmdir) => {
+    const routeTemplate = fsHelper.readFile(config.routeTemplatePath);
     parseResult.forEach(item => {
         exports.buildArticle(item);
         fsHelper.saveFile(item.savePath, item.content);
@@ -167,7 +162,6 @@ exports.reportFile = (parseResult, rmdir) => {
             rmdir && fsHelper.rmdir(config.demoExportPath);
             item.demo.forEach(demo => {
                 fsHelper.saveFile(demo.savePath, demo.content);
-                buildDemoHtml(demo);
             })
         }
     })

@@ -1,5 +1,5 @@
-<template>      <Page name="ComponentButton">          <div class="art-header">              <p>按钮</p>
-          </div>          <div class="art-demo">                        <Demo>                                    <DemoRun :data="demo[0]" link="/static/demo/dist/zh-CN/component-button-basic/index.html"></DemoRun>                                </Demo>                    </div>          <div class="art-spec">          <h2>配置</h2>
+<template>     <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <section class="article-core art-ComponentButton">             <header class="art-header">                 <h1>{{meta.title}}</h1>                 <p>按钮</p>
+             </header>             <div class="art-demo">                              <Demo :data="demo[0]">                                          <ComponentButtonBasic></ComponentButtonBasic>                                      </Demo>                          </div>             <div class="art-spec">             <h2>配置</h2>
 <p><code>button</code> 组件的默认配置及可接受的配置选项如下：</p>
 <table>
 <thead>
@@ -7,7 +7,7 @@
 <th>名称</th>
 <th>类型</th>
 <th>默认值</th>
-<th>描述</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
@@ -77,7 +77,7 @@
 <th>名称</th>
 <th>类型</th>
 <th>默认值</th>
-<th>描述</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
@@ -173,4 +173,4 @@
 </tr>
 </tbody>
 </table>
-          </div>      </Page>  </template>    <script>  /* eslint-disable */    import Demo from '../../../components/Demo';  import DemoRun from '../../../components/DemoRun';    export default {      name: 'ComponentButton',      data() {          return {              name: 'ComponentButton',              meta: {"category":"Component","order":"1","type":"General","title":"Button","subtitle":"按钮"},              demo: [{"path":"D:\\MyConfiguration\\ymy48253\\Documents\\MyProject\\putiui\\docs\\posts\\data\\component\\button\\demo\\basic.md","exp":"md","dirName":"demo","fileName":"basic","name":"Basic","lang":"zh-CN","orgContent":"| component | order | title |\n|-----------|-------|-------|\n| Button    | 1     | 基础  |\n\n[comment]: meta\n\n[comment]: template:start\n\n```html\n<PtButton>Button</PtButton>\n```\n\n[comment]: template:end\n\n\n[comment]: style:start\n\n```css\n.btn-action{\n    color: red;\n}\n```\n\n[comment]: style:end\n\n\n[comment]: script:start\n\n```js\nimport Vue from 'vue';\nimport { PtButton } from 'putiui';\n\nVue.use(PtButton);\n\nexport default {\n    name: 'demo',\n    data(){\n        return {\n            message:'Hello'\n        }\n    }\n}\n```\n\n[comment]: script:end\n","meta":{"component":"Button","order":"1","title":"基础"},"orgTemplate":"\n\n```html\n<PtButton>Button</PtButton>\n```\n\n","template":"\n<PtButton>Button</PtButton>\n","orgStyle":"\n\n```css\n.btn-action{\n    color: red;\n}\n```\n\n","style":"\n.btn-action{\n    color: red;\n}\n","orgScript":"\n\n```js\nimport Vue from 'vue';\nimport { PtButton } from 'putiui';\n\nVue.use(PtButton);\n\nexport default {\n    name: 'demo',\n    data(){\n        return {\n            message:'Hello'\n        }\n    }\n}\n```\n\n","script":"\nimport Vue from 'vue';\nimport { PtButton } from 'putiui';\n\nVue.use(PtButton);\n\nexport default {\n    name: 'demo',\n    data(){\n        return {\n            message:'Hello'\n        }\n    }\n}\n"}]          }      },      components:{                    Demo,          DemoRun                }  }  </script>  
+             </div>         </section>     </ComArticle> </template>  <script> /* eslint-disable */ import ComArticle from '../../../components/ComArticle';  import Demo from '../../../components/Demo';   import ComponentButtonBasic from '../demo/zh-CN/ComponentButtonBasic.vue';  export default {     name: 'ComponentButton',     data() {         return {             name: 'ComponentButton',             meta: {"category":"Component","order":"1","type":"General","title":"Button","subtitle":"按钮"},             demo: [{"path":"D:\\MyConfiguration\\ymy48253\\Documents\\MyProject\\putiui\\docs\\posts\\data\\component\\button\\demo\\basic.md","exp":"md","dirName":"demo","fileName":"basic","name":"Basic","lang":"zh-CN","orgContent":"| component | order | title |\n|-----------|-------|-------|\n| Button    | 1     | 基础  |\n\n[comment]: meta\n\n[comment]: template:start\n\n```html\n<PtButton>Button</PtButton>\n```\n\n[comment]: template:end\n\n\n[comment]: style:start\n\n```css\n.btn-action{\n    color: red;\n}\n```\n\n[comment]: style:end\n\n\n[comment]: script:start\n\n```js\nimport Vue from 'vue';\nimport { PtButton } from 'putiui';\n\nVue.use(PtButton);\n\nexport default {\n    name: 'demo',\n    data(){\n        return {\n            message:'Hello'\n        }\n    }\n}\n```\n\n[comment]: script:end\n","meta":{"component":"Button","order":"1","title":"基础"},"orgTemplate":"\n\n```html\n<PtButton>Button</PtButton>\n```\n\n","template":"\n<PtButton>Button</PtButton>\n","orgStyle":"\n\n```css\n.btn-action{\n    color: red;\n}\n```\n\n","style":"\n.btn-action{\n    color: red;\n}\n","orgScript":"\n\n```js\nimport Vue from 'vue';\nimport { PtButton } from 'putiui';\n\nVue.use(PtButton);\n\nexport default {\n    name: 'demo',\n    data(){\n        return {\n            message:'Hello'\n        }\n    }\n}\n```\n\n","script":"\nimport Vue from 'vue';\nimport { PtButton } from 'putiui';\n\nVue.use(PtButton);\n\nexport default {\n    name: 'demo',\n    data(){\n        return {\n            message:'Hello'\n        }\n    }\n}\n"}]         }     },     components:{         ComArticle,                  Demo,                           ComponentButtonBasic: ComponentButtonBasic              } } </script> 

@@ -25,5 +25,5 @@ module.exports = {
     documentPath: path.resolve(__dirname, './data'),
     routeFilePath: path.resolve(__dirname, '../src/posts-route.js'),
     articleExportPath: path.resolve(__dirname, '../src/views/report'),
-    demoExportPath: path.resolve(__dirname, '../static/demo')
+    demoExportPath: path.resolve(__dirname, '../src/views/report/demo')
 }

@@ -10,6 +10,9 @@ exports.rmdir = (path) => {
 
 exports.getFileList = (dir, dep) => {
     var list = [];
+    if (!fs.existsSync(dir)) {
+        return list;
+    }
     fs.readdirSync(dir).forEach(item => {
         var subPath = path.join(dir, `/${item}`);
         const state = fs.lstatSync(subPath);
