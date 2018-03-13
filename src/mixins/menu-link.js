@@ -76,17 +76,6 @@ export default (parentTag) => {
                     this.userExec(event);
                 }
             },
-            userMouseenterCore(event) {
-                console.log(this.iTrigger)
-                if (this.iTrigger === 'hover') {
-                    this.userEnter(event);
-                }
-            },
-            userMouseleaveCore(event) {
-                if (this.iTrigger === 'hover') {
-                    this.userLeave(event);
-                }
-            },
             userKeydownCore(e) {
                 if (!e) return;
                 if (e.keyCode == 13) {

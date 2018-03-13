@@ -2,7 +2,7 @@
     <PtBox tag="li" :class="{
         'pt-menu-item':true,
         'active':isActive
-    }" @mouseenter="userMouseenterCore" @mouseleave="userMouseleaveCore">
+    }" @mouseenter.native="userMouseenter" @mouseleave.native="userMouseleave">
         <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
             <PtText v-if="$slots.icon" class="pt-menu-icon">
                 <slot name="icon"></slot>
@@ -22,10 +22,11 @@ import { has } from '../../utils/index.js';
 import baseMixin from '../../mixins/base.js';
 import vqueryMixin from '../../mixins/vquery.js';
 import menuLinkMixin from '../../mixins/menu-link.js';
+import menuHoverMixin from '../../mixins/menu-hover.js';
 export default {
     name: 'PtMenuItem',
     ptTag: 'PtMenuItem',
-    mixins: [baseMixin, vqueryMixin, menuLinkMixin('PtSubMenu')],
+    mixins: [baseMixin, vqueryMixin, menuLinkMixin('PtSubMenu'),menuHoverMixin],
     props: {
     },
     data() {
@@ -61,10 +62,6 @@ export default {
                 return false;
             }
 
-            if (this.parentMenuBox && !this.parentMenuBox.isOpen) {
-                this.parentMenuBox.$emit('open', this.sign);
-                this.parentMenu && this.parentMenu.$emit('open', this.sign);
-            }
             this.isActive = true;
 
             // goto link
@@ -78,18 +75,6 @@ export default {
                 event.preventDefault();
                 return false;
             }
-        },
-        userMouseenterCore(event) {
-            if (this.parentMenuBox && has(this.parentMenuBox, 'remainEnter')) {
-                this.parentMenuBox.remainEnter = true;
-            }
-        },
-        userMouseleaveCore(event) {
-            setTimeout(() => {
-                if (this.parentMenuBox && has(this.parentMenuBox, 'remainEnter')) {
-                    this.parentMenuBox.remainEnter = false;
-                }
-            })
         }
     }
 }

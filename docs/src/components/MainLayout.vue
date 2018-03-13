@@ -2,19 +2,24 @@
     <div class="main-layout">
         <header class="header"></header>
         <div class="left-container">
-            <PtMenu :router="true">
-                <PtSubMenu title="指南">
-                    <PtMenuItem to="/zh-CN/guide-install">安装</PtMenuItem>
-                </PtSubMenu>
-                <PtSubMenu title="组件">
-                    <PtMenuItemGroup title="通用">
-                        <PtMenuItem to="/zh-CN/component-menu">Button</PtMenuItem>
-                    </PtMenuItemGroup>
-                    <PtMenuItemGroup title="导航">
-                        <PtMenuItem to="/zh-CN/component-menu">Menu</PtMenuItem>
-                    </PtMenuItemGroup>
-                </PtSubMenu>
-            </PtMenu>
+            <pt-menu :router="true" direction="vertical">
+                <pt-sub-menu title="指南" sign="1">
+                    <pt-menu-item to="/zh-CN/component-menu" sign="11">Button</pt-menu-item>
+                </pt-sub-menu>
+                <pt-sub-menu title="组件" sign="2">
+                    <i class="fa fa-money" slot="icon"></i>
+                    <pt-menu-item-group title="通用">
+                        <pt-menu-item to="/zh-CN/component-menu" sign="21">
+                            <i class="fa fa-user" slot="icon"></i>Button
+                        </pt-menu-item>
+                    </pt-menu-item-group>
+                    <pt-menu-item-group title="导航">
+                        <pt-menu-item to="/zh-CN/component-menu" sign="22">
+                            <i class="fa fa-reorder" slot="icon"></i>Menu
+                        </pt-menu-item>
+                    </pt-menu-item-group>
+                </pt-sub-menu>
+            </pt-menu>
 
             <slot name="left"></slot>
         </div>

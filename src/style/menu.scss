@@ -17,6 +17,9 @@
 .pt-sub-menu {
     background: inherit;
     position: relative;
+    >.pt-menu-list {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
+    }
 }
 
 .pt-menu-left {

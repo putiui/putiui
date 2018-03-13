@@ -44,7 +44,9 @@ export default {
         return {
             privateIsOpen: false,
             leaveTimer: null,
-            remainEnter: false
+            leaveValidTime: 1 * 1000,
+            enterTimer: null,
+            enterValidTime: 0.3 * 1000
         }
     },
     computed: {
@@ -133,34 +135,70 @@ export default {
                 return false;
             }
         },
+        userMouseenterCore(event) {
+            console.log(this.iTrigger)
+            if (this.iTrigger === 'hover' && !this.isOpen) {
+                this.userEnter(event);
+            }
+        },
+        userMouseleaveCore(event) {
+            if (this.iTrigger === 'hover' && this.isOpen) {
+                this.userLeave(event);
+            }
+        },
+        execEnter() {
+            this.open();
+            this.$emit('open');
+            this.parentMenuBox && this.parentMenuBox.$emit('open', this.sign);
+        },
+        execLeave() {
+            this.close();
+            this.$emit('close');
+            this.parentMenuBox && this.parentMenuBox.$emit('close', this.sign);
+        },
         userEnter(event) {
             if (!event) return;
             if (this.disabled) {
                 event.preventDefault();
                 return false;
             }
-            this.open();
-            this.$emit('open');
-            this.parentMenuBox && this.parentMenuBox.$emit('open', this.sign);
+            if (this.enterTimer) {
+                clearTimeout(this.enterTimer);
+            }
+            this.enterTimer = setTimeout(() => {
+                console.log(`SubMenu.execEnter`)
+                this.execEnter();
+            }, this.enterValidTime);
         },
         userLeave(event) {
             if (!event) return;
+            // 进入随即马上离开，则不open
+            if (this.enterTimer) {
+                clearTimeout(this.enterTimer);
+                return;
+            }
             if (this.disabled) {
                 event.preventDefault();
                 return false;
             }
+            this.leaveTimer = setTimeout(() => {
+                console.log(`SubMenu.userLeave`)
+                this.execLeave();
+            }, this.leaveValidTime)
+        },
+        remainEnter() {
+            if (this.leaveTimer) {
+                clearTimeout(this.leaveTimer)
+            }
+        },
+        stopEnter() {
             if (this.leaveTimer) {
                 clearTimeout(this.leaveTimer)
             }
             this.leaveTimer = setTimeout(() => {
-                this.leaveTimer = null;
-                if (this.remainEnter) {
-                    return;
-                }
-                this.close();
-                this.$emit('close');
-                this.parentMenuBox && this.parentMenuBox.$emit('close', this.sign);
-            }, 0.5 * 1000)
+                console.log(`SubMenu.stopEnter`)
+                this.execLeave();
+            }, this.leaveValidTime * 0.5)
         }
     }
 }
