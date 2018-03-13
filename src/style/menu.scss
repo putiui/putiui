@@ -92,6 +92,7 @@ $iconSpacer:$spacer * 0.5;
     line-height: 1;
     padding: ($spacer + ($spacer * 0.2)) $spacer;
     border: 1px solid transparent;
+    transition: all .6s;
     >.pt-menu-icon,
     >.pt-menu-title {
         cursor: inherit;
@@ -127,16 +128,19 @@ $iconSpacer:$spacer * 0.5;
     &:not(.disabled)>.pt-menu-core {
         cursor: pointer;
     }
-    &.is-open,
-    &.active {
-        >.pt-menu-core {
-            background: $primary;
-            color: #fff;
-            >.pt-menu-arrow {
-                border-color: #fff;
-                transform: translateY(0) rotate(-135deg);
-            }
+}
+.pt-sub-menu.is-open{
+    >.pt-menu-core {
+        background: rgba($color: #000000, $alpha: .1);
+        >.pt-menu-arrow {
+            transform: translateY(0) rotate(-135deg);
         }
+    }
+}
+.pt-menu-item.active{
+    >.pt-menu-core {
+        background: $primary;
+        color: #fff;
     }
 }
 
