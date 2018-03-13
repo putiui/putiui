@@ -17,9 +17,15 @@
 .pt-sub-menu {
     background: inherit;
     position: relative;
-    >.pt-menu-list {
-        box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
-    }
+}
+
+.pt-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: inherit;
+    width: 100%;
+    z-index: 5;
 }
 
 .pt-menu-left {
@@ -43,38 +49,30 @@
     }
 }
 
-.pt-menu-placement-left,
-.pt-menu-placement-right,
-.pt-menu-placement-top,
-.pt-menu-placement-bottom {
-    >.pt-menu-list {
-        position: absolute;
-        width: 100%;
-    }
+.pt-menu-placement-left>.pt-menu-list,
+.pt-menu-placement-right>.pt-menu-list {
+    position: absolute;
+    top: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
 }
 
 .pt-menu-placement-left>.pt-menu-list {
-    top: 0;
     right: 100%;
 }
 
 .pt-menu-placement-right>.pt-menu-list {
-    top: 0;
     left: 100%;
 }
 
-.pt-menu-placement-bottom>.pt-menu-list {
+.pt-menu-horizontal>.pt-menu-placement-bottom>.pt-menu-list {
+    position: absolute;
     top: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
 }
-
-.pt-menu-placement-top>.pt-menu-list {
+.pt-menu-horizontal>.pt-menu-placement-top>.pt-menu-list {
+    position: absolute;
     bottom: 100%;
-}
-
-.pt-menu-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
 }
 
 .pt-menu-item-group {
@@ -89,9 +87,10 @@ $iconSpacer:$spacer * 0.5;
 .pt-menu-core {
     display: block;
     width: 100%;
+    position: relative;
     white-space: nowrap;
     line-height: 1;
-    padding: $spacer * 0.8 $spacer;
+    padding: ($spacer + ($spacer * 0.2)) $spacer;
     border: 1px solid transparent;
     >.pt-menu-icon,
     >.pt-menu-title {
@@ -114,6 +113,10 @@ $iconSpacer:$spacer * 0.5;
     margin-left: $iconSpacer;
     transform: translateY(-50%) rotate(45deg);
     transition: all .3s ease;
+    position: absolute;
+    top:50%;
+    margin-top: -1px;
+    right: $spacer;
 }
 
 .pt-menu-item,

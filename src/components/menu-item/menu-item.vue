@@ -26,9 +26,7 @@ import menuHoverMixin from '../../mixins/menu-hover.js';
 export default {
     name: 'PtMenuItem',
     ptTag: 'PtMenuItem',
-    mixins: [baseMixin, vqueryMixin, menuLinkMixin('PtSubMenu'),menuHoverMixin],
-    props: {
-    },
+    mixins: [baseMixin, vqueryMixin, menuLinkMixin('PtSubMenu'), menuHoverMixin],
     data() {
         return {
             privateActive: false
@@ -47,7 +45,9 @@ export default {
                 }
             },
             set(val) {
+                console.log(`isActive=${val}`);
                 if (val && this.parentMenu) {
+                    console.log(`isActive2=${val}`);
                     this.parentMenu.activeSign = this.sign;
                 }
                 this.privateActive = val;
@@ -55,6 +55,15 @@ export default {
         }
     },
     methods: {
+        userClickCore(event) {
+            this.userExec(event);
+        },
+        userKeydownCore(e) {
+            if (!e) return;
+            if (e.keyCode == 13) {
+                this.userExec(e);
+            }
+        },
         userExec(event) {
             if (!event) return;
             if (this.disabled) {

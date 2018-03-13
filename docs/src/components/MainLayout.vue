@@ -2,7 +2,7 @@
     <div class="main-layout">
         <header class="header"></header>
         <div class="left-container">
-            <pt-menu :router="true" direction="vertical">
+            <pt-menu :router="true" direction="vertical" trigger="click">
                 <pt-sub-menu title="指南" sign="1">
                     <pt-menu-item to="/zh-CN/component-menu" sign="11">Button</pt-menu-item>
                 </pt-sub-menu>

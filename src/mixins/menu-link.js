@@ -69,19 +69,6 @@ export default (parentTag) => {
                 }
                 return this.parentMenuBox && this.parentMenuBox.iRouterReplace;
             }
-        },
-        methods: {
-            userClickCore(event) {
-                if (this.iTrigger === 'click') {
-                    this.userExec(event);
-                }
-            },
-            userKeydownCore(e) {
-                if (!e) return;
-                if (e.keyCode == 13) {
-                    this.userExec(e);
-                }
-            }
         }
     }
 }

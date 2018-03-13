@@ -7,8 +7,8 @@ export default {
     },
     methods: {
         userMouseenter(event) {
-            console.log(`进入`)
-            if (this.parentSubMenu) {
+            if (this.parentSubMenu && this.parentSubMenu.iTrigger === 'hover') {
+                console.log(`进入`)
                 var sign = this.parentSubMenu.sign;
                 var timer = LEAVE_TIMER[sign];
                 if (timer) {
@@ -18,8 +18,8 @@ export default {
             }
         },
         userMouseleave(event) {
-            console.log(`出去`)
-            if (this.parentSubMenu) {
+            if (this.parentSubMenu && this.parentSubMenu.iTrigger === 'hover') {
+                console.log(`出去`)
                 var sign = this.parentSubMenu.sign;
                 LEAVE_TIMER[sign] = setTimeout(() => {
                     console.log(`Hover=>SubMenu.stopEnter`)

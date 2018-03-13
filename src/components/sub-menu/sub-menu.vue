@@ -59,7 +59,11 @@ export default {
                 if (this.parentMenuBox.iDirection === 'horizontal') {
                     return 'bottom'
                 } else {
-                    return 'right'
+                    if (this.parentMenuBox.collapsed) {
+                        return 'right'
+                    } else {
+                        return 'bottom'
+                    }
                 }
             } else {
                 return placement;
@@ -105,6 +109,27 @@ export default {
         close() {
             this.isOpen = false;
         },
+        userClickCore(event) {
+            if (this.iTrigger === 'click') {
+                this.userExec(event);
+            }
+        },
+        userKeydownCore(e) {
+            if (!e) return;
+            if (e.keyCode == 13) {
+                this.userExec(e);
+            }
+        },
+        execEnter() {
+            this.open();
+            this.$emit('open');
+            this.parentMenuBox && this.parentMenuBox.$emit('open', this.sign);
+        },
+        execLeave() {
+            this.close();
+            this.$emit('close');
+            this.parentMenuBox && this.parentMenuBox.$emit('close', this.sign);
+        },
         userExec(event) {
             if (!event) return;
             if (this.disabled) {
@@ -114,13 +139,9 @@ export default {
 
             // open / close SubMenu
             if (this.isOpen) {
-                this.close();
-                this.$emit('close');
-                this.parentMenuBox && this.parentMenuBox.$emit('close', this.sign);
+                this.execLeave();
             } else {
-                this.open();
-                this.$emit('open');
-                this.parentMenuBox && this.parentMenuBox.$emit('open', this.sign);
+                this.execEnter();
             }
 
             // goto link
@@ -145,16 +166,6 @@ export default {
             if (this.iTrigger === 'hover' && this.isOpen) {
                 this.userLeave(event);
             }
-        },
-        execEnter() {
-            this.open();
-            this.$emit('open');
-            this.parentMenuBox && this.parentMenuBox.$emit('open', this.sign);
-        },
-        execLeave() {
-            this.close();
-            this.$emit('close');
-            this.parentMenuBox && this.parentMenuBox.$emit('close', this.sign);
         },
         userEnter(event) {
             if (!event) return;
