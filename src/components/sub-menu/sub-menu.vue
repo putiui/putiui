@@ -18,11 +18,9 @@
             </PtText>
             <PtText tag="i" class="pt-menu-arrow"></PtText>
         </a>
-        <transition name="menu-animate" enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-            <ul v-if="isOpen" class="pt-menu-list">
-                <slot></slot>
-            </ul>
-        </transition>
+        <ul v-if="isOpen" class="pt-menu-list">
+            <slot></slot>
+        </ul>
     </PtBox>
 </template>
 
@@ -157,7 +155,6 @@ export default {
             }
         },
         userMouseenterCore(event) {
-            console.log(this.iTrigger)
             if (this.iTrigger === 'hover' && !this.isOpen) {
                 this.userEnter(event);
             }
@@ -177,7 +174,6 @@ export default {
                 clearTimeout(this.enterTimer);
             }
             this.enterTimer = setTimeout(() => {
-                console.log(`SubMenu.execEnter`)
                 this.execEnter();
             }, this.enterValidTime);
         },
@@ -193,7 +189,6 @@ export default {
                 return false;
             }
             this.leaveTimer = setTimeout(() => {
-                console.log(`SubMenu.userLeave`)
                 this.execLeave();
             }, this.leaveValidTime)
         },
@@ -207,7 +202,6 @@ export default {
                 clearTimeout(this.leaveTimer)
             }
             this.leaveTimer = setTimeout(() => {
-                console.log(`SubMenu.stopEnter`)
                 this.execLeave();
             }, this.leaveValidTime * 0.5)
         }

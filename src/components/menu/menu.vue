@@ -115,7 +115,6 @@ export default {
         },
         activeSign: {
             get() {
-                console.log(`this.privateActiveSign=${this.privateActiveSign}`);
                 if (hasProp(this, 'value') && isObject(this.value)) {
                     return this.value.active;
                 } else if (hasProp(this, 'value') && isString(this.value)) {
@@ -125,7 +124,6 @@ export default {
                 }
             },
             set(val) {
-                console.log(`activeSign=${val}`);
                 if (hasProp(this, 'value') && isObject(this.value)) {
                     this.$emit('input', Object.assign({}, this.value, {
                         opened: val

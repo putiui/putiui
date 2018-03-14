@@ -45,9 +45,7 @@ export default {
                 }
             },
             set(val) {
-                console.log(`isActive=${val}`);
                 if (val && this.parentMenu) {
-                    console.log(`isActive2=${val}`);
                     this.parentMenu.activeSign = this.sign;
                 }
                 this.privateActive = val;

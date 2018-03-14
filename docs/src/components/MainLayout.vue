@@ -2,14 +2,14 @@
     <div class="main-layout">
         <header class="header"></header>
         <div class="left-container">
-            <pt-menu :router="true" direction="vertical" trigger="click">
-                <pt-sub-menu title="指南" sign="1">
-                    <pt-menu-item to="/zh-CN/component-menu" sign="11">Button</pt-menu-item>
+            <pt-menu v-model="value" :router="true" direction="vertical" trigger="click">
+                <pt-sub-menu title="指南" sign="1" :disabled="lock">
+                    <pt-menu-item to="/zh-CN/guide-install" sign="11">安装</pt-menu-item>
                 </pt-sub-menu>
-                <pt-sub-menu title="组件" sign="2">
+                <pt-sub-menu title="组件" sign="2" :disabled="lock">
                     <i class="fa fa-money" slot="icon"></i>
                     <pt-menu-item-group title="通用">
-                        <pt-menu-item to="/zh-CN/component-menu" sign="21">
+                        <pt-menu-item to="/zh-CN/component-button" sign="21">
                             <i class="fa fa-user" slot="icon"></i>Button
                         </pt-menu-item>
                     </pt-menu-item-group>
@@ -48,6 +48,15 @@
 
 <script>
 export default {
-    name: 'MainLayout'
+    name: 'MainLayout',
+    data() {
+        return {
+            value: '11',
+            lock: false
+        }
+    },
+    created() {
+        window.tt = this;
+    }
 }
 </script>
