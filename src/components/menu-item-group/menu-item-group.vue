@@ -1,7 +1,7 @@
 <template>
     <PtBox tag="li" :class="{
         'pt-menu-item-group':true
-    }" @mouseenter.native="userMouseenter" @mouseleave.native="userMouseleave">
+    }">
         <PtText class="pt-menu-core">
             <PtText class="pt-menu-title">
                 <template v-if="$slots.title">
@@ -17,13 +17,12 @@
 </template>
 
 <script>
-import menuHoverMixin from '../../mixins/menu-hover.js';
 import vqueryMixin from '../../mixins/vquery.js';
 import baseMixin from '../../mixins/base.js';
 export default {
     name: 'PtMenuItemGroup',
     ptTag: 'PtMenuItemGroup',
-    mixins: [baseMixin, vqueryMixin, menuHoverMixin],
+    mixins: [baseMixin, vqueryMixin],
     props: {
         title: {
             type: String

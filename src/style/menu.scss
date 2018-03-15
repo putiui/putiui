@@ -24,7 +24,6 @@
     margin: 0;
     padding: 0;
     background: inherit;
-    width: 100%;
     z-index: 5;
 }
 
@@ -69,6 +68,7 @@
     top: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
 }
+
 .pt-menu-horizontal>.pt-menu-placement-top>.pt-menu-list {
     position: absolute;
     bottom: 100%;
@@ -76,6 +76,7 @@
 }
 
 .pt-menu-item-group {
+    background: inherit;
     >.pt-menu-core {
         font-size: .8em;
         color: $gray-400;
@@ -85,15 +86,17 @@
 }
 
 $iconSpacer:$spacer * 0.5;
+$arrowSize:$iconSpacer;
 .pt-menu-core {
     display: block;
     width: 100%;
     position: relative;
     white-space: nowrap;
     line-height: 1;
-    padding: ($spacer + ($spacer * 0.2)) $spacer;
+    padding: $spacer;
     border: 1px solid transparent;
     transition: all .6s;
+    padding-right: (2 * $spacer) + $arrowSize;
     >.pt-menu-icon,
     >.pt-menu-title {
         cursor: inherit;
@@ -104,21 +107,71 @@ $iconSpacer:$spacer * 0.5;
 }
 
 .pt-menu-arrow {
-    $sz: $iconSpacer;
     display: inline-block;
     vertical-align: middle;
-    width: $sz;
-    height: $sz;
+    width: $arrowSize;
+    height: $arrowSize;
     border: 1px solid #333;
-    border-top: none;
-    border-left: none;
-    margin-left: $iconSpacer;
-    transform: translateY(-50%) rotate(45deg);
-    transition: all .3s ease;
+    transition: all .2s ease;
     position: absolute;
-    top:50%;
-    margin-top: -1px;
     right: $spacer;
+    top: 50%;
+}
+.pt-menu-placement-bottom {
+    >.pt-menu-core {
+        >.pt-menu-arrow {
+            border-top: none;
+            border-left: none;
+            transform: translateY(-50%) rotate(45deg);
+        }
+    }
+    &.is-open>.pt-menu-core {
+        >.pt-menu-arrow {
+            transform: translateY(0) rotate(-135deg);
+        }
+    }
+}
+.pt-menu-placement-top {
+    >.pt-menu-core {
+        >.pt-menu-arrow {
+            border-bottom: none;
+            border-right: none;
+            transform: translateY(0) rotate(45deg);
+        }
+    }
+    &.is-open>.pt-menu-core {
+        >.pt-menu-arrow {
+            transform: translateY(-50%) rotate(-135deg);
+        }
+    }
+}
+.pt-menu-placement-left {
+    >.pt-menu-core {
+        >.pt-menu-arrow {
+            border-top: none;
+            border-right: none;
+            transform: translateY(-50%) rotate(45deg);
+        }
+    }
+    &.is-open>.pt-menu-core {
+        >.pt-menu-arrow {
+            transform: translateY(-50%) rotate(-135deg);
+        }
+    }
+}
+.pt-menu-placement-right {
+    >.pt-menu-core {
+        >.pt-menu-arrow {
+            border-bottom: none;
+            border-left: none;
+            transform: translateY(-50%) rotate(45deg);
+        }
+    }
+    &.is-open>.pt-menu-core {
+        >.pt-menu-arrow {
+            transform: translateY(-50%) rotate(-135deg);
+        }
+    }
 }
 
 .pt-menu-item,
@@ -130,15 +183,14 @@ $iconSpacer:$spacer * 0.5;
         cursor: pointer;
     }
 }
-.pt-sub-menu.is-open{
+
+.pt-sub-menu.is-open {
     >.pt-menu-core {
-        background: rgba($color: #000000, $alpha: .1);
-        >.pt-menu-arrow {
-            transform: translateY(0) rotate(-135deg);
-        }
+        background: rgba($color: #000000, $alpha: .05);
     }
 }
-.pt-menu-item.active{
+
+.pt-menu-item.active {
     >.pt-menu-core {
         background: $primary;
         color: #fff;
@@ -148,6 +200,6 @@ $iconSpacer:$spacer * 0.5;
 .pt-sub-menu:not(.is-open):not(.disabled)>.pt-menu-core,
 .pt-menu-item:not(.active)>.pt-menu-core {
     &:hover {
-        background: rgba($color: #000000, $alpha: .1);
+        background: rgba($color: #000000, $alpha: .05);
     }
 }

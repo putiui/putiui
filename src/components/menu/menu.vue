@@ -70,7 +70,7 @@ export default {
         }
     },
     computed: {
-        iTrigger(){
+        iTrigger() {
             return this.trigger || options.trigger || 'hover';
         },
         iPlacement() {

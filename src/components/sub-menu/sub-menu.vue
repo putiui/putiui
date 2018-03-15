@@ -5,8 +5,8 @@
         'disabled':disabled,
         ['pt-menu-placement-'+iPlacement]:true,
         ['is-open']:isOpen
-    }">
-        <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @mouseenter="userMouseenterCore" @mouseleave="userMouseleaveCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
+    }" @mouseenter.native="userMouseenter" @mouseleave.native="userMouseleave">
+        <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
             <PtText v-if="$slots.icon" class="pt-menu-icon">
                 <slot name="icon"></slot>
             </PtText>
@@ -41,8 +41,6 @@ export default {
     data() {
         return {
             privateIsOpen: false,
-            leaveTimer: null,
-            leaveValidTime: 1 * 1000,
             enterTimer: null,
             enterValidTime: 0.3 * 1000
         }
@@ -55,6 +53,9 @@ export default {
             var placement = this.placement || (this.parentMenuBox && this.parentMenuBox.iPlacement);
             if (placement === 'auto') {
                 if (this.parentMenuBox.iDirection === 'horizontal') {
+                    if (this.parentSubMenu) {
+                        return 'right';
+                    }
                     return 'bottom'
                 } else {
                     if (this.parentMenuBox.collapsed) {
@@ -86,7 +87,7 @@ export default {
                         }
                     }
                 } else {
-                    privateIsOpen = val;
+                    this.privateIsOpen = val;
                 }
             }
         },
@@ -154,15 +155,21 @@ export default {
                 return false;
             }
         },
-        userMouseenterCore(event) {
+        userMouseenter(event) {
             if (this.iTrigger === 'hover' && !this.isOpen) {
                 this.userEnter(event);
             }
         },
-        userMouseleaveCore(event) {
-            if (this.iTrigger === 'hover' && this.isOpen) {
+        userMouseleave(event) {
+            if (this.iTrigger === 'hover') {
                 this.userLeave(event);
             }
+        },
+        clearEnterTimer() {
+            if (this.enterTimer) {
+                clearTimeout(this.enterTimer);
+            }
+            this.enterTimer = null;
         },
         userEnter(event) {
             if (!event) return;
@@ -170,40 +177,34 @@ export default {
                 event.preventDefault();
                 return false;
             }
-            if (this.enterTimer) {
-                clearTimeout(this.enterTimer);
-            }
+            this.clearEnterTimer();
             this.enterTimer = setTimeout(() => {
+                this.clearEnterTimer();
                 this.execEnter();
             }, this.enterValidTime);
         },
         userLeave(event) {
             if (!event) return;
-            // 进入随即马上离开，则不open
-            if (this.enterTimer) {
-                clearTimeout(this.enterTimer);
-                return;
-            }
             if (this.disabled) {
                 event.preventDefault();
                 return false;
             }
-            this.leaveTimer = setTimeout(() => {
+
+            if (this.enterTimer) {
+                this.clearEnterTimer();
+                // 进入随即马上离开，则不open
+                if (!this.isOpen) return;
+
+                // 如果已经open了则close
                 this.execLeave();
-            }, this.leaveValidTime)
-        },
-        remainEnter() {
-            if (this.leaveTimer) {
-                clearTimeout(this.leaveTimer)
+            } else {
+                // 进入退出时间过短，等待待dom更新完毕后判断isOpen，然后择情close
+                this.$nextTick(() => {
+                    if (this.isOpen) {
+                        this.execLeave();
+                    }
+                })
             }
-        },
-        stopEnter() {
-            if (this.leaveTimer) {
-                clearTimeout(this.leaveTimer)
-            }
-            this.leaveTimer = setTimeout(() => {
-                this.execLeave();
-            }, this.leaveValidTime * 0.5)
         }
     }
 }
