@@ -144,8 +144,8 @@ export default {
             }
 
             // goto link
-            if (this.hasRouter && this.iRouter && this.to) {
-                if (this.iRouterReplace) {
+            if (this.hasRouter && this.iRoute && this.to) {
+                if (this.iRouteReplace) {
                     this.$router.replace(this.to)
                 } else {
                     this.$router.push(this.to)

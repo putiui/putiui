@@ -50,11 +50,11 @@ export default {
                 return options.trigger || 'hover';
             }
         },
-        router: {
-            type: Boolean,
-            default() {
-                return options.router || false;
-            }
+        route: {
+            type: Boolean
+        },
+        'route-replace': {
+            type: Boolean
         },
         align: {
             type: String,
@@ -82,14 +82,14 @@ export default {
         iAlign() {
             return this.align || options.align || PtMenuAlign.left;
         },
-        iRouter() {
-            if (hasProp(this, 'router') && (isBoolean(this.router) || isObjectBoolean(this.router))) {
-                return this.router.valueOf();
+        iRoute() {
+            if (hasProp(this, 'route') && (isBoolean(this.route) || isObjectBoolean(this.route))) {
+                return this.route.valueOf();
             }
-            return options.router;
+            return options.route;
         },
         iRouterReplace() {
-            var prop = 'router-replace';
+            var prop = 'route-replace';
             if (hasProp(this, prop) && (isBoolean(this[prop]) || isObjectBoolean(this[prop]))) {
                 return this[prop].valueOf();
             }
@@ -134,6 +134,9 @@ export default {
                     this.$set(this, 'privateActiveSign', val);
                 }
             }
+        },
+        hasSelectListener() {
+            return this.$listeners && this.$listeners['select'];
         }
     },
     methods: {

@@ -3,7 +3,7 @@
         <header class="header">
         </header>
         <div class="left-container">
-            <PtMenu v-model="value" direction="vertical" trigger="click" :router="true">
+            <PtMenu v-model="value" direction="vertical" trigger="click" :route="true" @select="onSelect">
                 <PtSubMenu title="指南" sign="1" :disabled="lock">
                     <PtMenuItem to="/zh-CN/guide-install" sign="11">安装</PtMenuItem>
                 </PtSubMenu>
@@ -62,9 +62,13 @@ export default {
         },
         close() {
             console.log(`close`)
+        },
+        onSelect(sign) {
+            console.log(`onSelect=>${sign}`)
         }
     },
     created() {
+        console.log(111)
         window.tt = this;
     }
 }

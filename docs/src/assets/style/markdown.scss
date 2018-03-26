@@ -1,8 +1,11 @@
 @import '../../../../src/style/vars.scss';
 $baseFontSize:16px;
-$hFontSize: 2.4em;
-$decline: 0.4em;
+$hFontSize: 2.6em;
+$decline: 0.5em;
 $tdBorderColor: #ededed;
+@function hfs($size, $base:$hFontSize){
+    @return $base - (1 * $decline);
+}
 .article {
     font-size: $baseFontSize;
     line-height: 1.3;
@@ -14,27 +17,28 @@ $tdBorderColor: #ededed;
     h6 {
         margin-top: 40px;
         margin-bottom: 20px;
+        font-weight: normal;
         +p {
             margin-top: -10px;
         }
     }
     h1 {
-        font-size: $hFontSize - (1 * $decline);
+        font-size: hfs(1);
     }
     h2 {
-        font-size: $hFontSize - (2 * $decline);
+        font-size: hfs(2);
     }
     h3 {
-        font-size: $hFontSize - (3 * $decline);
+        font-size: hfs(3);
     }
     h4 {
-        font-size: $hFontSize - (4 * $decline);
+        font-size: hfs(4);
     }
     h5 {
-        font-size: $hFontSize - (5 * $decline);
+        font-size: hfs(5);
     }
     h6 {
-        font-size: $hFontSize - (6 * $decline);
+        font-size: hfs(6);
     }
     code,
     kbd,

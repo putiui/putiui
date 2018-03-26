@@ -136,7 +136,13 @@ exports.buildArticle = (json) => {
             item.importPath = '../demo/' + item.lang + '/' + item.componentName + '.vue';
             item.savePath = config.demoExportPath + '\\' + item.lang + '\\' + item.componentName + '.vue';
             item.content = juicer(demoTemplate, item);
-        })
+        });
+        json.demo = json.demo.sort((a, b) => {
+            if (a.meta && b.meta) {
+                return a.meta.order - b.meta.order;
+            }
+            return 0;
+        });
     }
     json.content = juicer(articleTemplate, json);
 }

@@ -74,6 +74,13 @@
     bottom: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
 }
+.pt-menu-vertical{
+    .pt-sub-menu{
+        >.pt-menu-list{
+            padding-left: 20px;
+        }
+    }
+}
 
 .pt-menu-item-group {
     background: inherit;
@@ -83,6 +90,10 @@
         text-align: left;
         padding: $spacer * 0.6 $spacer;
     }
+}
+.pt-menu-item{
+    list-style: none;
+    &.disabled{}
 }
 
 $iconSpacer:$spacer * 0.5;
@@ -190,6 +201,13 @@ $arrowSize:$iconSpacer;
     }
 }
 
+.pt-menu-item.disabled {
+    >.pt-menu-core {
+        cursor: no-drop;
+        color: #ccc;
+    }
+}
+
 .pt-menu-item.active {
     >.pt-menu-core {
         background: $primary;
@@ -198,7 +216,7 @@ $arrowSize:$iconSpacer;
 }
 
 .pt-sub-menu:not(.is-open):not(.disabled)>.pt-menu-core,
-.pt-menu-item:not(.active)>.pt-menu-core {
+.pt-menu-item:not(.active):not(.disabled)>.pt-menu-core {
     &:hover {
         background: rgba($color: #000000, $alpha: .05);
     }

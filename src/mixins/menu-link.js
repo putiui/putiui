@@ -5,16 +5,16 @@ export default (parentTag) => {
     return {
         props: {
             sign: {
-                type: String,
+                type: [Number, String],
                 required: true
             },
             title: {
                 type: String
             },
-            router: {
+            route: {
                 type: Boolean
             },
-            'router-replace': Boolean,
+            'route-replace': Boolean,
             to: {
                 type: String
             },
@@ -35,11 +35,14 @@ export default (parentTag) => {
             hasRouter() {
                 return this.$router
             },
+            rootMenu() {
+                return this.$vqClosest('PtMenu');
+            },
             parentMenuBox() {
                 return this.$vqClosest(parentTag);
             },
             href() {
-                if (this.iRouter) {
+                if (this.iRoute) {
                     if (this.to) {
                         if (this.to.indexOf('#') !== -1) {
                             return this.to;
@@ -56,18 +59,18 @@ export default (parentTag) => {
             iAlign() {
                 return this.align || (this.parentMenuBox && this.parentMenuBox.iAlign)
             },
-            iRouter() {
-                if (hasProp(this, 'router') && (isBoolean(this.router) || isObjectBoolean(this.router))) {
-                    return this.router.valueOf();
+            iRoute() {
+                if (hasProp(this, 'route') && (isBoolean(this.route) || isObjectBoolean(this.route))) {
+                    return this.route.valueOf();
                 }
-                return this.parentMenuBox && this.parentMenuBox.iRouter;
+                return this.parentMenuBox && this.parentMenuBox.iRoute;
             },
-            iRouterReplace() {
+            iRouteReplace() {
                 var prop = 'router-replace';
                 if (hasProp(this, prop) && (isBoolean(this[prop]) || isObjectBoolean(this[prop]))) {
                     return this[prop].valueOf();
                 }
-                return this.parentMenuBox && this.parentMenuBox.iRouterReplace;
+                return this.parentMenuBox && this.parentMenuBox.iRouteReplace;
             }
         }
     }

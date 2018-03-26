@@ -1,10 +1,6 @@
-<template>     <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <section class="article-core art-ComponentMenu">             <header class="art-header">                 <h1>{{meta.title}}</h1>                 <p>菜单</p>
-             </header>             <div class="art-demo">                              <Demo :data="demo[0]">                                          <ComponentMenuPlacement></ComponentMenuPlacement>                                      </Demo>                          </div>             <div class="art-spec">             <h2>Menu</h2>
-<p>菜单
-Menu
-SubMenu
-MenuItem
-MenuItemGroup</p>
+<template>     <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">             <p>菜单</p>
+         </template>         <template slot="demo">                              <Demo :data="demo[0]">                                          <ComponentMenuBasic></ComponentMenuBasic>                                      </Demo>                              <Demo :data="demo[1]">                                          <ComponentMenuPlacement></ComponentMenuPlacement>                                      </Demo>                              <Demo :data="demo[2]">                                          <ComponentMenuVertical></ComponentMenuVertical>                                      </Demo>                      </template>         <template slot="spec">             <h2>Menu</h2>
+<p>菜单</p>
 <h3>属性</h3>
 <table>
 <thead>
@@ -41,16 +37,16 @@ MenuItemGroup</p>
 <td>设置打开子菜单的事件触发方式，可选值：click,hover；<br>当<code>direction</code>等于<code>vertical</code>且<code>collapsed</code>等于<code>false</code>时此项配置无效，<code>SubMenu</code>将一直以<code>click</code>方式打开</td>
 </tr>
 <tr>
-<td>router</td>
+<td>route</td>
 <td>boolean</td>
 <td>false</td>
 <td>设置子组件<code>MenuItem</code>以vue-router模式跳转</td>
 </tr>
 <tr>
-<td>router-replace</td>
+<td>route-replace</td>
 <td>boolean</td>
 <td>false</td>
-<td>设置router以replace方式调用，仅在<code>router</code>值为真时有效</td>
+<td>设置router以replace方式调用，仅在<code>route</code>值为真时有效</td>
 </tr>
 <tr>
 <td>align</td>
@@ -76,7 +72,7 @@ MenuItemGroup</p>
 </thead>
 <tbody>
 <tr>
-<td>click(sign)</td>
+<td>select(sign)</td>
 <td>子组件<code>MneuItem</code>单击时触发，传递该<code>MenuItem</code>的<code>sign</code>值</td>
 </tr>
 <tr>
@@ -140,7 +136,7 @@ MenuItemGroup</p>
 <tr>
 <td>trigger</td>
 <td>string</td>
-<td></td>
+<td><code>Menu.trigger</code></td>
 <td>设置展开菜单项的事件触发方式，可选值：click,hover；<br>当不设置值时，默认会从父<code>Menu</code>组件的<code>trigger</code>值中获取；</td>
 </tr>
 <tr>
@@ -150,28 +146,28 @@ MenuItemGroup</p>
 <td>禁用子菜单，禁用后无法通过用户事件(click/hover)打开和关闭，但可以通过调用父<code>Menu</code>组件实例提供的方法（open/close）或者设置父<code>Menu</code>组件的<code>value</code>值这两种方式进行子菜单的打开和关闭</td>
 </tr>
 <tr>
-<td>router</td>
+<td>route</td>
 <td>boolean</td>
-<td><code>Menu.router</code></td>
-<td>设置以vue-router模式跳转，默认值取父组件<code>Menu</code>的<code>router</code>属性值</td>
+<td><code>Menu.route</code></td>
+<td>设置以vue-router模式跳转，默认值取父组件<code>Menu</code>的<code>route</code>属性值</td>
 </tr>
 <tr>
 <td>to</td>
 <td>string</td>
 <td></td>
-<td>设置跳转链接，<code>router</code>值为真时，作用同<code>router-link</code>的<code>to</code>属性，否则作用同<code>a</code>标签的<code>href</code>属性</td>
+<td>设置跳转链接，<code>route</code>值为真时，作用同<code>route-link</code>的<code>to</code>属性，否则作用同<code>a</code>标签的<code>href</code>属性</td>
 </tr>
 <tr>
-<td>router-replace</td>
+<td>route-replace</td>
 <td>boolean</td>
-<td><code>Menu.router-replace</code></td>
-<td>设置router以replace方式调用，仅在<code>router</code>值为真时有效</td>
+<td><code>Menu.route-replace</code></td>
+<td>设置router以replace方式调用，仅在<code>route</code>值为真时有效</td>
 </tr>
 <tr>
 <td>target</td>
 <td>string</td>
 <td></td>
-<td>设置跳转目标，作用同<code>a</code>标签的<code>target</code>属性，仅当<code>router</code>值不为真时有效</td>
+<td>设置跳转目标，作用同<code>a</code>标签的<code>target</code>属性，仅当<code>route</code>值不为真时有效</td>
 </tr>
 <tr>
 <td>placement</td>
@@ -231,7 +227,7 @@ MenuItemGroup</p>
 <td>to</td>
 <td>string</td>
 <td></td>
-<td>设置跳转链接，<code>router</code>值为真时，作用同<code>router-link</code>的<code>to</code>属性，否则作用同<code>a</code>标签的<code>href</code>属性</td>
+<td>设置跳转链接，<code>route</code>值为真时，作用同<code>route-link</code>的<code>to</code>属性，否则作用同<code>a</code>标签的<code>href</code>属性</td>
 </tr>
 <tr>
 <td>target</td>
@@ -240,16 +236,22 @@ MenuItemGroup</p>
 <td>设置跳转目标，作用同<code>a</code>标签的<code>target</code>属性</td>
 </tr>
 <tr>
-<td>router</td>
+<td>disabled</td>
 <td>boolean</td>
-<td><code>SubMenu.router</code></td>
-<td>设置以vue-router模式跳转，默认值取父组件<code>SubMenu</code>的<code>router</code>属性值，此值为<code>true</code>时，请务必设置<code>to</code>属性</td>
+<td>false</td>
+<td>禁用菜单，禁用后无法点击</td>
 </tr>
 <tr>
-<td>router-replace</td>
+<td>route</td>
 <td>boolean</td>
-<td><code>SubMenu.router-replace</code></td>
-<td>设置router以replace方式调用，仅在<code>router</code>值为真时有效</td>
+<td><code>SubMenu.route</code></td>
+<td>设置以vue-router模式跳转，默认值取父组件<code>SubMenu</code>的<code>route</code>属性值，此值为<code>true</code>时，请务必设置<code>to</code>属性</td>
+</tr>
+<tr>
+<td>route-replace</td>
+<td>boolean</td>
+<td><code>SubMenu.route-replace</code></td>
+<td>设置router以replace方式调用，仅在<code>route</code>值为真时有效</td>
 </tr>
 <tr>
 <td>align</td>
@@ -274,4 +276,4 @@ MenuItemGroup</p>
 </tr>
 </tbody>
 </table>
-             </div>         </section>     </ComArticle> </template>  <script> /* eslint-disable */ import ComArticle from '../../../components/ComArticle';  import Demo from '../../../components/Demo';   import ComponentMenuPlacement from '../demo/zh-CN/ComponentMenuPlacement.vue';  export default {     name: 'ComponentMenu',     data() {         return {             name: 'ComponentMenu',             meta: {"category":"Component","order":"1","type":"Navigation","title":"Menu","subtitle":"菜单"},             demo: [{"path":"D:\\MyConfiguration\\ymy48253\\Documents\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\placement.zh-CN.md","exp":"md","dirName":"demo","fileName":"placement.zh-CN","name":"Placement","lang":"zh-CN","orgContent":"| component | order | title |\n|-----------|-------|-------|\n| Menu    | 1     | 子菜单打开方向  |\n\n[comment]: meta\n\n[comment]: template:start\n\n```html\n<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n```\n\n[comment]: template:end\n\n\n[comment]: style:start\n\n```css\n\n```\n\n[comment]: style:end\n\n\n[comment]: script:start\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    }\n}\n```\n\n[comment]: script:end\n","meta":{"component":"Menu","order":"1","title":"子菜单打开方向"},"orgTemplate":"\n\n```html\n<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n```\n\n","template":"\n<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n","orgStyle":"\n\n```css\n\n```\n\n","style":"\n\n","orgScript":"\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    }\n}\n```\n\n","script":"\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    }\n}\n"}]         }     },     components:{         ComArticle,                  Demo,                           ComponentMenuPlacement: ComponentMenuPlacement              } } </script> 
+         </template>     </ComArticle> </template>  <script> /* eslint-disable */ import ComArticle from '../../../components/ComArticle';  import Demo from '../../../components/Demo';   import ComponentMenuBasic from '../demo/zh-CN/ComponentMenuBasic.vue';  import ComponentMenuPlacement from '../demo/zh-CN/ComponentMenuPlacement.vue';  import ComponentMenuVertical from '../demo/zh-CN/ComponentMenuVertical.vue';  export default {     name: 'ComponentMenu',     data() {         return {             name: 'ComponentMenu',             meta: {"category":"Component","order":"1","type":"Navigation","title":"Menu","subtitle":"菜单"},             demo: [{"path":"D:\\MyConfiguration\\ymy48253\\Documents\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\basic.zh-CN.md","exp":"md","dirName":"demo","fileName":"basic.zh-CN","name":"Basic","lang":"zh-CN","orgContent":"| component | order | title |\n|-----------|-------|-------|\n| Menu    | 1     | 基础  |\n\n[comment]: meta\n\n[comment]: template:start\n\n```html\n<PtMenu @open=\"onOpen\" @close=\"onClose\">\n    <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n    <PtSubMenu title=\"Menu2\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n        <PtSubMenu title=\"Menu23\" sign=\"23\">\n            <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n            <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n            <PtSubMenu title=\"Menu233\" sign=\"233\">\n                <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n            </PtSubMenu>\n        </PtSubMenu>\n    </PtSubMenu>\n    <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n</PtMenu>\n```\n\n[comment]: template:end\n\n\n[comment]: style:start\n\n```css\n\n```\n\n[comment]: style:end\n\n\n[comment]: script:start\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    },\n    methods:{\n        onOpen(sign){\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign){\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}\n```\n\n[comment]: script:end\n","meta":{"component":"Menu","order":"1","title":"基础"},"orgTemplate":"\n\n```html\n<PtMenu @open=\"onOpen\" @close=\"onClose\">\n    <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n    <PtSubMenu title=\"Menu2\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n        <PtSubMenu title=\"Menu23\" sign=\"23\">\n            <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n            <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n            <PtSubMenu title=\"Menu233\" sign=\"233\">\n                <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n            </PtSubMenu>\n        </PtSubMenu>\n    </PtSubMenu>\n    <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n</PtMenu>\n```\n\n","template":"\n<PtMenu @open=\"onOpen\" @close=\"onClose\">\n    <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n    <PtSubMenu title=\"Menu2\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n        <PtSubMenu title=\"Menu23\" sign=\"23\">\n            <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n            <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n            <PtSubMenu title=\"Menu233\" sign=\"233\">\n                <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n            </PtSubMenu>\n        </PtSubMenu>\n    </PtSubMenu>\n    <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n</PtMenu>\n","orgStyle":"\n\n```css\n\n```\n\n","style":"\n\n","orgScript":"\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    },\n    methods:{\n        onOpen(sign){\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign){\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}\n```\n\n","script":"\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    },\n    methods:{\n        onOpen(sign){\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign){\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}\n"},{"path":"D:\\MyConfiguration\\ymy48253\\Documents\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\placement.zh-CN.md","exp":"md","dirName":"demo","fileName":"placement.zh-CN","name":"Placement","lang":"zh-CN","orgContent":"| component | order | title |\n|-----------|-------|-------|\n| Menu    | 1     | 子菜单打开方向  |\n\n[comment]: meta\n\n[comment]: template:start\n\n```html\n<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n```\n\n[comment]: template:end\n\n\n[comment]: style:start\n\n```css\n\n```\n\n[comment]: style:end\n\n\n[comment]: script:start\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    }\n}\n```\n\n[comment]: script:end\n","meta":{"component":"Menu","order":"1","title":"子菜单打开方向"},"orgTemplate":"\n\n```html\n<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n```\n\n","template":"\n<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n","orgStyle":"\n\n```css\n\n```\n\n","style":"\n\n","orgScript":"\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    }\n}\n```\n\n","script":"\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    }\n}\n"},{"path":"D:\\MyConfiguration\\ymy48253\\Documents\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\vertical.zh-CN.md","exp":"md","dirName":"demo","fileName":"vertical.zh-CN","name":"Vertical","lang":"zh-CN","orgContent":"| component | order | title |\n|-----------|-------|-------|\n| Menu    | 1     | 竖向菜单  |\n\n[comment]: meta\n\n[comment]: template:start\n\n```html\n<div class=\"demo-menu-box\">\n    <PtMenu direction=\"vertical\" trigger=\"click\" @open=\"onOpen\" @close=\"onClose\">\n        <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\n            <PtMenuItemGroup title=\"Group1\">\n                <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n                <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n                <PtSubMenu title=\"Menu23\" sign=\"23\">\n                    <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n                    <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n                    <PtSubMenu title=\"Menu233\" sign=\"233\">\n                        <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                        <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n                    </PtSubMenu>\n                </PtSubMenu>\n            </PtMenuItemGroup>\n        </PtSubMenu>\n        <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\n            <PtMenuItem sign=\"41\">Menu41</PtMenuItem>\n            <PtMenuItem sign=\"42\">Menu42</PtMenuItem>\n        </PtSubMenu>\n    </PtMenu>\n</div>\n```\n\n[comment]: template:end\n\n\n[comment]: style:start\n\n```css\n.demo-menu-box{\n    width:220px;\n}\n```\n\n[comment]: style:end\n\n\n[comment]: script:start\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    },\n    methods:{\n        onOpen(sign){\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign){\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}\n```\n\n[comment]: script:end\n","meta":{"component":"Menu","order":"1","title":"竖向菜单"},"orgTemplate":"\n\n```html\n<div class=\"demo-menu-box\">\n    <PtMenu direction=\"vertical\" trigger=\"click\" @open=\"onOpen\" @close=\"onClose\">\n        <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\n            <PtMenuItemGroup title=\"Group1\">\n                <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n                <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n                <PtSubMenu title=\"Menu23\" sign=\"23\">\n                    <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n                    <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n                    <PtSubMenu title=\"Menu233\" sign=\"233\">\n                        <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                        <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n                    </PtSubMenu>\n                </PtSubMenu>\n            </PtMenuItemGroup>\n        </PtSubMenu>\n        <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\n            <PtMenuItem sign=\"41\">Menu41</PtMenuItem>\n            <PtMenuItem sign=\"42\">Menu42</PtMenuItem>\n        </PtSubMenu>\n    </PtMenu>\n</div>\n```\n\n","template":"\n<div class=\"demo-menu-box\">\n    <PtMenu direction=\"vertical\" trigger=\"click\" @open=\"onOpen\" @close=\"onClose\">\n        <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\n            <PtMenuItemGroup title=\"Group1\">\n                <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n                <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n                <PtSubMenu title=\"Menu23\" sign=\"23\">\n                    <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n                    <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n                    <PtSubMenu title=\"Menu233\" sign=\"233\">\n                        <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                        <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n                    </PtSubMenu>\n                </PtSubMenu>\n            </PtMenuItemGroup>\n        </PtSubMenu>\n        <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\n            <PtMenuItem sign=\"41\">Menu41</PtMenuItem>\n            <PtMenuItem sign=\"42\">Menu42</PtMenuItem>\n        </PtSubMenu>\n    </PtMenu>\n</div>\n","orgStyle":"\n\n```css\n.demo-menu-box{\n    width:220px;\n}\n```\n\n","style":"\n.demo-menu-box{\n    width:220px;\n}\n","orgScript":"\n\n```js\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    },\n    methods:{\n        onOpen(sign){\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign){\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}\n```\n\n","script":"\nexport default {\n    name: 'demo',\n    data(){\n        return {\n        }\n    },\n    methods:{\n        onOpen(sign){\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign){\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}\n"}]         }     },     components:{         ComArticle,                  Demo,                           ComponentMenuBasic: ComponentMenuBasic,                  ComponentMenuPlacement: ComponentMenuPlacement,                  ComponentMenuVertical: ComponentMenuVertical              } } </script> 

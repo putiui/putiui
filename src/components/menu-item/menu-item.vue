@@ -1,6 +1,7 @@
 <template>
     <PtBox tag="li" :class="{
         'pt-menu-item':true,
+        'disabled':disabled,
         'active':isActive
     }">
         <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
@@ -32,20 +33,20 @@ export default {
         }
     },
     computed: {
-        parentMenu() {
+        rootMenu() {
             return this.$vqClosest('PtMenu');
         },
         isActive: {
             get() {
-                if (this.parentMenu) {
-                    return this.parentMenu.activeSign === this.sign;
+                if (this.rootMenu) {
+                    return this.rootMenu.activeSign === this.sign;
                 } else {
                     return this.privateActive;
                 }
             },
             set(val) {
-                if (val && this.parentMenu) {
-                    this.parentMenu.activeSign = this.sign;
+                if (val && this.rootMenu) {
+                    this.rootMenu.activeSign = this.sign;
                 }
                 this.privateActive = val;
             }
@@ -69,10 +70,13 @@ export default {
             }
 
             this.isActive = true;
+            if (this.rootMenu.hasSelectListener) {
+                this.rootMenu.$emit('select', this.sign);
+            }
 
             // goto link
-            if (this.hasRouter && this.iRouter && this.to) {
-                if (this.iRouterReplace) {
+            if (this.hasRouter && this.iRoute && this.to) {
+                if (this.iRouteReplace) {
                     this.$router.replace(this.to)
                 } else {
                     this.$router.push(this.to)

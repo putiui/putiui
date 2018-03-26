@@ -1,11 +1,9 @@
 <template>
     <ComArticle :meta="meta" :demo="demo ? demo : undefined">
-        <section class="article-core art-${componentName}">
-            <header class="art-header">
-                <h1>{{meta.title}}</h1>
-                $${header}
-            </header>
-            <div class="art-demo">
+        <template slot="header">
+            $${header}
+        </template>
+        <template slot="demo">
             {@each demo as item, index}
                 <Demo :data="demo[${index}]">
                     {@if item.header}
@@ -21,11 +19,10 @@
                     {@/if}
                 </Demo>
             {@/each}
-            </div>
-            <div class="art-spec">
+        </template>
+        <template slot="spec">
             $${spec}
-            </div>
-        </section>
+        </template>
     </ComArticle>
 </template>
 
