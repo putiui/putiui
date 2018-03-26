@@ -68,7 +68,6 @@ export default {
         }
     },
     created() {
-        console.log(111)
         window.tt = this;
     }
 }

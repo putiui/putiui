@@ -12,13 +12,7 @@
             'pt-btn-block': block,
             'browser-ie': browserIsIE,
             'has-label':$slots.labelLeft || $slots.labelRight || $slots.labelTop || $slots.labelBottom
-        }"
-        :type="iNativeType"
-        :href="iHref"
-        :target="tag!=='a' || disabled ? undefined : target"
-        :disabled="tag==='a' ? undefined : disabled"
-        :style="style"
-        v-bind="$props">
+        }" :type="iNativeType" :href="iHref" :target="tag!=='a' || disabled ? undefined : target" :disabled="tag==='a' ? undefined : disabled" :style="style" v-bind="$props" @click="onClick">
 
         <slot name="labelTop"></slot>
         <PtText class="pt-btn-inner-center">
@@ -228,6 +222,12 @@ export default {
             ht = isNaN(ht) ? 0 : ht;
             var lineHeight = (ht - border.top - border.bottom) + 'px';
             return lineHeight;
+        },
+        onClick(e) {
+            if (this.disabled) {
+                return;
+            }
+            this.$emit('click', e);
         }
     },
     mounted() {
