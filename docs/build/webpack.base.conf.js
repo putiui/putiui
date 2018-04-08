@@ -22,12 +22,10 @@ const createLintingRule = () => ({
 })
 
 const vueVersion = require('../node_modules/vue/package.json').version;
-const putiuiVersion = require('../../package.json').version;
 
 module.exports = {
-    context: path.resolve(__dirname, '../'),
     entry: {
-        app: './src/index.js'
+        app: path.resolve(__dirname, '../src/index.js')
     },
     output: {
         path: config.build.assetsRoot,
@@ -38,14 +36,15 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
+        modules: [path.resolve(__dirname, '../node_modules'), path.resolve(__dirname, '../../node_modules')],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src'),
+            'putiui': path.resolve(__dirname, '../../src/index.js')
         }
     },
     externals: {
-        'vue': 'Vue',
-        'putiui': 'PutiUI'
+        'vue': 'Vue'
     },
     module: {
         rules: [
@@ -53,12 +52,13 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: vueLoaderConfig
+                options: vueLoaderConfig,
+                include: [path.resolve(__dirname, '../../src')]
             },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+                include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client'), path.resolve(__dirname, '../../src')]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -107,14 +107,6 @@ module.exports = {
             {
                 from: path.resolve(__dirname, '../node_modules/vue/dist/vue.min.js'),
                 to: config.build.assetsSubDirectory + `/js/vue-${vueVersion}.min.js`
-            },
-            {
-                from: path.resolve(__dirname, '../../lib/putiui.js'),
-                to: config.build.assetsSubDirectory + `/js/putiui-${putiuiVersion}.js`
-            },
-            {
-                from: path.resolve(__dirname, '../../lib/css/putiui.css'),
-                to: config.build.assetsSubDirectory + `/css/putiui-${putiuiVersion}.css`
             }
         ])
     ]

@@ -196,6 +196,10 @@
 <td>icon</td>
 <td>图标插槽</td>
 </tr>
+<tr>
+<td>title</td>
+<td>标题插槽，如果此插槽存在内容则忽略组件本身的<code>title</code>属性</td>
+</tr>
 </tbody>
 </table>
 <h2>MenuItem</h2>
@@ -273,6 +277,10 @@
 <tr>
 <td>icon</td>
 <td>图标插槽</td>
+</tr>
+<tr>
+<td>title</td>
+<td>标题插槽，如果此插槽存在内容则忽略组件本身的<code>title</code>属性</td>
 </tr>
 </tbody>
 </table>
