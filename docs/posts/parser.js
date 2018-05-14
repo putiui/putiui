@@ -1,4 +1,5 @@
 
+const path = require('path');
 const config = require('./config.js');
 const fsHelper = require('./fs.js');
 const jquery = require('./jquery.js');
@@ -8,7 +9,7 @@ var Mdt = require('markdown-it')({
 });
 
 const initialUppercase = str => {
-    return str[0].toUpperCase() + str.substr(1);
+    return str ? (str[0].toUpperCase() + str.substr(1)) : str;
 }
 
 const parser = filePath => {
@@ -20,8 +21,8 @@ const parser = filePath => {
     var json = {};
     json.path = filePath;
     json.exp = fsHelper.getFileExp(filePath);
-    json.dirName = filePath.substring(0, filePath.lastIndexOf('\\'));
-    json.dirName = json.dirName.substr(json.dirName.lastIndexOf('\\') + 1).trim();
+    json.dirName = filePath.substring(0, filePath.lastIndexOf(path.sep));
+    json.dirName = json.dirName.substr(json.dirName.lastIndexOf(path.sep) + 1).trim();
     var name = fsHelper.getFileName(filePath);
     json.fileName = name;
     if (name.indexOf('.') > -1) {
@@ -52,18 +53,30 @@ const parser = filePath => {
         json.orgTemplate = json.orgContent.substring(json.orgContent.indexOf(config.commentTemplateStart) + config.commentTemplateStart.length, json.orgContent.indexOf(config.commentTemplateEnd));
         let i2 = json.orgTemplate.indexOf('```\n');
         json.template = json.orgTemplate.substring(json.orgTemplate.indexOf('```html') + 7, i2 == -1 ? json.orgTemplate.indexOf('```\r\n') : i2);
+        json.template = json.template.trim();
+        if (json.template) {
+            json.template = fsHelper.beautifyHTML(json.template);
+        }
     }
     //截取style
     if (json.orgContent.indexOf(config.commentStyleStart) > -1) {
         json.orgStyle = json.orgContent.substring(json.orgContent.indexOf(config.commentStyleStart) + config.commentStyleStart.length, json.orgContent.indexOf(config.commentStyleEnd));
         let i2 = json.orgStyle.indexOf('```\n');
         json.style = json.orgStyle.substring(json.orgStyle.indexOf('```css') + 6, i2 == -1 ? json.orgStyle.indexOf('```\r\n') : i2);
+        json.style = json.style.trim();
+        if (json.style) {
+            json.style = fsHelper.beautifyCSS(json.style);
+        }
     }
     //截取script
     if (json.orgContent.indexOf(config.commentScriptStart) > -1) {
         json.orgScript = json.orgContent.substring(json.orgContent.indexOf(config.commentScriptStart) + config.commentScriptStart.length, json.orgContent.indexOf(config.commentScriptEnd));
         let i2 = json.orgScript.indexOf('```\n');
         json.script = json.orgScript.substring(json.orgScript.indexOf('```js') + 5, i2 == -1 ? json.orgScript.indexOf('```\r\n') : i2);
+        json.script = json.script.trim();
+        if (json.script) {
+            json.script = fsHelper.beautifyJS(json.script);
+        }
     }
 
     return json;
@@ -93,18 +106,18 @@ const getMeta = orgContent => {
 
 exports.parse = () => {
     var result = [];
-    fsHelper.getFileList(config.documentPath + '\\guide').forEach(item => {
+    fsHelper.getFileList(path.join(config.documentPath, 'guide')).forEach(item => {
         var ps = parser(item);
         if (ps !== false) {
             result.push(ps);
         }
     });
-    var componentPath = config.documentPath + '\\component';
+    var componentPath = path.join(config.documentPath, 'component');
     fsHelper.getFolderList(componentPath).forEach(subComPath => {
         fsHelper.getFileList(subComPath).forEach(art => {
             var ps = parser(art);
             if (ps !== false) {
-                var demos = fsHelper.getFileList(subComPath + '\\demo');
+                var demos = fsHelper.getFileList(path.join(subComPath, 'demo'));
                 if (demos.length > 0) {
                     ps.demo = [];
                     demos.forEach(demo => {
@@ -118,6 +131,8 @@ exports.parse = () => {
     return result;
 }
 
+var emitDemoKeys = ['orgTemplate', 'orgContent', 'orgStyle', 'orgScript']
+
 exports.buildArticle = (json) => {
     const articleTemplate = fsHelper.readFile(config.articleTemplatePath);
     const demoTemplate = fsHelper.readFile(config.demoTemplatePath);
@@ -128,13 +143,18 @@ exports.buildArticle = (json) => {
     } else {
         json.componentName = json.meta.category + (json.name !== 'Index' ? (dirName + json.name) : dirName);
     }
-    json.savePath = config.articleExportPath + '\\' + json.lang + '\\' + json.componentName + '.vue';
+    json.savePath = path.join(config.articleExportPath, json.lang, json.componentName) + '.vue';
     if (json.demo && json.demo.length > 0) {
-        json.demoPaste = JSON.stringify(json.demo);
+        json.demoPaste = JSON.stringify(json.demo, (key, value) => {
+            if (emitDemoKeys.indexOf(key) !== -1) {
+                return undefined;
+            }
+            return value;
+        });
         json.demo.forEach(item => {
             item.componentName = json.componentName + item.name;
             item.importPath = '../demo/' + item.lang + '/' + item.componentName + '.vue';
-            item.savePath = config.demoExportPath + '\\' + item.lang + '\\' + item.componentName + '.vue';
+            item.savePath = path.join(config.demoExportPath, item.lang, item.componentName) + '.vue';
             item.content = juicer(demoTemplate, item);
         });
         json.demo = json.demo.sort((a, b) => {
@@ -163,11 +183,11 @@ exports.reportFile = (parseResult, rmdir) => {
     const routeTemplate = fsHelper.readFile(config.routeTemplatePath);
     parseResult.forEach(item => {
         exports.buildArticle(item);
-        fsHelper.saveFile(item.savePath, item.content);
+        fsHelper.saveFile(item.savePath, fsHelper.beautifyVueComponent(item.content));
         if (item.demo && item.demo.length > 0) {
             rmdir && fsHelper.rmdir(config.demoExportPath);
             item.demo.forEach(demo => {
-                fsHelper.saveFile(demo.savePath, demo.content);
+                fsHelper.saveFile(demo.savePath, fsHelper.beautifyVueComponent(demo.content));
             })
         }
     })
@@ -183,7 +203,7 @@ exports.reportFile = (parseResult, rmdir) => {
         }
     });
 
-    fsHelper.saveFile(config.routeFilePath, juicer(routeTemplate, {
+    fsHelper.saveFile(config.routeFilePath, fsHelper.beautifyJS(juicer(routeTemplate, {
         list: routerJSON
-    }));
+    })));
 }

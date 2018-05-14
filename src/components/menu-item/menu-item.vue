@@ -5,6 +5,7 @@
         'active':isActive
     }">
         <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
+            <PtText v-for="n in parentLevel" class="pt-menu-space" :key="'pt-menu-space-item-'+n"></PtText>
             <PtText v-if="$slots.icon" class="pt-menu-icon">
                 <slot name="icon"></slot>
             </PtText>
@@ -35,6 +36,9 @@ export default {
     computed: {
         rootMenu() {
             return this.$vqClosest('PtMenu');
+        },
+        parentLevel() {
+            return this.parentMenuBox ? this.parentMenuBox.level : 0;
         },
         isActive: {
             get() {

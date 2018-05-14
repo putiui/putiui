@@ -1,5 +1,5 @@
 import './assets/style/base.scss'
-import 'putiui/style/putiui.scss'
+import '@putiui/style/putiui.scss'
 
 //安装功能（请按照顺序安装）
 import setting from './modules/install/setting';

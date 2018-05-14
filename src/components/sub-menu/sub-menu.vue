@@ -7,6 +7,7 @@
         ['is-open']:isOpen
     }" @mouseenter.native="userMouseenter" @mouseleave.native="userMouseleave">
         <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
+            <PtText v-if="level-1>0" v-for="n in (level-1)" class="pt-menu-space" :key="'pt-menu-space-submenu-'+n"></PtText>
             <PtText v-if="$slots.icon" class="pt-menu-icon">
                 <slot name="icon"></slot>
             </PtText>
@@ -46,6 +47,20 @@ export default {
         }
     },
     computed: {
+        // 当前submenu是父menu组件的第几个submenu
+        level() {
+            var len = 1;
+            let parent = this.$parent;
+            let parentTag = 'PtMenu';
+            while (parent && parent.$options.ptTag !== parentTag) {
+                if (parent.$options.ptTag === 'PtSubMenu') {
+                    len++;
+                }
+                parent = parent.$parent;
+            }
+            console.log(`len=${len}`)
+            return len;
+        },
         parentSubMenu() {
             return this.$vqClosest(`PtSubMenu`);
         },

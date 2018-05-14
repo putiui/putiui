@@ -1,13 +1,15 @@
 {@if template}
 <template>
+
     <div class="demo-real">
         $${template}
     </div>
+
 </template>
 {@/if}
 
 {@if style}
-<style scoped>
+<style lang="scss" scoped>
 $${style}
 </style>
 {@/if}

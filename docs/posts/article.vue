@@ -1,4 +1,5 @@
 <template>
+
     <ComArticle :meta="meta" :demo="demo ? demo : undefined">
         <template slot="header">
             $${header}
@@ -24,6 +25,7 @@
             $${spec}
         </template>
     </ComArticle>
+
 </template>
 
 <script>

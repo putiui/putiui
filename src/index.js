@@ -15,6 +15,24 @@ import MenuItem from './components/menu-item/index.js';
 import SubMenu from './components/sub-menu/index.js';
 import MenuItemGroup from './components/menu-item-group/index.js';
 
+export {
+    PtBox,
+    PtText,
+    PtGrid,
+    PtButton,
+    PtButtonGroup,
+    PtButtonLabel,
+    PtDivider,
+    PtRadio,
+    PtRadioGroup,
+    PtCheckbox,
+    PtCheckboxGroup,
+    Menu,
+    MenuItem,
+    SubMenu,
+    MenuItemGroup
+}
+
 export default {
     version,
     PtBox,
@@ -24,6 +42,14 @@ export default {
     PtButtonGroup,
     PtButtonLabel,
     PtDivider,
+    PtRadio,
+    PtRadioGroup,
+    PtCheckbox,
+    PtCheckboxGroup,
+    Menu,
+    MenuItem,
+    SubMenu,
+    MenuItemGroup,
     install(Vue, options = {}) {
         if (typeof options !== 'object') {
             options = {};
