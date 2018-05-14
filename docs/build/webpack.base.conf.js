@@ -3,29 +3,17 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
-const createLintingRule = () => ({
-    test: /\.(js|vue)$/,
-    loader: 'eslint-loader',
-    enforce: 'pre',
-    include: [resolve('src'), resolve('test')],
-    exclude: [resolve('src/views/report'), resolve('src/posts-route.js')],
-    options: {
-        formatter: require('eslint-friendly-formatter'),
-        emitWarning: !config.dev.showEslintErrorsInOverlay
-    }
-})
 
-const vueVersion = require('../node_modules/vue/package.json').version;
 
 module.exports = {
     context: path.resolve(__dirname, '../'),
     entry: {
-        app: path.resolve(__dirname, '../src/index.js')
+        app: './src/index.js'
     },
     output: {
         path: config.build.assetsRoot,
@@ -35,20 +23,15 @@ module.exports = {
             : config.dev.assetsPublicPath
     },
     resolve: {
-        extensions: ['*', '.js', '.vue', '.json'],
-        modules: ['node_modules', path.resolve(__dirname, '../'), path.resolve(__dirname, '../../src')],
+        extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
             'putiui': path.resolve(__dirname, '../../src')
         }
     },
-    externals: {
-        'vue': 'Vue'
-    },
     module: {
         rules: [
-            ...(config.dev.useEslint ? [createLintingRule()] : []),
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -56,8 +39,9 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: ['node_modules'],
+                include: [path.resolve(__dirname, '../../src'), resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -96,17 +80,5 @@ module.exports = {
         net: 'empty',
         tls: 'empty',
         child_process: 'empty'
-    },
-    plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, '../node_modules/vue/dist/vue.js'),
-                to: config.build.assetsSubDirectory + `/js/vue-${vueVersion}.js`
-            },
-            {
-                from: path.resolve(__dirname, '../node_modules/vue/dist/vue.min.js'),
-                to: config.build.assetsSubDirectory + `/js/vue-${vueVersion}.min.js`
-            }
-        ])
-    ]
+    }
 }
