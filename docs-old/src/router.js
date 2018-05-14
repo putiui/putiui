@@ -1,7 +1,7 @@
 import Router from 'vue-router'
 import Global from './modules/global'
 import MainLayout from './components/MainLayout'
-import ArtRoutes from './posts-route';
+// import ArtRoutes from './posts-route';
 import lazy from './lazy';
 
 var router = new Router({
@@ -18,7 +18,7 @@ var router = new Router({
                     title: '首页'
                 }
             }
-        ].concat(ArtRoutes)
+        ]//.concat(ArtRoutes)
     },
     {
         name: 'notfound',

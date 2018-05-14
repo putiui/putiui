@@ -1,5 +1,6 @@
 <template>
     <Page name='index' style="padding:40px;">
+        12312313
         <pt-button>Submit</pt-button>
         <pt-button type="success">你好</pt-button>
         <router-link to="/zh-CN/component-button">button</router-link>

@@ -7,10 +7,10 @@ import filters from '../../filters'
 import Enum from '../enum'
 import Page from '../../components/Page'
 
-import PutiUI from 'putiui';
+import { PtButton } from 'putiui';
 
 export default () => {
-    Vue.use(PutiUI);
+    Vue.use(PtButton);
     Vue.use(filters) //安装filters
     Vue.use({
         install(v) {

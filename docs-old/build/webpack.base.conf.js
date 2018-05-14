@@ -4,7 +4,6 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
@@ -24,6 +23,7 @@ const createLintingRule = () => ({
 const vueVersion = require('../node_modules/vue/package.json').version;
 
 module.exports = {
+    context: path.resolve(__dirname, '../'),
     entry: {
         app: path.resolve(__dirname, '../src/index.js')
     },
@@ -35,12 +35,12 @@ module.exports = {
             : config.dev.assetsPublicPath
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        modules: [path.resolve(__dirname, '../node_modules'), path.resolve(__dirname, '../../node_modules')],
+        extensions: ['*', '.js', '.vue', '.json'],
+        modules: ['node_modules', path.resolve(__dirname, '../'), path.resolve(__dirname, '../../src')],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
-            'putiui': path.resolve(__dirname, '../../src/index.js')
+            'putiui': path.resolve(__dirname, '../../src')
         }
     },
     externals: {
@@ -52,13 +52,12 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: vueLoaderConfig,
-                include: [path.resolve(__dirname, '../../src')]
+                options: vueLoaderConfig
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
-                include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client'), path.resolve(__dirname, '../../src')]
+                exclude: /node_modules/,
+                loader: 'babel-loader'
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

@@ -1,5 +1,5 @@
 <template>
-    <div :class="['page', name ? 'page-' + name:'', type ? 'page-type-' + type:'']">
+    <div :class="['page', name ? ('page-' + name):'', type ? ('page-type-' + type):'']">
         <slot></slot>
     </div>
 </template>
