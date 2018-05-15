@@ -18,6 +18,9 @@
                         <PtMenuItem to="/zh-CN/component-menu" sign="22">
                             <i class="fa fa-reorder" slot="icon"></i>Menu
                         </PtMenuItem>
+                        <PtMenuItem to="/zh-CN/component-tabs" sign="23">
+                            <i class="fa fa-reorder" slot="icon"></i>Tabs
+                        </PtMenuItem>
                     </PtMenuItemGroup>
                 </PtSubMenu>
             </PtMenu>

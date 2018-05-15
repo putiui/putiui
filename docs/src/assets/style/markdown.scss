@@ -4,7 +4,7 @@ $hFontSize: 2.6em;
 $decline: 0.5em;
 $tdBorderColor: #ededed;
 @function hfs($size, $base:$hFontSize){
-    @return $base - (1 * $decline);
+    @return $base - ($size * $decline);
 }
 .article {
     font-size: $baseFontSize;
@@ -54,6 +54,11 @@ $tdBorderColor: #ededed;
         background-color: #f9f2f4;
         border-radius: 4px;
     }
+    pre>code{
+        display: block;
+        white-space: pre-wrap;
+        padding: 10px 15px;
+    }
     blockquote {
         padding: 20px;
         margin: 20px 0;
@@ -95,4 +100,66 @@ $tdBorderColor: #ededed;
 
 .art-header>h1 {
     margin-top: 0;
+}
+
+
+@import 'highlight.js/styles/vs.css';
+
+.ul-line-num {
+    list-style: decimal;
+    background-color: #fff;
+    margin: 0px 0px 0 40px !important;
+    padding: 0px;
+}
+.ul-line-num .line-num-item {
+    list-style: decimal-leading-zero;
+    border-left: 1px solid #ddd;
+    background: #fff;
+    padding: 3px;
+    margin: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+.ul-line-num .line-num-item:nth-of-type(even) {
+    background-color: #fcfcfc;
+    color: inherit;
+}
+.hljs{
+    padding: 0;
+}
+.article .code-box,
+.article pre>code{
+    display:block;
+    white-space: pre-wrap;
+    background: #eee;
+    border: 0;
+    font-family: Menlo, Monaco, 'Courier New', "Consulas" , "Courier New" ,Courier,mono,serif;
+    font-size: 14px;
+    margin: 0;
+    width: 100%;
+    font-weight: 200;
+    color: #333;
+    margin: 10px auto;
+    padding: 0;
+    border-radius: 0;
+    line-height: 1.6;
+    .css{
+        [class*="hljs-selector-"]{
+            margin-right: 3px;
+        }
+        .hljs-attribute{
+            margin-right: 1px;
+        }
+    }
+    .hljs-comment{
+        font-size: 90%;
+    }
+
+    .hljs-tag-template{
+        font-weight: bold;
+    }
+}
+.article pre>code{
+    padding: 10px 15px;
 }

@@ -14,6 +14,7 @@ import Menu from './components/menu/index.js';
 import MenuItem from './components/menu-item/index.js';
 import SubMenu from './components/sub-menu/index.js';
 import MenuItemGroup from './components/menu-item-group/index.js';
+import PtTabs from './components/tabs/index.js';
 
 export {
     PtBox,
@@ -30,7 +31,8 @@ export {
     Menu,
     MenuItem,
     SubMenu,
-    MenuItemGroup
+    MenuItemGroup,
+    PtTabs
 }
 
 export default {
@@ -50,6 +52,7 @@ export default {
     MenuItem,
     SubMenu,
     MenuItemGroup,
+    PtTabs,
     install(Vue, options = {}) {
         if (typeof options !== 'object') {
             options = {};
@@ -69,5 +72,6 @@ export default {
         MenuItem.install(Vue, options.MenuItem);
         SubMenu.install(Vue, options.SubMenu);
         MenuItemGroup.install(Vue, options.MenuItemGroup);
+        PtTabs.install(Vue, options.PtTabs);
     }
 }

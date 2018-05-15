@@ -4,8 +4,17 @@ const config = require('./config.js');
 const fsHelper = require('./fs.js');
 const jquery = require('./jquery.js');
 const juicer = require('juicer');
+const hljs = require('highlight.js');
 var Mdt = require('markdown-it')({
-    html: true
+    html: true,
+    highlight(str, lang) {
+        if (str && lang && hljs.getLanguage(lang)) {
+            try {
+                return '<pre class="hljs"><code>' + hljs.highlight(lang, str, true).value + '</code></pre>';
+            } catch (e) {}
+        }
+        return '<pre class="hljs"><code>' + Mdt.utils.escapeHtml(str) + '</code></pre>';
+    }
 });
 
 const initialUppercase = str => {

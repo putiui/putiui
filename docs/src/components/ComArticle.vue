@@ -5,13 +5,13 @@
                 <h1>{{meta.title}}</h1>
                 <slot name="header"></slot>
             </header>
-            <section class="art-demo">
+            <section v-if="meta.demo!=='无'" class="art-demo">
                 <h2>实例</h2>
                 <div class="art-demo-content">
                     <slot name="demo"></slot>
                 </div>
             </section>
-            <section class="art-spec">
+            <section v-if="meta.spec!=='无'" class="art-spec">
                 <h2>组件说明</h2>
                 <div class="art-spec-content">
                     <slot name="spec"></slot>

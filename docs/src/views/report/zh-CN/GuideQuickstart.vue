@@ -1,27 +1,27 @@
 <template>      <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">             <h2>引入PtUI</h2>
 <p>你可以完整引入，或是根据需要仅引入部分组件。</p>
 <h3>完整引入</h3>
-<pre><code class="language-js">import Vue from 'vue';
-import PutiUI from 'putiui';
-import 'putiui/lib/css/putiui.css';
+<pre class="hljs"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> PutiUI <span class="hljs-keyword">from</span> <span class="hljs-string">'putiui'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'putiui/lib/css/putiui.css'</span>;
 
 Vue.use(PutiUI);
 </code></pre>
 <h3>按需引入</h3>
-<pre><code class="language-js">import { PtButton } from 'putiui';
-import 'putiui/lib/css/button.css';
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { PtButton } <span class="hljs-keyword">from</span> <span class="hljs-string">'putiui'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'putiui/lib/css/button.css'</span>;
 
-// 全局可使用组件
+<span class="hljs-comment">// 全局可使用组件</span>
 Vue.use(PtButton)
 
-// 组件内部可使用
-Vue.component('user-component',{
-    template:`
-    &lt;div class=&quot;user-component&quot;&gt;
+<span class="hljs-comment">// 组件内部可使用</span>
+Vue.component(<span class="hljs-string">'user-component'</span>,{
+    <span class="hljs-attr">template</span>:<span class="hljs-string">`
+    &lt;div class="user-component"&gt;
         &lt;pt-button&gt;Submit&lt;/pt-button&gt;
     &lt;/div&gt;
-    `,
-    components: {
+    `</span>,
+    <span class="hljs-attr">components</span>: {
         PtButton
     }
 })
@@ -29,10 +29,10 @@ Vue.component('user-component',{
 <h2>修改默认配置</h2>
 <p>PutiUI 中的一些样式和功能受到配置影响，你可以在引入PtUI时修改这些默认配置。</p>
 <h3>完整引入时</h3>
-<pre><code class="language-js">import Vue from 'vue';
-import PutiUI from 'putiui';
+<pre class="hljs"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> PutiUI <span class="hljs-keyword">from</span> <span class="hljs-string">'putiui'</span>;
 Vue.use(PutiUI, {
-    prefix: 'pt-'
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">'pt-'</span>
 });
 </code></pre>
 <p>上面的设置代表：使用组件时以<code>pt-</code>为前缀作为标签名，如<code>pt-button</code>；</p>
@@ -73,10 +73,10 @@ Vue.use(PutiUI, {
 </table>
 <h3>按需引入时</h3>
 <p>PutiUI 中的每个组件几乎都存在默认配置，你可以在引入这些组件时进行修改。</p>
-<pre><code class="language-js">import Vue from 'vue';
-import { PtButton } from 'putiui';
+<pre class="hljs"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> { PtButton } <span class="hljs-keyword">from</span> <span class="hljs-string">'putiui'</span>;
 Vue.use(PtButton, {
-    size: 'large'
+    <span class="hljs-attr">size</span>: <span class="hljs-string">'large'</span>
 })
 </code></pre>
 <p>组件的详细配置选项请在组件的说明中查找。</p>

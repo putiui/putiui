@@ -15,7 +15,9 @@ export default [{
     meta: {
         "category": "Guide",
         "order": "1",
-        "title": "安装"
+        "title": "安装",
+        "demo": "无",
+        "spec": "无"
     }
 }, {
     name: 'GuideQuickstart',
@@ -47,5 +49,16 @@ export default [{
         "type": "Navigation",
         "title": "Menu",
         "subtitle": "菜单"
+    }
+}, {
+    name: 'ComponentTabs',
+    path: '/zh-CN/component-tabs',
+    component: lazy('./views/report/zh-CN/ComponentTabs'),
+    meta: {
+        "category": "Component",
+        "order": "1",
+        "type": "Navigation",
+        "title": "Tabs",
+        "subtitle": "标签页"
     }
 }]
