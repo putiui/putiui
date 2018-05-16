@@ -41,9 +41,6 @@
         <span slot="label">{{(n+2)+msg}}</span>
         tab-{{(n+2)}}
     </PtTab>
-
-    <h1>哈哈哈哈</h1>
-    <h2>哈哈哈22哈</h2>
 </PtTabs>
 ```
 [comment]: template:end

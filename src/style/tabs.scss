@@ -4,9 +4,6 @@
     display: block;
     margin-bottom: 15px;
 }
-.pt-tabs-nav{
-    overflow: hidden;
-}
 .pt-tabs-labels {
     display: block;
 }
@@ -56,14 +53,14 @@
 
 .pt-tabs-labels-center {
     width: 100%;
+    overflow: hidden;
 }
 .pt-tabs-overflow{
     display: table;
     width: 100%;
 }
 
-.pt-tabs-overflow-body {
-    width: 100%;
+.pt-tabs-labels-core {
     position: relative;
     overflow: hidden;
 }

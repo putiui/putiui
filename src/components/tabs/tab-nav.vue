@@ -1,7 +1,6 @@
 <template>
     <div class="pt-tabs-nav">
-        {{leftWidth}}
-        {{rightWidth}}
+        {{leftWidth}} {{rightWidth}}
         <div v-if="$scopedSlots.top" class="pt-tabs-labels-top">
             <slot name="top"></slot>
         </div>
@@ -11,7 +10,7 @@
                     <slot name="left"></slot>
                 </div>
             </div>
-            <div class="pt-tabs-labels-center" :style="{width:labelsCenterWidth}">
+            <div class="pt-tabs-labels-center" :style="{width: labelsCenterWidthVal}">
                 <div class="pt-tabs-overflow">
                     <div ref="begin" v-if="isOverflow && showBegin" class="pt-tabs-overflow-begin">
                         <div class="pt-tabs-slot">
@@ -19,10 +18,12 @@
                         </div>
                     </div>
                     <div class="pt-tabs-overflow-body">
-                        <div class="pt-tabs-slider" :style="sliderStyle">
-                            <slot name="slider"></slot>
+                        <div class="pt-tabs-labels-core" :style="{maxWidth:labelsCenterWidthVal,width:labelsCoreWidth}">
+                            <div class="pt-tabs-slider" :style="sliderStyle">
+                                <slot name="slider"></slot>
+                            </div>
+                            <slot></slot>
                         </div>
-                        <slot></slot>
                     </div>
                     <div ref="end" v-if="isOverflow && showEnd" class="pt-tabs-overflow-end">
                         <div class="pt-tabs-slot">
@@ -64,6 +65,7 @@ export default {
             totalWidth: 0,
             leftWidth: 0,
             rightWidth: 0,
+            labelsCoreWidth: null,
             calcSizeTimer: null
         }
     },
@@ -106,7 +108,11 @@ export default {
         },
         labelsCenterWidth() {
             var val = this.totalWidth - (this.leftWidth + this.rightWidth);
-            return val > 0 ? (val + 'px') : undefined;
+            return val;
+        },
+        labelsCenterWidthVal() {
+            var val = this.labelsCenterWidth;
+            return val <= 0 ? 0 : (val > 0 ? (val + 'px') : undefined);
         }
     },
     methods: {
@@ -136,6 +142,7 @@ export default {
                 this.leftWidth = this.getLeftWidth();
                 this.rightWidth = this.getRightWidth();
                 this.calcSizeTimer = null;
+                console.log(this.totalWidth, this.labelsCenterWidth)
             })
         }
     },

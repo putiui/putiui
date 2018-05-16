@@ -1,4 +1,4 @@
-<template>      <div class="demo-real">         <div style="margin-bottom:20px;">
+<template>        <div class="demo-real">          <div style="margin-bottom:20px;">
     <PtButton @click="add">add</PtButton>
     <PtButton @click="reduce">reduce</PtButton>
     <PtButton @click="changeMsg">msg</PtButton>
@@ -29,11 +29,8 @@
     <PtTab v-if="count>2" v-for="n in bc2" :key="n+2" :sign="n+2">
         <span slot="label">{{(n+2)+msg}}</span> tab-{{(n+2)}}
     </PtTab>
-
-    <h1>哈哈哈哈</h1>
-    <h2>哈哈哈22哈</h2>
 </PtTabs>
-     </div>  </template>
+      </div>    </template>
 <script>
     /* eslint-disable */
     import Vue from 'vue';

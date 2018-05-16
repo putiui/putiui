@@ -1,4 +1,4 @@
-<template>      <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">             <h2>引入PtUI</h2>
+<template>        <ComArticle :meta="meta" :demo="demo ? demo : undefined">          <template slot="header">              <h2>引入PtUI</h2>
 <p>你可以完整引入，或是根据需要仅引入部分组件。</p>
 <h3>完整引入</h3>
 <pre class="hljs"><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
@@ -84,7 +84,7 @@ Vue.use(PtButton, {
 <ul>
 <li>如果组件本身存在的配置项与PtUI全局的配置项名称一致时，优先获取组件本身的配置</li>
 </ul>
-         </template> <template slot="demo">                      </template> <template slot="spec">                      </template> </ComArticle>
+          </template> <template slot="demo">                        </template> <template slot="spec">                        </template> </ComArticle>
 </template>
 <script>
     /* eslint-disable */

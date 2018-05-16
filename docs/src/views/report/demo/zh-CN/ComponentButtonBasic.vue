@@ -1,2 +1,2 @@
-<template>      <div class="demo-real">         <PtButton>Button</PtButton>
-     </div>  </template>
+<template>        <div class="demo-real">          <PtButton>Button</PtButton>
+      </div>    </template>

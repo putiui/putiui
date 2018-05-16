@@ -1,4 +1,4 @@
-<template>      <div class="demo-real">         <PtMenu>
+<template>        <div class="demo-real">          <PtMenu>
     <PtSubMenu title="bottom" placement="bottom" sign="2">
         <PtMenuItem sign="21">Menu1</PtMenuItem>
         <PtMenuItem sign="22">Menu2</PtMenuItem>
@@ -25,7 +25,7 @@
         <PtMenuItem sign="22">Menu2</PtMenuItem>
     </PtSubMenu>
 </PtMenu>
-     </div>  </template>
+      </div>    </template>
 <script>
     /* eslint-disable */
     export default {

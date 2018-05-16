@@ -1,5 +1,5 @@
-<template>      <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">             <p>按钮</p>
-         </template> <template slot="demo">                              <Demo :data="demo[0]">                                          <ComponentButtonBasic></ComponentButtonBasic>                                      </Demo>                              <Demo :data="demo[1]">                                          <ComponentButtonType></ComponentButtonType>                                      </Demo>                      </template><template slot="spec">             <h2>配置</h2>
+<template>        <ComArticle :meta="meta" :demo="demo ? demo : undefined">          <template slot="header">              <p>按钮</p>
+          </template> <template slot="demo">                                <Demo :data="demo[0]">                                            <ComponentButtonBasic></ComponentButtonBasic>                                        </Demo>                                <Demo :data="demo[1]">                                            <ComponentButtonType></ComponentButtonType>                                        </Demo>                        </template><template slot="spec">              <h2>配置</h2>
 <p><code>button</code> 组件的默认配置及可接受的配置选项如下：</p>
 <table>
 <thead>
@@ -173,7 +173,7 @@
 </tr>
 </tbody>
 </table>
-         </template> </ComArticle>
+          </template> </ComArticle>
 </template>
 <script>
     /* eslint-disable */
@@ -194,7 +194,7 @@
                     "subtitle": "按钮"
                 },
                 demo: [{
-                    "path": "/Users/mingyu/Workspace/Project/putiui/docs/posts/data/component/button/demo/basic.md",
+                    "path": "D:\\MyProject\\putiui\\docs\\posts\\data\\component\\button\\demo\\basic.md",
                     "exp": "md",
                     "dirName": "demo",
                     "fileName": "basic",
@@ -207,7 +207,7 @@
                     },
                     "template": "<PtButton>Button</PtButton>\n"
                 }, {
-                    "path": "/Users/mingyu/Workspace/Project/putiui/docs/posts/data/component/button/demo/type.md",
+                    "path": "D:\\MyProject\\putiui\\docs\\posts\\data\\component\\button\\demo\\type.md",
                     "exp": "md",
                     "dirName": "demo",
                     "fileName": "type",
@@ -218,8 +218,8 @@
                         "order": "1",
                         "title": "类型"
                     },
-                    "template": "<div class=\"btn-demo-type\">\n    <PtRow>\n        <PtCol :span=\"24\">\n            <PtButton type=\"primary\">primary</PtButton>\n            <PtButton type=\"success\">success</PtButton>\n            <PtButton type=\"warning\">warning</PtButton>\n            <PtButton type=\"danger\">danger</PtButton>\n        </PtCol>\n    </PtRow>\n    <PtRow>\n        <PtCol :span=\"24\">\n            <PtButton type=\"secondary\">secondary</PtButton>\n            <PtButton type=\"light\">light</PtButton>\n            <PtButton type=\"dark\">dark</PtButton>\n            <PtButton type=\"text\">text</PtButton>\n        </PtCol>\n    </PtRow>\n</div>\n",
-                    "style": ".btn-demo-type {\n    .pt-btn {\n        width: 190px;\n        margin: 0 10px 10px 0;\n    }\n}"
+                    "template": "<div class=\"btn-demo-type\">\r\n    <PtRow>\r\n        <PtCol :span=\"24\">\r\n            <PtButton type=\"primary\">primary</PtButton>\r\n            <PtButton type=\"success\">success</PtButton>\r\n            <PtButton type=\"warning\">warning</PtButton>\r\n            <PtButton type=\"danger\">danger</PtButton>\r\n        </PtCol>\r\n    </PtRow>\r\n    <PtRow>\r\n        <PtCol :span=\"24\">\r\n            <PtButton type=\"secondary\">secondary</PtButton>\r\n            <PtButton type=\"light\">light</PtButton>\r\n            <PtButton type=\"dark\">dark</PtButton>\r\n            <PtButton type=\"text\">text</PtButton>\r\n        </PtCol>\r\n    </PtRow>\r\n</div>\r\n",
+                    "style": ".btn-demo-type {\r\n    .pt-btn {\r\n        width: 190px;\r\n        margin: 0 10px 10px 0;\r\n    }\r\n}"
                 }]
             }
         },
