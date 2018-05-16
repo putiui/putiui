@@ -35,3 +35,7 @@ export const isValidColSpan = val => {
 export const isPromise = obj => {
     return isObject(obj) && isFunction(obj.then);
 }
+
+export const isInValidModelValue = val => {
+    return typeof val === 'undefined' || val === null || Number.isNaN(val);
+}

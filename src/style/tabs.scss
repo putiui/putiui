@@ -2,9 +2,12 @@
 @import './mixins/common.scss';
 .pt-tabs {
     display: block;
+    margin-bottom: 15px;
 }
-
-.pt-tab-labels {
+.pt-tabs-nav{
+    overflow: hidden;
+}
+.pt-tabs-labels {
     display: block;
 }
 
@@ -14,13 +17,66 @@
     &:not(.distabled):not(.active) {
         cursor: pointer;
     }
-    &.active {
-        background: red;
+}
+
+.pt-tabs-labels {
+    display: table;
+    width: 100%;
+}
+.pt-tabs-slot{
+    display: inline-block;
+}
+
+.pt-tabs-labels-left,
+.pt-tabs-labels-center,
+.pt-tabs-labels-right,
+.pt-tabs-overflow-begin,
+.pt-tabs-overflow-body,
+.pt-tabs-overflow-end {
+    white-space: nowrap;
+    display: table-cell;
+}
+
+.pt-tabs-top {
+    .pt-tabs-labels-left,
+    .pt-tabs-labels-center,
+    .pt-tabs-labels-right {
+        vertical-align: bottom;
     }
+}
+.pt-tabs-bottom,
+.pt-tabs-left,
+.pt-tabs-right {
+    .pt-tabs-labels-left,
+    .pt-tabs-labels-center,
+    .pt-tabs-labels-right {
+        vertical-align: top;
+    }
+}
+
+.pt-tabs-labels-center {
+    width: 100%;
+}
+.pt-tabs-overflow{
+    display: table;
+    width: 100%;
+}
+
+.pt-tabs-overflow-body {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pt-tabs-slider {
+    position: absolute;
+    background: $primary;
+    transition: all .3s ease-in-out;
 }
 
 .pt-tab {
     display: none;
+    padding: 15px;
     &.active {
         display: block;
     }
@@ -30,39 +86,62 @@
 .pt-tabs-right {
     display: table;
     width: 100%;
-    .pt-tab-labels,
-    .pt-tab-panels {
+    .pt-tabs-labels,
+    .pt-tabs-panels {
         display: table-cell;
         white-space: nowrap;
+        vertical-align: top;
     }
-    .pt-tab-panels {
+    .pt-tabs-panels {
         width: 100%;
     }
     .pt-tab-label {
         display: block;
     }
+    .pt-tabs-slider {
+        width: 5px;
+    }
+}
+
+.pt-tabs-top,
+.pt-tabs-bottom {
+    .pt-tabs-slider {
+        height: 5px;
+    }
 }
 
 .pt-tabs-top {
-    .pt-tab-labels {
+    .pt-tabs-labels {
         border-bottom: 1px solid #ededed;
+    }
+    .pt-tabs-slider {
+        bottom: 0;
     }
 }
 
 .pt-tabs-bottom {
-    .pt-tab-labels {
+    .pt-tabs-labels {
         border-top: 1px solid #ededed;
+    }
+    .pt-tabs-slider {
+        top: 0;
     }
 }
 
 .pt-tabs-left {
-    .pt-tab-labels {
+    .pt-tabs-labels {
         border-right: 1px solid #ededed;
+    }
+    .pt-tabs-slider {
+        right: 0;
     }
 }
 
 .pt-tabs-right {
-    .pt-tab-labels {
+    .pt-tabs-labels {
         border-left: 1px solid #ededed;
+    }
+    .pt-tabs-slider {
+        left: 0;
     }
 }

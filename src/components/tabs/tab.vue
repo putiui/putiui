@@ -1,5 +1,5 @@
 <script>
-import { uniqueID } from '../../utils/index.js';
+import { uniqueID, isInValidModelValue } from '../../utils/index.js';
 import { hasProp } from '../../utils/vnode.js';
 import baseMixin from '../../mixins/base.js';
 import vqueryMixin from '../../mixins/vquery.js';
@@ -15,31 +15,30 @@ export default {
             type: [String, Number]
         },
         sign: {
-            type: null
+            type: null,
+            validator(val) {
+                return !isInValidModelValue(val);
+            }
         }
     },
     data() {
         return {
-            labelSign: uniqueID()
+            labelSign: uniqueID(),
+            inParentIndex: -1
         }
     },
     computed: {
         parentTabs() {
             return this.$vqClosest('PtTabs');
         },
+        iSign() {
+            return this.hasSignProp ? this.sign : this.labelSign;
+        },
         hasSignProp() {
             return hasProp(this, 'sign');
         },
         isActive() {
-            if (this.parentTabs.hasInputValue) {
-                if (this.hasSignProp) {
-                    return this.parentTabs.value === this.sign
-                } else {
-                    return this.parentTabs.activeLabelSign === this.labelSign
-                }
-            } else {
-                return this.parentTabs.activeLabelSign === this.labelSign
-            }
+            return this.parentTabs.value === this.iSign;
         }
     },
     watch: {
