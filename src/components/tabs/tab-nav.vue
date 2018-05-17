@@ -1,44 +1,55 @@
 <template>
     <div class="pt-tabs-nav">
-        {{leftWidth}} {{rightWidth}}
-        <div v-if="$scopedSlots.top" class="pt-tabs-labels-top">
+        <div class="pt-tabs-labels-top">
             <slot name="top"></slot>
         </div>
         <div class="pt-tabs-labels">
-            <div ref="left" v-if="$scopedSlots.left" class="pt-tabs-labels-left">
+            <div class="pt-tabs-labels-left">
                 <div class="pt-tabs-slot">
                     <slot name="left"></slot>
                 </div>
             </div>
-            <div class="pt-tabs-labels-center" :style="{width: labelsCenterWidthVal}">
+            <div class="pt-tabs-labels-center" :style="{width: centerWidthVal}">
                 <div class="pt-tabs-overflow">
-                    <div ref="begin" v-if="isOverflow && showBegin" class="pt-tabs-overflow-begin">
+                    <div v-if="isOverflow && showPrev" class="pt-tabs-overflow-prev">
                         <div class="pt-tabs-slot">
-                            <slot name="begin"></slot>
+                            <slot name="prev"></slot>
                         </div>
                     </div>
-                    <div class="pt-tabs-overflow-body">
-                        <div class="pt-tabs-labels-core" :style="{maxWidth:labelsCenterWidthVal,width:labelsCoreWidth}">
+                    <div class="pt-tabs-overflow-content">
+                        <div class="pt-tabs-labels-core">
                             <div class="pt-tabs-slider" :style="sliderStyle">
                                 <slot name="slider"></slot>
                             </div>
-                            <slot></slot>
+                            <div class="pt-tabs-labels-begin">
+                                <div class="pt-tabs-slot">
+                                    <slot name="begin"></slot>
+                                </div>
+                            </div>
+                            <div class="pt-tabs-labels-body" :style="{maxWidth:centerWidthVal,width:centerWidth}">
+                                <slot></slot>
+                            </div>
+                            <div class="pt-tabs-labels-end">
+                                <div class="pt-tabs-slot">
+                                    <slot name="end"></slot>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div ref="end" v-if="isOverflow && showEnd" class="pt-tabs-overflow-end">
+                    <div v-if="isOverflow && showNext" class="pt-tabs-overflow-next">
                         <div class="pt-tabs-slot">
-                            <slot name="end"></slot>
+                            <slot name="next"></slot>
                         </div>
                     </div>
                 </div>
             </div>
-            <div ref="right" v-if="$scopedSlots.right" class="pt-tabs-labels-right">
+            <div class="pt-tabs-labels-right">
                 <div class="pt-tabs-slot">
                     <slot name="right"></slot>
                 </div>
             </div>
         </div>
-        <div v-if="$scopedSlots.bottom" class="pt-tabs-labels-bottom">
+        <div class="pt-tabs-labels-bottom">
             <slot name="bottom"></slot>
         </div>
     </div>
@@ -57,15 +68,25 @@ export default {
         vqueryMixin,
         viewMixin
     ],
+    props: {
+    },
     data() {
         return {
             isOverflow: false,
-            showBegin: false,
-            showEnd: false,
+            showPrev: false,
+            showNext: false,
             totalWidth: 0,
+
             leftWidth: 0,
             rightWidth: 0,
-            labelsCoreWidth: null,
+
+            prevWidth: 0,
+            nextWidth: 0,
+
+            beginWidth: 0,
+            endWidth: 0,
+
+            bodyWidth: 0,
             calcSizeTimer: null
         }
     },
@@ -106,12 +127,12 @@ export default {
                 [sizeProp]: size + 'px'
             })
         },
-        labelsCenterWidth() {
+        centerWidth() {
             var val = this.totalWidth - (this.leftWidth + this.rightWidth);
             return val;
         },
-        labelsCenterWidthVal() {
-            var val = this.labelsCenterWidth;
+        centerWidthVal() {
+            var val = this.centerWidth;
             return val <= 0 ? 0 : (val > 0 ? (val + 'px') : undefined);
         }
     },
@@ -142,8 +163,8 @@ export default {
                 this.leftWidth = this.getLeftWidth();
                 this.rightWidth = this.getRightWidth();
                 this.calcSizeTimer = null;
-                console.log(this.totalWidth, this.labelsCenterWidth)
-            })
+                console.log(this.totalWidth, this.centerWidth)
+            }, 300)
         }
     },
     created() {

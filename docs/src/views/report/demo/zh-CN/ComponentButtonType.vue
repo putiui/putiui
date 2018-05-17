@@ -1,4 +1,4 @@
-<template>        <div class="demo-real">          <div class="btn-demo-type">
+<template>      <div class="demo-real">         <div class="btn-demo-type">
     <PtRow>
         <PtCol :span="24">
             <PtButton type="primary">primary</PtButton>
@@ -16,7 +16,7 @@
         </PtCol>
     </PtRow>
 </div>
-      </div>    </template>
+     </div>  </template>
 <style lang="scss" scoped>
     .btn-demo-type {
         .pt-btn {

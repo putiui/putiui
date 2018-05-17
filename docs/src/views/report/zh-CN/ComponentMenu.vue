@@ -1,5 +1,5 @@
-<template>        <ComArticle :meta="meta" :demo="demo ? demo : undefined">          <template slot="header">              <p>菜单</p>
-          </template> <template slot="demo">                                <Demo :data="demo[0]">                                            <ComponentMenuBasic></ComponentMenuBasic>                                        </Demo>                                <Demo :data="demo[1]">                                            <ComponentMenuPlacement></ComponentMenuPlacement>                                        </Demo>                                <Demo :data="demo[2]">                                            <ComponentMenuVertical></ComponentMenuVertical>                                        </Demo>                        </template><template slot="spec">              <h2>Menu</h2>
+<template>      <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">             <p>菜单</p>
+         </template> <template slot="demo">                              <Demo :data="demo[0]">                                          <ComponentMenuBasic></ComponentMenuBasic>                                      </Demo>                              <Demo :data="demo[1]">                                          <ComponentMenuPlacement></ComponentMenuPlacement>                                      </Demo>                              <Demo :data="demo[2]">                                          <ComponentMenuVertical></ComponentMenuVertical>                                      </Demo>                      </template><template slot="spec">             <h2>Menu</h2>
 <p>菜单</p>
 <h3>属性</h3>
 <table>
@@ -284,7 +284,7 @@
 </tr>
 </tbody>
 </table>
-          </template> </ComArticle>
+         </template> </ComArticle>
 </template>
 <script>
     /* eslint-disable */
@@ -306,7 +306,7 @@
                     "subtitle": "菜单"
                 },
                 demo: [{
-                    "path": "D:\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\basic.zh-CN.md",
+                    "path": "/Users/mingyu/Workspace/Project/putiui/docs/posts/data/component/menu/demo/basic.zh-CN.md",
                     "exp": "md",
                     "dirName": "demo",
                     "fileName": "basic.zh-CN",
@@ -317,11 +317,11 @@
                         "order": "1",
                         "title": "基础"
                     },
-                    "template": "<PtMenu @open=\"onOpen\" @close=\"onClose\">\r\n    <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\r\n    <PtSubMenu title=\"Menu2\" sign=\"2\">\r\n        <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\r\n        <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\r\n        <PtSubMenu title=\"Menu23\" sign=\"23\">\r\n            <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\r\n            <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\r\n            <PtSubMenu title=\"Menu233\" sign=\"233\">\r\n                <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\r\n                <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\r\n            </PtSubMenu>\r\n        </PtSubMenu>\r\n    </PtSubMenu>\r\n    <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\r\n</PtMenu>\r\n",
+                    "template": "<PtMenu @open=\"onOpen\" @close=\"onClose\">\n    <PtMenuItem sign=\"1\">Menu1</PtMenuItem>\n    <PtSubMenu title=\"Menu2\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu21</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu22</PtMenuItem>\n        <PtSubMenu title=\"Menu23\" sign=\"23\">\n            <PtMenuItem sign=\"231\">Menu231</PtMenuItem>\n            <PtMenuItem sign=\"232\">Menu232</PtMenuItem>\n            <PtSubMenu title=\"Menu233\" sign=\"233\">\n                <PtMenuItem sign=\"2331\">Menu2331</PtMenuItem>\n                <PtMenuItem sign=\"2332\">Menu2332</PtMenuItem>\n            </PtSubMenu>\n        </PtSubMenu>\n    </PtSubMenu>\n    <PtMenuItem sign=\"3\" disabled>Menu3</PtMenuItem>\n</PtMenu>\n",
                     "style": "",
-                    "script": "export default {\r\n    name: 'demo',\r\n    data() {\r\n        return {}\r\n    },\r\n    methods: {\r\n        onOpen(sign) {\r\n            console.log(`open SubMenu=>${sign}`)\r\n        },\r\n        onClose(sign) {\r\n            console.log(`close SubMenu=>${sign}`)\r\n        }\r\n    }\r\n}"
+                    "script": "export default {\n    name: 'demo',\n    data() {\n        return {}\n    },\n    methods: {\n        onOpen(sign) {\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign) {\n            console.log(`close SubMenu=>${sign}`)\n        }\n    }\n}"
                 }, {
-                    "path": "D:\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\placement.zh-CN.md",
+                    "path": "/Users/mingyu/Workspace/Project/putiui/docs/posts/data/component/menu/demo/placement.zh-CN.md",
                     "exp": "md",
                     "dirName": "demo",
                     "fileName": "placement.zh-CN",
@@ -332,11 +332,11 @@
                         "order": "1",
                         "title": "子菜单打开方向"
                     },
-                    "template": "<PtMenu>\r\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\r\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\r\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\r\n    </PtSubMenu>\r\n</PtMenu>\r\n\r\n<PtMenu>\r\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\r\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\r\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\r\n    </PtSubMenu>\r\n</PtMenu>\r\n\r\n<PtMenu>\r\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\r\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\r\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\r\n    </PtSubMenu>\r\n</PtMenu>\r\n\r\n<PtMenu>\r\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\r\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\r\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\r\n    </PtSubMenu>\r\n</PtMenu>\r\n",
+                    "template": "<PtMenu>\n    <PtSubMenu title=\"bottom\" placement=\"bottom\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"top\" placement=\"top\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"left\" placement=\"left\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n\n<PtMenu>\n    <PtSubMenu title=\"right\" placement=\"right\" sign=\"2\">\n        <PtMenuItem sign=\"21\">Menu1</PtMenuItem>\n        <PtMenuItem sign=\"22\">Menu2</PtMenuItem>\n    </PtSubMenu>\n</PtMenu>\n",
                     "style": "",
-                    "script": "export default {\r\n    name: 'demo',\r\n    data() {\r\n        return {}\r\n    }\r\n}"
+                    "script": "export default {\n    name: 'demo',\n    data() {\n        return {}\n    }\n}"
                 }, {
-                    "path": "D:\\MyProject\\putiui\\docs\\posts\\data\\component\\menu\\demo\\vertical.zh-CN.md",
+                    "path": "/Users/mingyu/Workspace/Project/putiui/docs/posts/data/component/menu/demo/vertical.zh-CN.md",
                     "exp": "md",
                     "dirName": "demo",
                     "fileName": "vertical.zh-CN",
@@ -347,9 +347,9 @@
                         "order": "1",
                         "title": "竖向菜单"
                     },
-                    "template": "<div class=\"demo-menu-box\">\r\n    <PtButton @click=\"collapseMenu\">{{collapsed ? '展开' : '折叠'}}</PtButton>\r\n    <PtMenu direction=\"vertical\" trigger=\"click\" :collapsed=\"collapsed\" @open=\"onOpen\" @close=\"onClose\">\r\n        <PtMenuItem sign=\"1\">\r\n            <i class=\"fa fa-user\" slot=\"icon\"></i> Menu1\r\n        </PtMenuItem>\r\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\r\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\r\n            <PtMenuItemGroup title=\"Group1\">\r\n                <PtMenuItem sign=\"21\">\r\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu21\r\n                </PtMenuItem>\r\n                <PtMenuItem sign=\"22\">\r\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu22\r\n                </PtMenuItem>\r\n            </PtMenuItemGroup>\r\n        </PtSubMenu>\r\n        <PtMenuItem sign=\"3\" disabled>\r\n            <i class=\"fa fa-user\" slot=\"icon\"></i>Menu3\r\n        </PtMenuItem>\r\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\r\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\r\n            <PtMenuItem sign=\"41\">\r\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu41\r\n            </PtMenuItem>\r\n            <PtMenuItem sign=\"42\">\r\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu42\r\n            </PtMenuItem>\r\n        </PtSubMenu>\r\n    </PtMenu>\r\n</div>\r\n",
-                    "style": ".demo-menu-box {\r\n    width: 220px;\r\n}",
-                    "script": "export default {\r\n    name: 'demo',\r\n    data() {\r\n        return {\r\n            collapsed: false\r\n        }\r\n    },\r\n    methods: {\r\n        onOpen(sign) {\r\n            console.log(`open SubMenu=>${sign}`)\r\n        },\r\n        onClose(sign) {\r\n            console.log(`close SubMenu=>${sign}`)\r\n        },\r\n        collapseMenu() {\r\n            console.log(222);\r\n            this.collapsed = !this.collapsed;\r\n        }\r\n    }\r\n}"
+                    "template": "<div class=\"demo-menu-box\">\n    <PtButton @click=\"collapseMenu\">{{collapsed ? '展开' : '折叠'}}</PtButton>\n    <PtMenu direction=\"vertical\" trigger=\"click\" :collapsed=\"collapsed\" @open=\"onOpen\" @close=\"onClose\">\n        <PtMenuItem sign=\"1\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i> Menu1\n        </PtMenuItem>\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\n            <PtMenuItemGroup title=\"Group1\">\n                <PtMenuItem sign=\"21\">\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu21\n                </PtMenuItem>\n                <PtMenuItem sign=\"22\">\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu22\n                </PtMenuItem>\n            </PtMenuItemGroup>\n        </PtSubMenu>\n        <PtMenuItem sign=\"3\" disabled>\n            <i class=\"fa fa-user\" slot=\"icon\"></i>Menu3\n        </PtMenuItem>\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\n            <PtMenuItem sign=\"41\">\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu41\n            </PtMenuItem>\n            <PtMenuItem sign=\"42\">\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu42\n            </PtMenuItem>\n        </PtSubMenu>\n    </PtMenu>\n</div>\n",
+                    "style": ".demo-menu-box {\n    width: 220px;\n}",
+                    "script": "export default {\n    name: 'demo',\n    data() {\n        return {\n            collapsed: false\n        }\n    },\n    methods: {\n        onOpen(sign) {\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign) {\n            console.log(`close SubMenu=>${sign}`)\n        },\n        collapseMenu() {\n            console.log(222);\n            this.collapsed = !this.collapsed;\n        }\n    }\n}"
                 }]
             }
         },

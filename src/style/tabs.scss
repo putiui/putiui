@@ -4,6 +4,7 @@
     display: block;
     margin-bottom: 15px;
 }
+
 .pt-tabs-labels {
     display: block;
 }
@@ -20,7 +21,8 @@
     display: table;
     width: 100%;
 }
-.pt-tabs-slot{
+
+.pt-tabs-slot {
     display: inline-block;
 }
 
@@ -28,10 +30,21 @@
 .pt-tabs-labels-center,
 .pt-tabs-labels-right,
 .pt-tabs-overflow-begin,
-.pt-tabs-overflow-body,
+.pt-tabs-overflow-content,
 .pt-tabs-overflow-end {
     white-space: nowrap;
     display: table-cell;
+}
+
+.pt-tabs-labels-begin,
+.pt-tabs-labels-body,
+.pt-tabs-labels-end {
+    white-space: nowrap;
+    display: table-cell;
+}
+.pt-tabs-labels-body{
+    width: 100%;
+    overflow: hidden;
 }
 
 .pt-tabs-top {
@@ -41,6 +54,7 @@
         vertical-align: bottom;
     }
 }
+
 .pt-tabs-bottom,
 .pt-tabs-left,
 .pt-tabs-right {
@@ -55,7 +69,8 @@
     width: 100%;
     overflow: hidden;
 }
-.pt-tabs-overflow{
+
+.pt-tabs-overflow {
     display: table;
     width: 100%;
 }
@@ -63,6 +78,8 @@
 .pt-tabs-labels-core {
     position: relative;
     overflow: hidden;
+    display: table;
+    width: 100%;
 }
 
 .pt-tabs-slider {

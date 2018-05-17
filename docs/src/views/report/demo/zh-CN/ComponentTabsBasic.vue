@@ -1,4 +1,4 @@
-<template>        <div class="demo-real">          <div style="margin-bottom:20px;">
+<template>      <div class="demo-real">         <div style="margin-bottom:20px;">
     <PtButton @click="add">add</PtButton>
     <PtButton @click="reduce">reduce</PtButton>
     <PtButton @click="changeMsg">msg</PtButton>
@@ -7,6 +7,7 @@
     <PtButton @click="placement='bottom'">bottom</PtButton>
     <PtButton @click="placement='left'">left</PtButton>
     <PtButton @click="sd=1">sd</PtButton>
+    <PtButton @click="count=10000">10000</PtButton>
     <h6>tabVal={{tabVal}}</h6>
 </div>
 <PtTabs v-if="count>0" v-model="tabVal" :placement="placement">
@@ -30,7 +31,7 @@
         <span slot="label">{{(n+2)+msg}}</span> tab-{{(n+2)}}
     </PtTab>
 </PtTabs>
-      </div>    </template>
+     </div>  </template>
 <script>
     /* eslint-disable */
     import Vue from 'vue';

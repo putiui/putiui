@@ -1,4 +1,4 @@
-<template>        <ComArticle :meta="meta" :demo="demo ? demo : undefined">          <template slot="header">                        </template> <template slot="demo">                        </template> <template slot="spec">                        </template></ComArticle>
+<template>      <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">                      </template> <template slot="demo">                      </template> <template slot="spec">                      </template></ComArticle>
 </template>
 <script>
     /* eslint-disable */

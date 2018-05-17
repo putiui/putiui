@@ -92,6 +92,7 @@ export default {
             }
         },
         createLabel(h, component, tabItem, index) {
+            console.log(index);
             return h('PtTabLabel', {
                 key: 'PtTabLabel' + index,
                 props: {

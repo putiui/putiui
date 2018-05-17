@@ -15,6 +15,7 @@
     <PtButton @click="placement='bottom'">bottom</PtButton>
     <PtButton @click="placement='left'">left</PtButton>
     <PtButton @click="sd=1">sd</PtButton>
+    <PtButton @click="count=10000">10000</PtButton>
     <h6>tabVal={{tabVal}}</h6>
 </div>
 <PtTabs v-if="count>0" v-model="tabVal" :placement="placement">

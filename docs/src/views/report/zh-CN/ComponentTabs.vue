@@ -1,5 +1,5 @@
-<template>        <ComArticle :meta="meta" :demo="demo ? demo : undefined">          <template slot="header">              <p>标签页</p>
-          </template> <template slot="demo">                                <Demo :data="demo[0]">                                            <ComponentTabsBasic></ComponentTabsBasic>                                        </Demo>                        </template><template slot="spec">              <h2>Tabs <code>&lt;PtTabs&gt;</code></h2>
+<template>      <ComArticle :meta="meta" :demo="demo ? demo : undefined">         <template slot="header">             <p>标签页</p>
+         </template> <template slot="demo">                              <Demo :data="demo[0]">                                          <ComponentTabsBasic></ComponentTabsBasic>                                      </Demo>                      </template><template slot="spec">             <h2>Tabs <code>&lt;PtTabs&gt;</code></h2>
 <p>标签页</p>
 <h3>属性</h3>
 <table>
@@ -84,7 +84,7 @@
 </tr>
 </tbody>
 </table>
-          </template> </ComArticle>
+         </template> </ComArticle>
 </template>
 <script>
     /* eslint-disable */
@@ -104,7 +104,7 @@
                     "subtitle": "标签页"
                 },
                 demo: [{
-                    "path": "D:\\MyProject\\putiui\\docs\\posts\\data\\component\\tabs\\demo\\basic.md",
+                    "path": "/Users/mingyu/Workspace/Project/putiui/docs/posts/data/component/tabs/demo/basic.md",
                     "exp": "md",
                     "dirName": "demo",
                     "fileName": "basic",
@@ -115,8 +115,8 @@
                         "order": "1",
                         "title": "基础"
                     },
-                    "template": "<div style=\"margin-bottom:20px;\">\r\n    <PtButton @click=\"add\">add</PtButton>\r\n    <PtButton @click=\"reduce\">reduce</PtButton>\r\n    <PtButton @click=\"changeMsg\">msg</PtButton>\r\n    <PtButton @click=\"placement='top'\">top</PtButton>\r\n    <PtButton @click=\"placement='right'\">right</PtButton>\r\n    <PtButton @click=\"placement='bottom'\">bottom</PtButton>\r\n    <PtButton @click=\"placement='left'\">left</PtButton>\r\n    <PtButton @click=\"sd=1\">sd</PtButton>\r\n    <h6>tabVal={{tabVal}}</h6>\r\n</div>\r\n<PtTabs v-if=\"count>0\" v-model=\"tabVal\" :placement=\"placement\">\r\n    <h5 slot=\"labelsLeft\">labelsLeft</h5>\r\n    <h5 slot=\"labelsRight\">labelsRight</h5>\r\n    <PtTab v-for=\"n in bc\" :key=\"n\" :sign=\"n\">\r\n        <span slot=\"label\">{{n+msg}}</span> tab-{{n}}\r\n    </PtTab>\r\n\r\n    <PtTab v-if=\"sd==1\">\r\n        <span slot=\"label\">{{'custom2'+msg}}</span> tab-custom2\r\n    </PtTab>\r\n    <keep-alive>\r\n        <PtTab>\r\n            <span slot=\"label\">{{'custom'+msg}}</span> tab-custom\r\n            <hk></hk>\r\n        </PtTab>\r\n    </keep-alive>\r\n\r\n    <PtTab v-if=\"count>2\" v-for=\"n in bc2\" :key=\"n+2\" :sign=\"n+2\">\r\n        <span slot=\"label\">{{(n+2)+msg}}</span> tab-{{(n+2)}}\r\n    </PtTab>\r\n</PtTabs>\r\n",
-                    "script": "import Vue from 'vue';\r\nVue.component('hk', {\r\n    template: `\r\n        <div class=\"hk\">hk=>{{msg}}</div>\r\n    `,\r\n    data() {\r\n        return {\r\n            msg: ''\r\n        }\r\n    },\r\n    created() {\r\n        this.msg = Math.random();\r\n    }\r\n})\r\nexport default {\r\n    name: 'demo',\r\n    data() {\r\n        return {\r\n            count: 2,\r\n            msg: '',\r\n            placement: 'top',\r\n            sd: 2,\r\n            tabVal: ''\r\n        }\r\n    },\r\n    computed: {\r\n        bc() {\r\n            return this.count > 2 ? 2 : this.count;\r\n        },\r\n        bc2() {\r\n            return this.count > 2 ? (this.count - 2) : 0;\r\n        }\r\n    },\r\n    methods: {\r\n        add() {\r\n            window.tt = this;\r\n            this.count++;\r\n        },\r\n        reduce() {\r\n            this.count--\r\n        },\r\n        changeMsg() {\r\n            this.msg = 'msg-' + Math.random() + '  ';\r\n        }\r\n    }\r\n}"
+                    "template": "<div style=\"margin-bottom:20px;\">\n    <PtButton @click=\"add\">add</PtButton>\n    <PtButton @click=\"reduce\">reduce</PtButton>\n    <PtButton @click=\"changeMsg\">msg</PtButton>\n    <PtButton @click=\"placement='top'\">top</PtButton>\n    <PtButton @click=\"placement='right'\">right</PtButton>\n    <PtButton @click=\"placement='bottom'\">bottom</PtButton>\n    <PtButton @click=\"placement='left'\">left</PtButton>\n    <PtButton @click=\"sd=1\">sd</PtButton>\n    <PtButton @click=\"count=10000\">10000</PtButton>\n    <h6>tabVal={{tabVal}}</h6>\n</div>\n<PtTabs v-if=\"count>0\" v-model=\"tabVal\" :placement=\"placement\">\n    <h5 slot=\"labelsLeft\">labelsLeft</h5>\n    <h5 slot=\"labelsRight\">labelsRight</h5>\n    <PtTab v-for=\"n in bc\" :key=\"n\" :sign=\"n\">\n        <span slot=\"label\">{{n+msg}}</span> tab-{{n}}\n    </PtTab>\n\n    <PtTab v-if=\"sd==1\">\n        <span slot=\"label\">{{'custom2'+msg}}</span> tab-custom2\n    </PtTab>\n    <keep-alive>\n        <PtTab>\n            <span slot=\"label\">{{'custom'+msg}}</span> tab-custom\n            <hk></hk>\n        </PtTab>\n    </keep-alive>\n\n    <PtTab v-if=\"count>2\" v-for=\"n in bc2\" :key=\"n+2\" :sign=\"n+2\">\n        <span slot=\"label\">{{(n+2)+msg}}</span> tab-{{(n+2)}}\n    </PtTab>\n</PtTabs>\n",
+                    "script": "import Vue from 'vue';\nVue.component('hk', {\n    template: `\n        <div class=\"hk\">hk=>{{msg}}</div>\n    `,\n    data() {\n        return {\n            msg: ''\n        }\n    },\n    created() {\n        this.msg = Math.random();\n    }\n})\nexport default {\n    name: 'demo',\n    data() {\n        return {\n            count: 2,\n            msg: '',\n            placement: 'top',\n            sd: 2,\n            tabVal: ''\n        }\n    },\n    computed: {\n        bc() {\n            return this.count > 2 ? 2 : this.count;\n        },\n        bc2() {\n            return this.count > 2 ? (this.count - 2) : 0;\n        }\n    },\n    methods: {\n        add() {\n            window.tt = this;\n            this.count++;\n        },\n        reduce() {\n            this.count--\n        },\n        changeMsg() {\n            this.msg = 'msg-' + Math.random() + '  ';\n        }\n    }\n}"
                 }]
             }
         },
