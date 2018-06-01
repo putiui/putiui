@@ -1,5 +1,6 @@
 <template>
     <label :class="['pt-tab-label', active?'active':'']">
+        {{sign}}<br>
         <slot></slot>
     </label>
 </template>
@@ -21,20 +22,30 @@ export default {
     methods: {
         calcSize() {
             if (this.$el) {
-                this.width = this.$el.clientWidth;
-                this.height = this.$el.clientHeight;
-                this.$emit('size', this)
+                this.emitSize({
+                    width: this.$el.clientWidth,
+                    height: this.$el.clientHeight
+                })
             } else {
                 this.$nextTick(() => {
-                    this.width = this.$el.clientWidth;
-                    this.height = this.$el.clientHeight;
-                    this.$emit('size', this)
+                    this.emitSize({
+                        width: this.$el.clientWidth,
+                        height: this.$el.clientHeight
+                    })
                 })
+            }
+        },
+        emitSize(obj) {
+            var { width, height } = obj;
+            if (this.width !== width || this.height !== height) {
+                this.width = width;
+                this.height = height;
+                console.log(this.sign + ' size change.')
+                this.$emit('size', this)
             }
         }
     },
     mounted() {
-        console.log(this.index)
         this.calcSize();
     },
     updated() {

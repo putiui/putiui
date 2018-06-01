@@ -28,6 +28,7 @@
     "homepage": "https://github.com/imingyu/putiui#readme",
     "dependencies": {
         "animate.css": "^3.6.1",
+        "lodash.debounce": "^4.0.8",
         "normalize.css": "^7.0.0"
     },
     "devDependencies": {

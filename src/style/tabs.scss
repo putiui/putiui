@@ -29,20 +29,18 @@
 .pt-tabs-labels-left,
 .pt-tabs-labels-center,
 .pt-tabs-labels-right,
-.pt-tabs-overflow-begin,
+.pt-tabs-overflow-prev,
 .pt-tabs-overflow-content,
-.pt-tabs-overflow-end {
-    white-space: nowrap;
-    display: table-cell;
-}
-
+.pt-tabs-overflow-next,
 .pt-tabs-labels-begin,
 .pt-tabs-labels-body,
 .pt-tabs-labels-end {
     white-space: nowrap;
     display: table-cell;
 }
-.pt-tabs-labels-body{
+
+.pt-tabs-overflow-content,
+.pt-tabs-labels-body {
     width: 100%;
     overflow: hidden;
 }
@@ -88,6 +86,48 @@
     transition: all .3s ease-in-out;
 }
 
+.pt-tabs-labels-core {
+    transition: all .3s ease-in-out;
+}
+
+.pt-tabs-overflow-vertical {
+    display: block;
+    .pt-tabs-overflow-prev,
+    .pt-tabs-overflow-next,
+    .pt-tabs-btn-prev,
+    .pt-tabs-btn-next,
+    .pt-tabs-overflow-content {
+        display: block;
+    }
+}
+
+.pt-tabs-btn-prev,
+.pt-tabs-btn-next {
+    @include btn-none;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    cursor: pointer;
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-width: 1px;
+        border-style: solid;
+    }
+}
+
+.pt-tabs-btn-prev:before {
+    border-color: $primary transparent transparent $primary;
+    transform: rotate(-45deg);
+}
+
+.pt-tabs-btn-next:before {
+    border-color: $primary $primary transparent transparent;
+    transform: rotate(45deg);
+}
+
 .pt-tab {
     display: none;
     padding: 15px;
@@ -100,8 +140,8 @@
 .pt-tabs-right {
     display: table;
     width: 100%;
-    .pt-tabs-labels,
-    .pt-tabs-panels {
+    .pt-tabs-panels,
+    .pt-tabs-nav {
         display: table-cell;
         white-space: nowrap;
         vertical-align: top;
@@ -125,7 +165,7 @@
 }
 
 .pt-tabs-top {
-    .pt-tabs-labels {
+    .pt-tabs-nav {
         border-bottom: 1px solid #ededed;
     }
     .pt-tabs-slider {
@@ -134,7 +174,7 @@
 }
 
 .pt-tabs-bottom {
-    .pt-tabs-labels {
+    .pt-tabs-nav {
         border-top: 1px solid #ededed;
     }
     .pt-tabs-slider {
@@ -143,7 +183,7 @@
 }
 
 .pt-tabs-left {
-    .pt-tabs-labels {
+    .pt-tabs-nav {
         border-right: 1px solid #ededed;
     }
     .pt-tabs-slider {
@@ -152,7 +192,7 @@
 }
 
 .pt-tabs-right {
-    .pt-tabs-labels {
+    .pt-tabs-nav {
         border-left: 1px solid #ededed;
     }
     .pt-tabs-slider {

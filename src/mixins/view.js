@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import { uniqueID } from '../utils/index.js'
+import debounce from 'lodash.debounce';
+
 const emitter = new Vue();
-window.addEventListener('resize', event => {
+window.addEventListener('resize', debounce(event => {
     emitter.$emit('resize', {
         width: window.document.body.clientWidth,
         height: window.document.body.clientHeight
     })
-}, false);
+}, 300), false);
 
 const components = {};
 

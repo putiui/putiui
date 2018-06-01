@@ -4,6 +4,7 @@ import baseMixin from '../../mixins/base.js';
 import vqueryMixin from '../../mixins/vquery.js';
 import { hasProp } from '../../utils/vnode.js';
 import { isInValidModelValue, prefixeTransform } from '../../utils/index.js';
+import debounce from 'lodash.debounce';
 import PtTabLabel from './tab-label';
 import PtTabNav from './tab-nav';
 const navSlots = {
@@ -43,56 +44,27 @@ export default {
             labelComponents: [],
             timer: null,
             activeLabelIndex: 0,
-            labelSize: {}
+            labelMeta: {},
+            $updatedQueue: {}
         }
     },
     computed: {
         hasInputValue() {
             return hasProp(this, 'value');
-        },
-        sliderStyle() {
-            var size = 0;
-            var translateVal = 0;
-            var max = this.activeLabelIndex;
-            var sizeProp = 'width';
-            if (this.placement === 'left' || this.placement === 'right') {
-                sizeProp = 'height';
-            }
-
-            for (let i = 0; i <= max; i++) {
-                var sizeItem = this.labelSize[i];
-                if (sizeItem) {
-                    if (i === max) {
-                        size = sizeItem[sizeProp];
-                    } else {
-                        translateVal += sizeItem[sizeProp];
-                    }
-                }
-            }
-            var transformVal = '';
-            if (this.placement === 'top' || this.placement === 'bottom') {
-                transformVal = `translateX(${translateVal}px)`;
-            } else if (this.placement === 'left' || this.placement === 'right') {
-                transformVal = `translateY(${translateVal}px)`;
-            }
-
-            return prefixeTransform(transformVal, {
-                [sizeProp]: size + 'px'
-            })
         }
     },
     methods: {
         onLabelSizeChange(labelCom) {
             var index = labelCom.index;
-            if (!this.labelSize[index] || this.labelSize[index].width !== labelCom.width || this.labelSize[index].height !== labelCom.height) {
-                this.$set(this.labelSize, index, {
+            if (!this.labelMeta[index] || this.labelMeta[index].width !== labelCom.width || this.labelMeta[index].height !== labelCom.height) {
+                this.$set(this.labelMeta, index, {
                     width: labelCom.width,
-                    height: labelCom.height
+                    height: labelCom.height,
+                    sign: labelCom.sign
                 });
             }
         },
         createLabel(h, component, tabItem, index) {
-            console.log(index);
             return h('PtTabLabel', {
                 key: 'PtTabLabel' + index,
                 props: {
@@ -159,7 +131,25 @@ export default {
                 });
                 self.$emit('input', item[3].iSign);
             }
-        }
+        },
+        setTabForIndex(index) {
+            var self = this;
+            var labelSign = this.labelMeta[index].sign;
+            var item = self.labelComponents.find(item => {
+                return item[0] === labelSign;
+            });
+            if (item) {
+                self.$emit('input', item[3].iSign);
+            }
+            // item可能为空，是因为用户可能动态删除了某个tab
+        },
+        execUpdatedQueue: debounce(function () {
+            console.log(`tabs update queue.`);
+            Object.keys(this.$data.$updatedQueue).forEach(key => {
+                var item = this.$data.$updatedQueue[key];
+                item[0].call(item[1]);
+            })
+        }, 300)
     },
     render(h) {
         var self = this;
@@ -195,8 +185,9 @@ export default {
             }
         }, coms);
     },
-    created() {
-        window.ss = this;
+    updated() {
+        console.log(`tabs updated`)
+        this.execUpdatedQueue();
     }
 }
 </script>

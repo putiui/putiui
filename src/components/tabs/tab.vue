@@ -38,7 +38,8 @@ export default {
             return hasProp(this, 'sign');
         },
         isActive() {
-            return this.parentTabs.value === this.iSign;
+            var isActive = this.parentTabs.value === this.iSign;
+            return isActive;
         }
     },
     watch: {
