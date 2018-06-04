@@ -62,7 +62,6 @@ export default {
             },
             'data-sign': this.labelSign
         }, [
-                this.labelSign,
                 this.$slots.default
             ])
     },

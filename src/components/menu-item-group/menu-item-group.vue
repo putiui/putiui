@@ -1,5 +1,5 @@
 <template>
-    <PtBox tag="li" :class="{
+    <PtBox :class="{
         'pt-menu-item-group':true
     }">
         <PtText class="pt-menu-core">

@@ -1,25 +1,57 @@
 <template>
-    <Page name='index' style="padding:40px;">
-        <pt-button>Submit</pt-button>
-        <pt-button type="success">你好</pt-button>
-        <router-link to="/zh-CN/component-button">button</router-link>
-        <router-link to="/zh-CN/guide-install">install</router-link>
-        <par>
-            <h5>我是par</h5>
-            <sb>我是sb1</sb>
-            <sb>我是sb2</sb>
-        </par>
+    <Page name='index'>
+        <button type="button" :class="count%2==0 ? 'flash' : ''" @click="onClick">
+            <span>click</span>
+        </button>
     </Page>
 </template>
 
+<style lang="scss">
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.flash {
+  animation: flash ease-in 1s 1;
+}
+</style>
+
+
 <script>
-import P from '../components/P';
-import S from '../components/S';
+import { on, off } from '@putiui/utils/listener.js'
 export default {
     name: 'Index',
-    components: {
-        par: P,
-        sb: S
+    data() {
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        onClick() {
+            this.count++;
+        }
+    },
+    mounted() {
+        on(this.$el, 'animationstart', e => {
+            console.log(`animationstart`)
+        });
+        on(this.$el, 'animationend', e => {
+            console.log(`animationend`)
+        });
+
+        on(this.$el.getElementsByTagName('span')[0], 'animationstart', e => {
+            console.log(`animationstart2`)
+        });
+        on(this.$el.getElementsByTagName('span')[0], 'animationend', e => {
+            console.log(`animationend2`)
+        });
     }
 }
 </script>

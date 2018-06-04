@@ -2,9 +2,9 @@
     <PtBox :class="{
         'pt-sub-menu':true,
         ['pt-menu-'+iAlign]:true,
-        'disabled':disabled,
+        'pt-disabled':disabled,
         ['pt-menu-placement-'+iPlacement]:true,
-        ['is-open']:isOpen
+        ['pt-is-open']:isOpen
     }" @mouseenter.native="userMouseenter" @mouseleave.native="userMouseleave">
         <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
             <PtText v-if="level-1>0" v-for="n in (level-1)" class="pt-menu-space" :key="'pt-menu-space-submenu-'+n"></PtText>
@@ -19,9 +19,9 @@
             </PtText>
             <PtText tag="i" class="pt-menu-arrow"></PtText>
         </a>
-        <ul v-if="isOpen" class="pt-menu-list">
+        <div v-if="isOpen" class="pt-menu-list">
             <slot></slot>
-        </ul>
+        </div>
     </PtBox>
 </template>
 
@@ -29,10 +29,12 @@
 import baseMixin from '../../mixins/base.js';
 import vqueryMixin from '../../mixins/vquery.js';
 import menuLinkMixin from '../../mixins/menu-link.js';
+import viewMixin from '../../mixins/view.js';
+import { closest } from '../../utils/dom.js';
 export default {
     name: 'PtSubMenu',
     ptTag: 'PtSubMenu',
-    mixins: [baseMixin, vqueryMixin, menuLinkMixin('PtMenu')],
+    mixins: [baseMixin, vqueryMixin, menuLinkMixin('PtMenu'), viewMixin],
     props: {
         placement: String,
         trigger: {
@@ -58,7 +60,6 @@ export default {
                 }
                 parent = parent.$parent;
             }
-            console.log(`len=${len}`)
             return len;
         },
         parentSubMenu() {
@@ -124,7 +125,7 @@ export default {
             this.isOpen = false;
         },
         userClickCore(event) {
-            if (this.iTrigger === 'click') {
+            if (this.iTrigger === 'click' || (this.isOpen && this.iTrigger === 'hover')) {
                 this.userExec(event);
             }
         },

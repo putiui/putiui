@@ -301,7 +301,7 @@ export default {
     },
     created() {
         this.parentTabs.$data.$updatedQueue.tabNav = [this.renderSize, this];
-        this.$on('viewResize', data => {
+        this.$on('view.resize', data => {
             this.renderSize();
         })
     },

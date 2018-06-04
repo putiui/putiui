@@ -34,7 +34,7 @@
 <td>trigger</td>
 <td>string</td>
 <td>hover</td>
-<td>设置打开子菜单的事件触发方式，可选值：click,hover；<br>当<code>direction</code>等于<code>vertical</code>且<code>collapsed</code>等于<code>false</code>时此项配置无效，<code>SubMenu</code>将一直以<code>click</code>方式打开</td>
+<td>设置打开子菜单的事件触发方式，可选值：click,hover；</td>
 </tr>
 <tr>
 <td>route</td>
@@ -73,7 +73,7 @@
 <tbody>
 <tr>
 <td>select(sign)</td>
-<td>子组件<code>MneuItem</code>单击时触发，传递该<code>MenuItem</code>的<code>sign</code>值</td>
+<td>用户事件激活子组件<code>MneuItem</code>时触发，传递该<code>MenuItem</code>的<code>sign</code>值</td>
 </tr>
 <tr>
 <td>input(value)</td>
@@ -86,25 +86,6 @@
 <tr>
 <td>close(sign)</td>
 <td>子组件<code>SubMenu</code>关闭时触发，传递该<code>SubMenu</code>的<code>sign</code>值，此事件仅在用户事件发生时触发，手动调用<code>Menu</code>组件的<code>close</code>方法时不进行触发</td>
-</tr>
-</tbody>
-</table>
-<h3>方法</h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>open(sign)</td>
-<td>打开<code>sign</code>值对应的<code>SubMenu</code>子组件</td>
-</tr>
-<tr>
-<td>close(sign)</td>
-<td>关闭<code>sign</code>值对应的<code>SubMenu</code>子组件</td>
 </tr>
 </tbody>
 </table>
@@ -347,7 +328,7 @@
                         "order": "1",
                         "title": "竖向菜单"
                     },
-                    "template": "<div class=\"demo-menu-box\">\n    <PtButton @click=\"collapseMenu\">{{collapsed ? '展开' : '折叠'}}</PtButton>\n    <PtMenu direction=\"vertical\" trigger=\"click\" :collapsed=\"collapsed\" @open=\"onOpen\" @close=\"onClose\">\n        <PtMenuItem sign=\"1\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i> Menu1\n        </PtMenuItem>\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\n            <PtMenuItemGroup title=\"Group1\">\n                <PtMenuItem sign=\"21\">\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu21\n                </PtMenuItem>\n                <PtMenuItem sign=\"22\">\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu22\n                </PtMenuItem>\n            </PtMenuItemGroup>\n        </PtSubMenu>\n        <PtMenuItem sign=\"3\" disabled>\n            <i class=\"fa fa-user\" slot=\"icon\"></i>Menu3\n        </PtMenuItem>\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\n            <PtMenuItem sign=\"41\">\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu41\n            </PtMenuItem>\n            <PtMenuItem sign=\"42\">\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu42\n            </PtMenuItem>\n        </PtSubMenu>\n    </PtMenu>\n</div>\n",
+                    "template": "<div class=\"demo-menu-box\">\n    <PtButton @click=\"collapseMenu\">{{collapsed ? '展开' : '折叠'}}</PtButton>\n    <PtMenu direction=\"vertical\" trigger=\"click\" placement=\"bottom\" :collapsed=\"collapsed\" @open=\"onOpen\" @close=\"onClose\">\n        <PtMenuItem sign=\"1\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i> Menu1\n        </PtMenuItem>\n        <PtSubMenu title=\"Menu2\" sign=\"2\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\n            <PtMenuItemGroup title=\"Group1\">\n                <PtMenuItem sign=\"21\">\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu21\n                </PtMenuItem>\n                <PtMenuItem sign=\"22\">\n                    <i class=\"fa fa-user\" slot=\"icon\"></i>Menu22\n                </PtMenuItem>\n            </PtMenuItemGroup>\n        </PtSubMenu>\n        <PtMenuItem sign=\"3\" disabled>\n            <i class=\"fa fa-user\" slot=\"icon\"></i>Menu3\n        </PtMenuItem>\n        <PtSubMenu title=\"Menu4\" sign=\"4\">\n            <i class=\"fa fa-user\" slot=\"icon\"></i>\n            <PtMenuItem sign=\"41\">\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu41\n            </PtMenuItem>\n            <PtMenuItem sign=\"42\">\n                <i class=\"fa fa-user\" slot=\"icon\"></i>Menu42\n            </PtMenuItem>\n        </PtSubMenu>\n    </PtMenu>\n</div>\n",
                     "style": ".demo-menu-box {\n    width: 220px;\n}",
                     "script": "export default {\n    name: 'demo',\n    data() {\n        return {\n            collapsed: false\n        }\n    },\n    methods: {\n        onOpen(sign) {\n            console.log(`open SubMenu=>${sign}`)\n        },\n        onClose(sign) {\n            console.log(`close SubMenu=>${sign}`)\n        },\n        collapseMenu() {\n            console.log(222);\n            this.collapsed = !this.collapsed;\n        }\n    }\n}"
                 }]

@@ -3,7 +3,8 @@
         'pt-menu':true,
         ['pt-menu-'+iDirection]:true,
         ['pt-menu-'+iAlign]:true,
-        ['is-collapsed']:collapsed
+        ['pt-is-collapsed']:collapsed,
+        'pt-is-collapsing': collapsing
     }">
         <slot></slot>
     </PtBox>
@@ -66,7 +67,8 @@ export default {
     data() {
         return {
             privateOpenedSubMenus: [],
-            privateActiveSign: ''
+            privateActiveSign: '',
+            collapsing: false // 菜单折叠是否正在进行中
         }
     },
     computed: {
@@ -155,6 +157,9 @@ export default {
                     return false;
                 }
             })
+        },
+        select(sign) {
+            this.activeSign = sign;
         }
     }
 }

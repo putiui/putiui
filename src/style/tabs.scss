@@ -12,7 +12,7 @@
 .pt-tab-label {
     display: inline-block;
     padding: 10px 15px;
-    &:not(.distabled):not(.active) {
+    &:not(.distabled) {
         cursor: pointer;
     }
 }

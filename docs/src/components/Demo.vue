@@ -5,27 +5,43 @@
             <slot name="header"></slot>
         </header>
         <div class="demo-run">
-            <slot></slot>
+            <PtTabs v-model="tabValue">
+                <PtTab label="Result">
+                    <slot></slot>
+                </PtTab>
+                <PtTab v-if="data && data.template" label="Template">
+                    <code class="code-box" v-html="html"></code>
+                </PtTab>
+                <PtTab v-if="data && data.css" label="CSS">
+                    <code class="code-box" v-html="css"></code>
+                </PtTab>
+                <PtTab v-if="data && data.script" label="JavaScript">
+                    <code class="code-box" v-html="script"></code>
+                </PtTab>
+            </PtTabs>
         </div>
         <footer class="demo-footer">
-            <code class="code-box" v-html="code"></code>
             <slot name="footer"></slot>
         </footer>
     </section>
 </template>
 
 <style lang="scss">
-@import '../assets/style/mixin.scss';
-.demo-container{
-    margin-bottom: 20px;
-    .demo-title{
-        font-size: 16px;
+@import "../assets/style/mixin.scss";
+.demo-container {
+  margin-bottom: 20px;
+  .demo-title {
+    font-size: 16px;
+  }
+  .demo-run {
+    .pt-tab {
+      padding-left: 0;
+      padding-right: 0;
     }
-    .demo-run{
-        border-radius: 3px;
-        border:1px solid $clr-border;
-        padding: 15px;
+    .code-box {
+      margin: -14px 0;
     }
+  }
 }
 </style>
 
@@ -48,7 +64,10 @@ export default {
     props: ['data'],
     data() {
         return {
-            code: ''
+            html: '',
+            css: '',
+            script: '',
+            tabValue: ''
         }
     },
     methods: {
@@ -58,21 +77,18 @@ export default {
     },
     created() {
         if (this.data) {
-            var code = '';
             if (this.data.template) {
                 var html = `<span class="hljs-tag hljs-tag-template">&lt;<span class="hljs-name">template</span>&gt;</span>\n` + hljs.highlight('html', this.data.template).value + `<span class="hljs-tag hljs-tag-template">&lt;/<span class="hljs-name">template</span>&gt;</span>`;
-                code += html + '\n\n';
+                this.html = this.addLineNumber(html);
             }
             if (this.data.style) {
                 var css = hljs.highlight('html', `<style lang="scss">\n` + this.data.style + `\n<\/style>`).value;
-                code += css + '\n\n';
+                this.css = this.addLineNumber(css);
             }
             if (this.data.script) {
                 var script = hljs.highlight('html', `<script>\n` + this.data.script + `\n<\/script>`).value;
                 this.script = this.addLineNumber(script)
-                code += script;
             }
-            this.code = this.addLineNumber(code.trim());
         }
     }
 }

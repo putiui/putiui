@@ -1,6 +1,5 @@
 <template>
     <label :class="['pt-tab-label', active?'active':'']">
-        {{sign}}<br>
         <slot></slot>
     </label>
 </template>

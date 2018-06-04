@@ -22,7 +22,7 @@
 |direction|string|horizontal|菜单渲染方向，可选值：horizontal,vertical|
 |value|string &#124; { active: string; opened: [ string ] } ||**可使用`v-model`方式进行值传递和更新；**<br>传递`string`类型值时，激活`sign`值一致的`MenuItem`，当发生用户事件导致`MenuItem`激活时，会更新`value`值为激活`MenuItem`的`sign`值；<br>传递`object`类型值时，对象可包含属性：active,opened；<br>`active`接受`string`类型值，当其值不为空时，将激活`sign`值一致的`MenuItem`，当发生用户事件导致`MenuItem`激活时，会更新`value.active`值为激活`MenuItem`的`sign`值；<br>`opened`接受项目类型为`string`类型的`数组`，当其值不为空时，将打开`sign`值包含在其中的`SubMenu`，并关闭`sign`值不包含在其中的`SubMenu`；当发生用户事件导致`SubMenu`打开/关闭时，会同步更新`value.opened`值为已经打开的`SubMenu`的`sign`值的集合；|
 |collapsed|boolean|false|折叠菜单，仅当`direction`等于`vertical`时有效|
-|trigger|string|hover|设置打开子菜单的事件触发方式，可选值：click,hover；<br>当`direction`等于`vertical`且`collapsed`等于`false`时此项配置无效，`SubMenu`将一直以`click`方式打开|
+|trigger|string|hover|设置打开子菜单的事件触发方式，可选值：click,hover；|
 |route|boolean|false|设置子组件`MenuItem`以vue-router模式跳转|
 |route-replace|boolean|false|设置router以replace方式调用，仅在`route`值为真时有效|
 |align|string|left|设置子组件`MenuItem`对齐方式|
@@ -31,16 +31,10 @@
 ### 事件
 | 名称  | 说明 |
 | - | - |
-| select(sign) |子组件`MneuItem`单击时触发，传递该`MenuItem`的`sign`值|
+| select(sign) |用户事件激活子组件`MneuItem`时触发，传递该`MenuItem`的`sign`值|
 | input(value) |`v-model`的`input`事件，传递`value`值|
 | open(sign) |子组件`SubMenu`打开时触发，传递该`SubMenu`的`sign`值，此事件仅在用户事件发生时触发，手动调用`Menu`组件的`open`方法时不进行触发|
 | close(sign) |子组件`SubMenu`关闭时触发，传递该`SubMenu`的`sign`值，此事件仅在用户事件发生时触发，手动调用`Menu`组件的`close`方法时不进行触发|
-
-### 方法
-| 名称  |说明 |
-| - | - |
-| open(sign) |打开`sign`值对应的`SubMenu`子组件|
-| close(sign) |关闭`sign`值对应的`SubMenu`子组件|
 
 
 ## SubMenu

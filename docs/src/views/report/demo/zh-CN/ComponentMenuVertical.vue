@@ -1,6 +1,6 @@
 <template>      <div class="demo-real">         <div class="demo-menu-box">
     <PtButton @click="collapseMenu">{{collapsed ? '展开' : '折叠'}}</PtButton>
-    <PtMenu direction="vertical" trigger="click" :collapsed="collapsed" @open="onOpen" @close="onClose">
+    <PtMenu direction="vertical" trigger="click" placement="bottom" :collapsed="collapsed" @open="onOpen" @close="onClose">
         <PtMenuItem sign="1">
             <i class="fa fa-user" slot="icon"></i> Menu1
         </PtMenuItem>

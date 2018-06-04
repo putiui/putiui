@@ -1,8 +1,8 @@
 <template>
-    <PtBox tag="li" :class="{
+    <PtBox :class="{
         'pt-menu-item':true,
-        'disabled':disabled,
-        'active':isActive
+        'pt-disabled':disabled,
+        'pt-active':isActive
     }">
         <a :class="['pt-menu-core', focus ? 'is-focus' : '']" :href="href" :target="target" @click="userClickCore" @focus="focus=true" @blur="focus=false" @keydown="userKeydownCore">
             <PtText v-for="n in parentLevel" class="pt-menu-space" :key="'pt-menu-space-item-'+n"></PtText>
